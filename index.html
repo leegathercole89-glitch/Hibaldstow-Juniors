@@ -69,6 +69,7 @@
     #photoGallery h2{font-size:2.8rem;margin:10px 0 20px}
     .gallery-scroll{flex:1;overflow-x:auto;scroll-snap-type:x mandatory;display:flex;gap:20px;padding:10px 0;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
     .gallery-scroll::-webkit-scrollbar{display:none}
+    .gallery-scroll{margin-bottom:14px}
     .gallery-scroll img{height:39vh;max-width:90vw;object-fit:contain;border-radius:20px;flex-shrink:0;scroll-snap-align:center;box-shadow:0 15px 40px rgba(0,0,0,0.6);transition:transform 0.3s}
     .gallery-scroll img:hover{transform:scale(1.02)}
     .back-btn{background:#ff4757;padding:16px 40px;font-size:22px;border-radius:50px;margin-top:15px}
@@ -101,7 +102,7 @@
     /* Slideshow under gallery */
     .slideshow{margin:18px auto 0;max-width:1100px}
     .slideshow-frame{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.6);background:#000}
-    .slideshow-frame img{width:100%;height:42vh;max-height:520px;object-fit:contain;display:block;background:#000}
+    .slideshow-frame img{width:100%;height:30vh;max-height:360px;object-fit:contain;display:block;background:#000}
     .slide-nav{
       position:absolute;top:50%;transform:translateY(-50%);
       border:none;border-radius:999px;
@@ -117,7 +118,7 @@
     .slide-counter{font-size:18px;font-weight:800;opacity:0.95}
 
     @media(max-width:900px){
-      .slideshow-frame img{height:36vh}
+      .slideshow-frame img{height:24vh}
       .slide-nav{width:48px;height:48px;font-size:30px}
     }
 
@@ -587,127 +588,6 @@
 
 
 /* =========================
-   STRIKER'S CHOICE GAME
-========================= */
-.striker-wrap {
-  max-width: 1100px;
-  text-align: center;
-}
-.striker-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 10px;
-}
-.striker-banner {
-  flex: 1;
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(30,20,10,0.85);
-  border: 2px solid rgba(255,255,255,0.20);
-  color: #ffcc66;
-  font-weight: 1000;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 1.25rem;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-}
-.striker-scoreboard {
-  width: 200px;
-  border-radius: 16px;
-  background: rgba(25,25,25,0.85);
-  border: 2px solid rgba(255,255,255,0.20);
-  color: #fff;
-  padding: 10px 12px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-  text-align: left;
-}
-.striker-scoreboard .sb-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  font-weight: 900;
-  padding: 4px 0;
-}
-.striker-scoreboard span {
-  opacity: 0.8;
-  font-weight: 800;
-}
-.striker-scoreboard strong {
-  font-size: 1.2rem;
-}
-.striker-message {
-  font-size: 1.15rem;
-  font-weight: 900;
-  margin: 10px 0 14px;
-  min-height: 32px;
-  color: #fff;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.55);
-}
-.striker-message.good {
-  color: #d6ffb7;
-}
-.striker-message.bad {
-  color: #ffb7b7;
-}
-.striker-pitch {
-  position: relative;
-  width: min(960px, 94vw);
-  height: min(520px, 58vh);
-  margin: 0 auto 14px;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.18);
-  box-shadow: 0 18px 55px rgba(0,0,0,0.55);
-  background: #0b1020;
-}
-.striker-player {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.5));
-  user-select: none;
-}
-.player-svg {
-  width: 100%;
-  height: 100%;
-}
-.striker-ball {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.5));
-  user-select: none;
-}
-@media (max-width: 900px) {
-  .striker-topbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .striker-scoreboard {
-    width: 100%;
-  }
-  .striker-pitch {
-    height: min(520px, 62vh);
-  }
-  .striker-player {
-    width: 70px;
-    height: 70px;
-  }
-  .striker-ball {
-    width: 50px;
-    height: 50px;
-  }
-}
-
-  
-/* =========================
    GAMES MENU STYLES
 ========================= */
 .gamesmenu-wrap{max-width:900px;text-align:center}
@@ -757,10 +637,10 @@
 /* =========================
    TOP TRUMPS STYLES
 ========================= */
-.tt-wrap{max-width:1100px;text-align:center}
-.tt-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:10px}
+.tt-wrap{max-width:1100px;text-align:center; padding-bottom:14px;}
+.tt-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:10px;flex-wrap:wrap}
 .tt-banner{
-  flex:1;padding:14px 16px;border-radius:16px;
+  flex:1;min-width:180px;padding:14px 16px;border-radius:16px;
   background:rgba(30,20,10,0.85);border:2px solid rgba(255,255,255,0.20);
   color:#ffcc66;font-weight:1000;letter-spacing:1px;text-transform:uppercase;font-size:1.25rem;
   box-shadow:0 12px 40px rgba(0,0,0,0.45)
@@ -770,7 +650,12 @@
   border:2px solid rgba(255,255,255,0.20);color:#fff;padding:10px 12px;
   box-shadow:0 12px 40px rgba(0,0,0,0.45);text-align:left
 }
-.tt-scoreboard .sb-row{display:flex;justify-content:space-between;gap:10px}
+.tt-scoreboard .sb-row{display:flex;justify-content:space-between;align-items:center;font-weight:900}
+.tt-back-top{
+  background:rgba(255,255,255,0.14);
+  color:#fff;border:1px solid rgba(255,255,255,0.25);
+  padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:1000;
+}
 .tt-message{font-size:1.15rem;font-weight:900;margin:10px 0 14px;min-height:32px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,0.55)}
 .tt-message.good{color:#d6ffb7}
 .tt-message.bad{color:#ffb7b7}
@@ -780,9 +665,10 @@
   grid-template-columns:1fr 1fr;
   gap:18px;
   align-items:start;
-  margin:0 auto 14px;
+  margin:0 auto 10px;
   max-width:1000px;
 }
+
 .tt-side{
   background:rgba(255,255,255,0.10);
   border:1px solid rgba(255,255,255,0.18);
@@ -790,27 +676,67 @@
   padding:12px;
   box-shadow:0 14px 40px rgba(0,0,0,0.35);
 }
-.tt-name{color:#fff;font-weight:1000;font-size:1.1rem;margin:6px 0 10px}
-.tt-cardframe{position:relative;border-radius:18px;overflow:hidden}
+
+.tt-name{color:#fff;font-weight:1000;font-size:1.25rem;margin:6px 0 10px}
+
+.tt-card{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 35px rgba(0,0,0,0.45);
+  background:#000;
+  perspective:1000px;
+}
 .tt-cardimg{
   width:100%;
   height:auto;
-  border-radius:18px;
-  box-shadow:0 12px 35px rgba(0,0,0,0.45);
-  background:#000;
   display:block;
+  border-radius:18px;
+  transform-style:preserve-3d;
+  transition:transform 420ms ease;
+  will-change:transform;
+  background:#000;
+  max-height:min(62vh, 620px);
+  object-fit:contain;
 }
 
-/* CPU hidden cover */
-.tt-hidden .tt-cardimg{filter:blur(10px) brightness(0.55);transform:scale(1.03)}
-.tt-hidden::after{
-  content:"CPU CARD HIDDEN";
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-weight:1000;letter-spacing:1px;
-  background:rgba(0,0,0,0.25);
-  text-shadow:0 2px 16px rgba(0,0,0,0.6);
+/* Mask that hides the printed name/stats on the card image */
+.tt-mask{
+  position:absolute;
+  left:0;right:0;
+  pointer-events:none;
+  opacity:1;
+  transition:opacity 220ms ease;
 }
+.tt-mask.top{top:0;height:18%;}
+.tt-mask.bottom{bottom:0;height:45%;}
+.tt-mask.top::before,
+.tt-mask.bottom::before{
+  content:"";
+  position:absolute;inset:0;
+  background:rgba(15, 15, 25, 0.82);
+  backdrop-filter: blur(4px);
+}
+.tt-mask.top::after{
+  content:"";
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-weight:1000;letter-spacing:1px;
+  color:rgba(255,255,255,0.85);
+  font-size:0.95rem;
+  text-shadow:0 2px 10px rgba(0,0,0,0.6);
+}
+.tt-mask.bottom::after{
+  content:"";
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-weight:1000;letter-spacing:1px;
+  color:rgba(255,255,255,0.85);
+  font-size:0.95rem;
+  text-shadow:0 2px 10px rgba(0,0,0,0.6);
+}
+
+.tt-card.revealed .tt-mask{opacity:0}
 
 .tt-stats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:12px}
 .tt-statbtn{
@@ -823,47 +749,103 @@
 .tt-statbtn:hover{transform:scale(1.08)}
 .tt-statbtn:disabled{opacity:0.5;cursor:not-allowed;box-shadow:none;transform:none}
 
-.tt-controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-
-
-/* TOP TRUMPS FIXES */
-#topTrumpsScreen{align-items:flex-start;overflow:auto;padding:18px 0}
-#topTrumpsScreen .overlay-content{margin:18px auto;max-width:1100px;width:min(1100px,92vw)}
-.tt-cardimg{max-height:55vh;object-fit:contain}
-.tt-controls{position:sticky;bottom:12px;z-index:5;background:rgba(45,27,105,0.55);backdrop-filter:blur(6px);padding:10px 0;border-radius:18px;margin-top:12px}
-.tt-back-top{margin-left:10px;min-width:120px}
-.tt-back-bottom{min-width:180px}
-.tt-message{margin-top:8px}
-@media(max-height:720px){
-  .tt-cardimg{max-height:45vh}
-}
-.tt-cpu-cover{background:rgba(0,0,0,0.72)}
-
-.tt-cpu-note{color:rgba(255,255,255,0.85);font-weight:800;margin-top:10px}
-
-.tt-cpu-frame{position:relative}
-.tt-cpu-cover{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+/* Compact, sticky controls */
+.tt-controls{
+  position:sticky;
+  bottom:0;
+  padding:10px 12px;
+  background:rgba(20,16,40,0.92);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  z-index:9999;
   border-radius:18px;
-  background:rgba(0,0,0,0.55);
-  color:#fff;font-weight:900;
-  text-shadow:0 2px 14px rgba(0,0,0,0.55);
+  margin-top:10px;
+}
+
+#ttStartBtn, #ttNextBtn, #ttBackBtn{
+  padding:10px 16px !important;
+  font-size:1.05rem !important;
+  border-radius:999px !important;
+  min-height:44px;
+}
+#ttBackBtn{width:auto !important; min-width:120px;}
+
+.tt-winfx, .tt-losefx{
+  position:fixed;
+  inset:0;
   pointer-events:none;
+  opacity:0;
+  transition:opacity 150ms ease;
+  z-index:10050;
 }
-.tt-cpu-cover-title{font-size:1.2rem;margin-bottom:6px}
-.tt-cpu-cover-sub{font-size:0.95rem;opacity:0.9}
-.tt-cpu-cover.hidden{display:none}
+.tt-winfx.active{opacity:1;}
+.tt-losefx.active{opacity:1;}
 
-.tt-back-top{
-  background:#ff4d4d;color:#fff;border:none;border-radius:999px;
-  padding:10px 14px;font-weight:1000;cursor:pointer;
-  box-shadow:0 10px 25px rgba(255,77,77,0.35);
+.tt-winfx .streamer{
+  position:absolute;
+  top:-20vh;
+  width:18px;height:140vh;
+  border-radius:999px;
+  opacity:0.9;
+  animation:tt-stream 1100ms ease-out forwards;
 }
-.tt-back-top:hover{transform:scale(1.05)}
-.tt-back-bottom{display:inline-block}
+@keyframes tt-stream{
+  0%{transform:translateY(-20vh) rotate(12deg);}
+  100%{transform:translateY(120vh) rotate(12deg);}
+}
+.tt-losefx .boo{
+  position:absolute;left:50%;top:35%;
+  transform:translate(-50%,-50%);
+  font-size:3.2rem;font-weight:1000;
+  color:#ffb7b7;
+  text-shadow:0 10px 40px rgba(0,0,0,0.6);
+  animation:tt-pop 900ms ease-out forwards;
+}
+@keyframes tt-pop{
+  0%{transform:translate(-50%,-50%) scale(0.7); opacity:0;}
+  20%{opacity:1;}
+  100%{transform:translate(-50%,-50%) scale(1.05); opacity:0;}
+}
 
 
+.tt-flash{
+  position:fixed;
+  left:50%;top:18%;
+  transform:translateX(-50%);
+  padding:14px 22px;
+  border-radius:999px;
+  font-weight:1000;
+  font-size:1.6rem;
+  z-index:99999;
+  color:#fff;
+  background:rgba(0,0,0,0.7);
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+}
+.tt-flash.win{background:rgba(34,197,94,0.85);}
+.tt-flash.lose{background:rgba(239,68,68,0.85);}
+.tt-flash.draw{background:rgba(234,179,8,0.85);}
+
+.tt-final{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:1000;
+  font-size:min(14vw, 120px);
+  z-index:999999;
+  color:#fff;
+  text-shadow:0 10px 60px rgba(0,0,0,0.65);
+  background:rgba(0,0,0,0.75);
+}
+.tt-final.win{background:rgba(34,197,94,0.35);}
+.tt-final.lose{background:rgba(239,68,68,0.35);}
+.tt-final.draw{background:rgba(234,179,8,0.35);}
+/* Flip animation: we swap image src in JS, but keep a card flip feel */
+.tt-card.flipping .tt-cardimg{transform:rotateY(180deg)}
 
 @media(max-width:900px){
   .tt-topbar{flex-direction:column;align-items:stretch}
@@ -871,41 +853,10 @@
   .tt-table{grid-template-columns:1fr}
 }
 
-
-/* ===== Top Trumps control bar tweaks (patched) ===== */
-.tt-controls{
-  position: sticky;
-  bottom: 0;
-  z-index: 9999;
-  padding: 8px 10px;
-  margin-top: 10px;
-  background: rgba(20,16,40,0.92);
-  backdrop-filter: blur(6px);
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-radius: 16px;
-}
-#ttStartBtn, #ttNextBtn, #ttBackBtn{
-  padding: 10px 16px !important;
-  font-size: 1.05rem !important;
-  border-radius: 999px !important;
-  min-height: 44px;
-}
-#ttBackBtn{
-  width: auto !important;
-  min-width: 120px;
-}
-
-
-/* Stronger CPU cover so stats can't be "read through" */
-#ttCpuCover{
-  background: rgba(0,0,0,0.85) !important;
-}
-
-
 /* =========================
    TROPHY CABINET
 ========================= */
-.trophy-wrap{max-width:1100px;text-align:center}
+.trophy-wrap{max-width:1200px;width:min(1200px,96vw);max-height:calc(var(--vh, 1vh)*92);text-align:center;display:flex;flex-direction:column;overflow:hidden}
 .trophy-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
 .trophy-banner{
   flex:1;padding:14px 16px;border-radius:16px;
@@ -915,42 +866,485 @@
 }
 .trophy-back{padding:10px 14px;font-size:1rem}
 .trophy-sub{color:#fff;font-weight:900;margin:8px 0 14px;text-shadow:0 2px 14px rgba(0,0,0,0.55)}
-.trophy-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-  gap:14px;
-  width:min(1050px,92vw);
-  margin:0 auto;
-}
+.trophy-grid{flex:1;overflow:auto;padding:10px;border-radius:16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12)}
+
 .trophy-img{
   width:100%;
-  height:auto;
-  border-radius:16px;
-  box-shadow:0 12px 35px rgba(0,0,0,0.45);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius:12px;
+  box-shadow:0 10px 28px rgba(0,0,0,0.45);
   cursor:pointer;
   background:#000;
   border:1px solid rgba(255,255,255,0.16);
 }
+
 .trophy-lightbox{
-  position:fixed; inset:0;
+  position:fixed;
+  inset:0;
   display:none;
   align-items:center;
   justify-content:center;
-  background:rgba(0,0,0,0.82);
-  z-index:10000;
-  padding:18px;
+  background:rgba(0,0,0,0.92);
+  z-index:99999;
 }
+
 .trophy-lightbox img{
-  max-width:min(95vw,1100px);
-  max-height:92vh;
-  border-radius:18px;
-  box-shadow:0 16px 50px rgba(0,0,0,0.65);
+  width:100vw;
+  height:100vh;
+  object-fit: contain;
+  border-radius:0;
+  box-shadow:none;
 }
+
 .trophy-lightbox.active{display:flex}
+
+
+/* Trophy Cabinet: grid wrapper & sticky header */
+.trophy-topbar{position:sticky;top:0;background:rgba(30,20,10,0.70);backdrop-filter:blur(6px);padding:10px;border-radius:16px;z-index:5}
+.trophy-grid-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(72px,10vw,140px),1fr));gap:10px;align-items:stretch}
+
+
+
+/* =========================
+   CONFETTI (WIN EFFECT)
+========================= */
+#confettiContainer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:1000000;
+}
+.confetti{
+  position:absolute;
+  top:-10vh;
+  width:10px;
+  height:14px;
+  opacity:0.95;
+  transform:rotate(0deg);
+  animation: confetti-fall linear forwards;
+  border-radius:2px;
+}
+@keyframes confetti-fall{
+  0%{ transform: translateY(-10vh) rotate(0deg); }
+  100%{ transform: translateY(120vh) rotate(720deg); }
+}
+
+
+/* =========================
+   FUN FLOATING SCOREBOARDS (Top Trumps + Penalties)
+   - sits on purple background at right side
+========================= */
+.fun-scoreboard{
+  position:fixed;
+  right:18px;
+  top:110px;
+  width:min(340px, 34vw);
+  min-width:240px;
+  padding:18px 18px 16px;
+  border-radius:24px;
+  color:#fff;
+  text-align:left;
+  border:2px solid rgba(255,255,255,0.22);
+  box-shadow:0 18px 55px rgba(0,0,0,0.55);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,230,109,0.35), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(78,205,196,0.28), transparent 46%),
+    linear-gradient(135deg, rgba(0,0,0,0.55), rgba(40,20,80,0.70));
+  backdrop-filter: blur(6px);
+  z-index:10060;
+  overflow:hidden;
+}
+.fun-scoreboard::before{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  background:
+    radial-gradient(circle at 30px 30px, rgba(255,255,255,0.18), transparent 40%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0 10px, transparent 10px 22px);
+  opacity:0.35;
+  transform:rotate(-8deg);
+  pointer-events:none;
+}
+.fun-scoreboard::after{
+  content:"⚽🏆";
+  position:absolute;
+  right:14px;
+  top:10px;
+  font-size:44px;
+  opacity:0.40;
+  transform:rotate(10deg);
+  pointer-events:none;
+}
+.fun-scoreboard .sb-row{
+  position:relative;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:12px;
+  font-weight:1000;
+  padding:8px 0;
+  font-size:1.15rem;
+  text-shadow:0 2px 12px rgba(0,0,0,0.45);
+}
+.fun-scoreboard span{opacity:0.9;font-weight:900}
+.fun-scoreboard strong{font-size:1.55rem}
+
+@media(max-width:900px){
+  /* On phones, revert to normal flow so it doesn't cover the pitch/cards */
+  .fun-scoreboard{
+    position:static;
+    width:100%;
+    min-width:unset;
+    right:auto; top:auto;
+    margin:10px 0 0;
+  }
+}
+
+
+/* =========================
+   OFFSIDE TRAINER
+========================= */
+.offside-pitch{
+  position:relative;
+  width:min(960px,94vw);
+  height:min(420px,52vh);
+  margin:0 auto 10px;
+  border-radius:22px;
+  overflow:hidden;
+  border:2px solid rgba(255,255,255,0.18);
+  box-shadow:0 18px 55px rgba(0,0,0,0.55);
+  background:linear-gradient(180deg, rgba(15,10,40,0.85), rgba(10,8,24,0.92));
+}
+.offside-pitch::before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(90deg, rgba(34,197,94,0.22) 0 90px, rgba(34,197,94,0.14) 90px 180px),
+    linear-gradient(180deg, rgba(34,197,94,0.12), rgba(0,0,0,0.35));
+  opacity:0.9;
+}
+.offside-halfline{
+  position:absolute;top:0;bottom:0;left:50%;
+  width:4px;background:rgba(255,255,255,0.55);
+  transform:translateX(-50%);
+  box-shadow:0 0 18px rgba(255,255,255,0.25);
+  z-index:2;
+}
+.offside-goal{
+  position:absolute;right:18px;top:22%;bottom:22%;
+  width:10px;background:rgba(255,255,255,0.85);
+  border-radius:6px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  z-index:2;
+}
+.offside-lastdef{
+  position:absolute;top:0;bottom:0;
+  border-left:4px dashed rgba(255,230,109,0.95);
+  filter:drop-shadow(0 0 14px rgba(255,230,109,0.35));
+  z-index:3;
+}
+.offside-ball,.offside-attacker,.offside-defender{
+  position:absolute;top:50%;
+  transform:translate(-50%,-50%);
+  width:74px;height:74px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;
+  z-index:5;
+  user-select:none;
+  box-shadow:0 14px 35px rgba(0,0,0,0.45);
+}
+.offside-ball{background:rgba(0,0,0,0.35);border:2px solid rgba(255,255,255,0.35)}
+.offside-ball::after{content:"⚽";}
+.offside-attacker{background:rgba(37,99,235,0.85);border:2px solid rgba(255,255,255,0.35)}
+.offside-attacker::after{content:"🔵";}
+.offside-defender{background:rgba(239,68,68,0.85);border:2px solid rgba(255,255,255,0.35)}
+.offside-defender::after{content:"🔴";}
+.offside-label{
+  position:absolute;
+  z-index:6;
+  background:rgba(0,0,0,0.45);
+  color:#fff;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:1000;
+  font-size:14px;
+}
+.offside-help{
+  color:#fff;
+  font-weight:900;
+  font-size:1.25rem;
+  margin:10px 0 0;
+  text-shadow:0 2px 14px rgba(0,0,0,0.55);
+  min-height:32px;
+  width:min(960px,94vw);
+  margin-left:auto;margin-right:auto;
+}
+.offside-controls{
+  margin:12px auto 0;
+  width:min(860px,94vw);
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 14px 40px rgba(0,0,0,0.35);
+  color:#fff;
+}
+.offside-row{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  margin:10px 0;
+}
+.offside-row input[type="range"]{width:min(520px,90vw)}
+@media(max-width:900px){
+  .offside-pitch{height:min(420px,56vh)}
+  .offside-ball,.offside-attacker,.offside-defender{width:64px;height:64px;font-size:34px}
+}
+/* =========================
+   OFFSIDE SLIDER DEMO UPGRADE
+========================= */
+.offlearn-layout{
+  display:grid;
+  grid-template-columns: 1.6fr 0.9fr;
+  gap:16px;
+  align-items:start;
+  width:min(1180px,96vw);
+  margin:0 auto;
+}
+.offlearn-sidebar{display:flex;flex-direction:column;gap:16px;min-width:280px}
+.offlearn-pitchwrap{justify-content:stretch}
+.offlearn-pitchwrap .offside-pitch{width:100%;max-width:900px}
+.offlearn-controlsbox{max-width:520px}
+@media(max-width:1100px){
+  .offlearn-layout{grid-template-columns:1fr}
+  .offlearn-sidebar{max-width:740px;margin:0 auto}
+  .offlearn-controlsbox{max-width:none}
+}
+
+.offlearn-pitchwrap{display:flex;justify-content:center}
+.offlearn-pitch{position:relative}
+.offlearn-coach{
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:18px;
+  padding:12px;
+  box-shadow:0 14px 40px rgba(0,0,0,0.35);
+}
+.offlearn-coachimg{
+  width:100%;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  display:block;
+}
+.offlearn-coachbox{
+  margin-top:12px;
+  background:rgba(0,0,0,0.75);
+  border:2px solid rgba(255,255,255,0.22);
+  border-radius:14px;
+  padding:12px;
+  color:#fff;
+  font-weight:900;
+  font-size:1rem;
+  line-height:1.25;
+}
+.offlearn-controlsbox{
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:18px;
+  padding:12px;
+  box-shadow:0 14px 40px rgba(0,0,0,0.35);
+}
+
+/* Freeze + badge */
+.offlearn-freeze{
+  position:absolute;
+  left:50%;
+  top:10%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,0.70);
+  border:1px solid rgba(255,255,255,0.20);
+  color:#fff;
+  padding:10px 16px;
+  border-radius:999px;
+  font-weight:1000;
+  font-size:1.05rem;
+  z-index:30;
+  opacity:0;
+  pointer-events:none;
+}
+.offlearn-freeze.show{opacity:1; animation:offPop 900ms ease-out}
+.offlearn-badge{
+  position:absolute;
+  left:50%;
+  top:20%;
+  transform:translateX(-50%);
+  padding:12px 18px;
+  border-radius:999px;
+  font-weight:1000;
+  font-size:1.35rem;
+  z-index:31;
+  display:none;
+  color:#fff;
+  box-shadow:0 12px 40px rgba(0,0,0,0.55);
+}
+.offlearn-badge.show{display:block; animation:offPop 900ms ease-out}
+.offlearn-badge.onside{background:rgba(34,197,94,0.85)}
+.offlearn-badge.offside{background:rgba(239,68,68,0.85)}
+@keyframes offPop{0%{transform:translateX(-50%) scale(0.9);opacity:0}15%{opacity:1}100%{transform:translateX(-50%) scale(1);opacity:1}}
+
+/* Pulse the defender line at freeze-frame */
+.offside-lastdef.pulse{animation:offLinePulse 900ms ease-in-out infinite}
+@keyframes offLinePulse{0%,100%{opacity:0.55}50%{opacity:1}}
+
+/* Ball kick animation (transform) */
+.offlearn-ball{transition:transform 650ms cubic-bezier(.2,.9,.2,1);}
+.offlearn-ball.flying{transform:translate(calc(var(--dx, 0px)), calc(var(--dy, 0px)));}
+
+@media(max-width:980px){
+  .offlearn-layout{grid-template-columns:1fr; gap:14px;}
+}
+
+/* ===== Offside Trainer label + layout fixes ===== */
+.offlearn-layout{width:min(1280px,96vw);} /* allow a bit wider on desktop */
+
+.offlearn-layout .offside-pitch{
+  width:100%;
+  max-width:760px;   /* stop it overflowing the grid column */
+  height:min(460px,56vh);
+  margin:0 auto 10px;
+}
+
+.player-label{
+  position:absolute;
+  top:-28px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:0.85rem;
+  font-weight:1000;
+  color:#fff;
+  background:rgba(0,0,0,0.55);
+  border:1px solid rgba(255,255,255,0.25);
+  pointer-events:none;
+  white-space:nowrap;
+}
+.player-label.blue{background:rgba(37,99,235,0.95);}
+.player-label.red{background:rgba(220,38,38,0.95);}
+.player-label.yellow{background:rgba(250,204,21,0.98); color:#2d1b69;}
+
+@media(max-width:1100px){
+  .offlearn-layout{grid-template-columns:1fr; gap:14px;}
+  .offlearn-layout .offside-pitch{max-width:92vw;}
+}
+
+/* ===== Offside Learn Layout (Coach + Pitch + Controls) ===== */
+.offlearn-container{max-width:1280px !important;text-align:center;}
+.offlearn-toprow{display:flex;gap:14px;align-items:center;justify-content:space-between;margin:0 auto 14px;flex-wrap:wrap}
+.offlearn-title{flex:1;min-width:280px}
+.offlearn-status{width:360px;max-width:94vw}
+
+.offlearn-shell{display:flex;gap:18px;align-items:flex-start;justify-content:center;margin:0 auto;max-width:1280px}
+.offlearn-coachpanel{
+  width:240px;flex:0 0 240px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:22px;
+  padding:14px 14px 16px;
+  box-shadow:0 18px 55px rgba(0,0,0,0.45);
+}
+.offlearn-coachimg{
+  width:100%;
+  border-radius:16px;
+  display:block;
+  box-shadow:0 14px 38px rgba(0,0,0,0.45);
+}
+.offlearn-coachbox{
+  margin-top:12px;
+  background:rgba(0,0,0,0.65);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:16px;
+  padding:12px 12px;
+  color:#fff;
+  font-weight:900;
+  line-height:1.25;
+  font-size:0.98rem;
+}
+
+.offlearn-main{width:min(980px,92vw);flex:1;display:flex;flex-direction:column;align-items:center}
+.offlearn-pitchwrap{width:100%;display:flex;justify-content:center}
+.offlearn-pitch{width:100% !important;max-width:980px !important;height:min(420px,48vh) !important}
+.offlearn-controlsbox{
+  width:min(640px,92vw);
+  margin-top:14px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:20px;
+  padding:14px 14px 16px;
+  box-shadow:0 16px 45px rgba(0,0,0,0.35);
+}
+.offlearn-btnrow{justify-content:center;gap:14px;flex-wrap:wrap}
+.offlearn-btn{border-radius:999px !important;padding:16px 26px !important;font-size:1.25rem !important;font-weight:1000 !important}
+.offlearn-btn.play{background:#2563eb !important;color:#fff !important}
+.offlearn-btn.rand{background:#16a34a !important;color:#fff !important}
+
+.offlearn-rulebar{
+  width:min(860px,94vw);
+  margin:14px auto 8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(0,0,0,0.55);
+  border:1px solid rgba(255,255,255,0.18);
+  color:#fff;
+  font-weight:900;
+  font-size:1.0rem;
+}
+.offlearn-back{margin-top:10px}
+
+/* Keep player labels small */
+.player-label{position:absolute;top:-26px;left:50%;transform:translateX(-50%);padding:4px 10px;border-radius:999px;font-size:0.78rem;font-weight:1000;color:#fff;pointer-events:none;z-index:30}
+.player-label.blue{background:#2563eb;}
+.player-label.red{background:#dc2626;}
+.player-label.yellow{background:#facc15;color:#2d1b69;}
+
+/* Responsive: stack coach above on small screens */
+@media(max-width:980px){
+  .offlearn-shell{flex-direction:column;align-items:center}
+  .offlearn-coachpanel{width:min(520px,92vw);flex:0 0 auto;display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:stretch}
+  .offlearn-coachimg{height:140px;object-fit:cover}
+  .offlearn-coachbox{margin-top:0}
+  .offlearn-main{width:min(980px,94vw)}
+  .offlearn-pitch{height:min(380px,44vh) !important}
+}
+
+/* ---- Offside Slider Demo: tighten controls layout to match mock ---- */
+.offlearn-controlsbox{max-width:560px !important;}
+.offlearn-controlsbox .offside-controls{
+  width:100% !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+.offlearn-controlsbox .offside-row{margin:12px 0 !important;}
+.offlearn-controlsbox .offside-row input[type="range"]{width:100% !important;}
+.offlearn-btnrow{display:flex !important; gap:18px !important; flex-wrap:nowrap !important;}
+.offlearn-btnrow .offlearn-btn{flex:1 1 0; width:auto !important; padding:16px 22px !important; font-size:1.2rem !important;}
+@media(max-width:900px){
+  .offlearn-shell{flex-direction:column !important; align-items:center !important;}
+  .offlearn-coachpanel{width:min(320px,92vw) !important;}
+  .offlearn-btnrow{flex-wrap:wrap !important;}
+}
 
 </style>
 </head>
 <body>
+<div id="confettiContainer" aria-hidden="true"></div>
 
   <div id="splash">
     <img src="assets/images/splash.jpg">
@@ -996,7 +1390,7 @@
       <div class="tile-label">Players</div>
     </button>
 
-    <button class="tile-btn" aria-label="Quiz" onclick="openQuiz();playSound('whistle')">
+    <button class="tile-btn" aria-label="Quiz" onclick="openQuizMenu();playSound('whistle')">
       <img class="tile-img" src="assets/images/quiz-card.jpg" alt="Quiz">
       <div class="tile-label">Quiz</div>
     </button>
@@ -1005,13 +1399,7 @@
       <img class="tile-img" src="assets/images/club-song.jpg" alt="Club Song">
       <div class="tile-label" id="clubSongLabel">🎶 Club Song</div>
     </button>
-
-    <button id="strikerBtn" class="tile-btn" aria-label="Striker's Choice" onclick="openStrikerGame(); playSound('whistle');">
-      <img class="tile-img" src="assets/images/striker-game.jpg" alt="Striker's Choice">
-      <div class="tile-label">Striker's Choice</div>
-    </button>
-
-  </div>
+</div>
 </div>
 </div>
 
@@ -1065,50 +1453,151 @@
   <div id="menu_ALL" class="videoMenu">
     <h2>All Players</h2>
     <div class="video-grid">
-      <div class="video-thumb" onclick="window.open('https://youtu.be/EukKiQxpch8','_blank')">
-        <img src="https://i.ytimg.com/vi/EukKiQxpch8/maxresdefault.jpg"><div class="play-icon"></div>
-        <div class="video-title">Warm-Up & Team Shape</div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/_dYy4QGXnns','_blank')">
+        <img src="https://i.ytimg.com/vi/_dYy4QGXnns/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">All Players Drill 1</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/V4Q4H7CXomM','_blank')">
+        <img src="https://i.ytimg.com/vi/V4Q4H7CXomM/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">All Players Drill 2</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/TdmSGgPcsjU','_blank')">
+        <img src="https://i.ytimg.com/vi/TdmSGgPcsjU/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">All Players Drill 3</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/--llBGWd4JA','_blank')">
+        <img src="https://i.ytimg.com/vi/--llBGWd4JA/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">All Players Drill 4</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/FwBT3JSSq3o','_blank')">
+        <img src="https://i.ytimg.com/vi/FwBT3JSSq3o/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">All Players Drill 5</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/X9f_c6LHoTI','_blank')">
+        <img src="https://i.ytimg.com/vi/X9f_c6LHoTI/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">All Players Drill 6</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/0j7alDnjJI0','_blank')">
+        <img src="https://i.ytimg.com/vi/0j7alDnjJI0/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">All Players Drill 7</div>
       </div>
     </div>
-    <button class="back-btn" onclick="closeMenu('ALL')">Back</button>
+    <button class="back-btn"<button class="back-btn" onclick="closeMenu('ALL')">Back</button>
   </div>
 
   <div id="menu_DEF" class="videoMenu">
-    <h2>Defence Training</h2>
+    <h2>DEF Training</h2>
     <div class="video-grid">
-      <div class="video-thumb" onclick="window.open('https://youtu.be/yREWtO19RQc','_blank')">
-        <img src="https://i.ytimg.com/vi/yREWtO19RQc/maxresdefault.jpg"><div class="play-icon"></div>
-        <div class="video-title">Defending as a Unit</div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/Xhn3OtXsHgE','_blank')">
+        <img src="https://i.ytimg.com/vi/Xhn3OtXsHgE/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Defence Drill 1</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/0pC2xwU72gw','_blank')">
+        <img src="https://i.ytimg.com/vi/0pC2xwU72gw/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Defence Drill 2</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/NhHs9rcANdg','_blank')">
+        <img src="https://i.ytimg.com/vi/NhHs9rcANdg/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Defence Drill 3</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/NhHs9rcANdg','_blank')">
+        <img src="https://i.ytimg.com/vi/NhHs9rcANdg/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Defence Drill 4</div>
       </div>
     </div>
-    <button class="back-btn" onclick="closeMenu('DEF')">Back</button>
+    <button class="back-btn"<button class="back-btn" onclick="closeMenu('DEF')">Back</button>
   </div>
 
   <div id="menu_SKL" class="videoMenu">
     <h2>Skills & Tricks Playlist</h2>
     <div class="video-grid">
-      <div class="video-thumb" onclick="window.open('https://youtube.com/playlist?list=PLaSL84U3HNjAzScYPOkRoLm4ZtI0BUXhs','_blank')">
-        <img src="https://i.ytimg.com/vi_list/PLaSL84U3HNjAzScYPOkRoLm4ZtI0BUXhs/maxresdefault.jpg"><div class="play-icon"></div>
-        <div class="video-title">Full Skills Playlist</div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/eLH0B83NbCU','_blank')">
+        <img src="https://i.ytimg.com/vi/eLH0B83NbCU/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Skills & Tricks</div>
       </div>
     </div>
-    <button class="back-btn" onclick="closeMenu('SKL')">Back</button>
+    <button class="back-btn"<button class="back-btn" onclick="closeMenu('SKL')">Back</button>
   </div>
 
   <div id="menu_GK" class="videoMenu">
-    <h2>Goalkeeper Training</h2>
-    <button class="back-btn" onclick="closeMenu('GK')">Back</button>
+    <h2>GK Training</h2>
+    <div class="video-grid">
+      <div class="video-thumb" onclick="window.open('https://youtu.be/k1i6kWXi2Ls','_blank')">
+        <img src="https://i.ytimg.com/vi/k1i6kWXi2Ls/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Goalkeeper Drill 1</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/TPt1yU3AQg0','_blank')">
+        <img src="https://i.ytimg.com/vi/TPt1yU3AQg0/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Goalkeeper Drill 2</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/YCENd1NOljM','_blank')">
+        <img src="https://i.ytimg.com/vi/YCENd1NOljM/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Goalkeeper Drill 3</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/Wli4p93mZxA','_blank')">
+        <img src="https://i.ytimg.com/vi/Wli4p93mZxA/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Goalkeeper Drill 4</div>
+      </div>
+    </div>
+    <button class="back-btn"<button class="back-btn" onclick="closeMenu('GK')">Back</button>
   </div>
   <div id="menu_MID" class="videoMenu">
-    <h2>Midfield Training</h2>
-    <button class="back-btn" onclick="closeMenu('MID')">Back</button>
+    <h2>MID Training</h2>
+    <div class="video-grid">
+      <div class="video-thumb" onclick="window.open('https://youtu.be/4-jOdpR_TQw','_blank')">
+        <img src="https://i.ytimg.com/vi/4-jOdpR_TQw/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Midfield Drill 1</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/deMrJtWkiZs','_blank')">
+        <img src="https://i.ytimg.com/vi/deMrJtWkiZs/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Midfield Drill 2</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/FBFePmLZN1s','_blank')">
+        <img src="https://i.ytimg.com/vi/FBFePmLZN1s/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Midfield Drill 3</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/MtK38kSRyYA','_blank')">
+        <img src="https://i.ytimg.com/vi/MtK38kSRyYA/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Midfield Drill 4</div>
+      </div>
+    </div>
+    <button class="back-btn"<button class="back-btn" onclick="closeMenu('MID')">Back</button>
   </div>
   <div id="menu_STR" class="videoMenu">
-    <h2>Striker Training</h2>
-    <button class="back-btn" onclick="closeMenu('STR')">Back</button>
+    <h2>STR Training</h2>
+    <div class="video-grid">
+      <div class="video-thumb" onclick="window.open('https://youtu.be/SHBNBBdyYkA','_blank')">
+        <img src="https://i.ytimg.com/vi/SHBNBBdyYkA/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Striker Drill 1</div>
+      </div>
+      <div class="video-thumb" onclick="window.open('https://youtu.be/Oe5SFSCAc6w','_blank')">
+        <img src="https://i.ytimg.com/vi/Oe5SFSCAc6w/maxresdefault.jpg"><div class="play-icon"></div>
+        <div class="video-title">Striker Drill 2</div>
+      </div>
+    </div>
+    <button class="back-btn"<button class="back-btn" onclick="closeMenu('STR')">Back</button>
   </div>
 
-  <div id="quizScreen">
+  
+  <!-- =========================
+       QUIZ TOPICS MENU
+  ========================== -->
+  <div id="quizMenuScreen" class="overlay">
+    <div class="overlay-card" style="width:min(820px,92vw);">
+      <h2 style="margin:0 0 26px;font-size:40px;font-weight:900;">Football Quiz Topics</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:stretch;">
+        <button class="menu-btn" onclick="startQuizTopic('rules'); playSound('whistle');">🟨 Rules & Referees</button>
+        <button class="menu-btn" onclick="startQuizTopic('skills'); playSound('whistle');">⚡ Skills & Tricks</button>
+        <button class="menu-btn" onclick="startQuizTopic('positions'); playSound('whistle');">🧤 Positions</button>
+        <button class="menu-btn" onclick="startQuizTopic('matchday'); playSound('whistle');">🏟️ Matchday</button>
+        <button class="menu-btn" onclick="startQuizTopic('teamwork'); playSound('whistle');">🤝 Teamwork</button>
+        <button class="menu-btn" onclick="startQuizTopic('offside'); playSound('whistle');">🚩 Offside Basics</button>
+      </div>
+      <button class="back-btn" style="margin-top:22px" onclick="closeQuizMenu()">Back to Home</button>
+    </div>
+  </div>
+
+<div id="quizScreen">
     <h2>Mini Quiz – Test Your Football Brain!</h2>
     <div id="quizTimer">120</div>
     <div id="quizContent"></div>
@@ -1124,7 +1613,7 @@
       <div id="copyHint" style="margin-top:10px;font-size:1rem;opacity:0.85;display:none">Copied ✅</div>
     </div>
 
-    <button class="back-btn" onclick="closeQuiz()">Back to Home</button>
+    <button class="back-btn" onclick="backToQuizTopics()">Back to Topics</button>
   </div>
 
   <div id="imgZoomBackdrop" aria-hidden="true"></div>
@@ -1152,8 +1641,7 @@
   </button>
 
   <!-- Future -->
-  <button class="gamesmenu-btn gamesmenu-btn--empty" onclick="futureGameToast();">
-  </button>
+  <button class="gamesmenu-btn" onclick="closeGamesMenu(); openOffsideMenu(); playSound('whistle');">Offside Trainer</button>
 
   <!-- Future -->
   <button class="gamesmenu-btn gamesmenu-btn--empty" onclick="futureGameToast();">
@@ -1166,50 +1654,6 @@
   </div>
 </div>
 
-<!-- =========================
-     TOP TRUMPS OVERLAY
-========================== -->
-<div id="topTrumpsScreen" class="overlay">
-  <div class="overlay-content tt-wrap">
-    <div class="tt-topbar">
-      <div class="tt-banner">TOP TRUMPS</div>
-      <div class="tt-scoreboard">
-        <div class="sb-row"><span>You</span><strong id="ttYouCount">0</strong></div>
-        <div class="sb-row"><span>CPU</span><strong id="ttCpuCount">0</strong></div>
-        <div class="sb-row"><span>Pot</span><strong id="ttPotCount">0</strong></div>
-      </div>
-      <button class="tt-back-top" type="button" onclick="closeTopTrumps()">Back</button>
-    </div>
-
-    <div id="ttMessage" class="tt-message">Press Start to begin</div>
-
-    <div class="tt-table">
-      <div class="tt-side">
-        <div class="tt-name" id="ttYouName">Your card</div>
-        <img id="ttYouImg" class="tt-cardimg" src="assets/images/card_back.png" alt="Your Top Trumps card">
-        <div id="ttStatButtons" class="tt-stats"></div>
-      </div>
-
-      <div class="tt-side">
-        <div class="tt-name" id="ttCpuName">CPU card</div>
-        <div class="tt-cpu-frame">
-          <img id="ttCpuImg" class="tt-cardimg" src="assets/images/card_back.png" alt="CPU Top Trumps card">
-          <div id="ttCpuCover" class="tt-cpu-cover">
-            <div class="tt-cpu-cover-title">CPU Card Hidden</div>
-            <div class="tt-cpu-cover-sub">Pick a stat to reveal</div>
-          </div>
-        </div>
-        <div class="tt-cpu-note" id="ttCpuNote">CPU chooses when it wins a round</div>
-      </div>
-    </div>
-
-    <div class="tt-controls">
-      <button class="menu-btn" id="ttStartBtn" type="button" onclick="startTopTrumps()">Start</button>
-      <button class="menu-btn" id="ttNextBtn" type="button" onclick="nextTopTrumpsRound()" style="display:none;background:#16a34a;color:white;">Next Round</button>
-      <button id="ttBackBtn" class="back-btn tt-back-bottom" type="button" onclick="closeTopTrumps()">Back</button>
-    </div>
-  </div>
-</div>
 
 <!-- =========================
      PENALTY SHOOTOUT OVERLAY
@@ -1218,25 +1662,28 @@
   <div class="overlay-content penalty-wrap">
     <div class="penalty-topbar">
       <div class="penalty-banner">CHOOSE WHERE TO SHOOT</div>
-      <div class="penalty-scoreboard">
+
+      <div class="penalty-scoreboard fun-scoreboard" aria-label="Scoreboard">
         <div class="sb-row"><span>Shot</span><strong id="penaltyShotInfo">1 / 5</strong></div>
         <div class="sb-row"><span>Score</span><strong id="penaltyScoreInfo">0</strong></div>
       </div>
+
+      <button class="tt-back-top" type="button" onclick="closePenalty()">Back</button>
     </div>
 
     <div id="penaltyMessage" class="penalty-message">Press Start to begin</div>
 
-    <div id="penaltyGoal" class="penalty-goal" aria-label="Goal - tap to shoot">
-      <!-- Visual stadium/goal layers -->
-      <div class="stadium-sky"></div>
-      <div class="stadium-stands"></div>
-      <div class="pitch"></div>
+    <div id="penaltyGoal" class="penalty-goal" aria-label="Penalty goal">
+      <!-- Stadium layers -->
+      <div class="stadium-sky" aria-hidden="true"></div>
+      <div class="stadium-stands" aria-hidden="true"></div>
+      <div class="pitch" aria-hidden="true"></div>
 
-      <div class="goal-frame">
-        <div class="net"></div>
+      <div class="goal-frame" aria-hidden="true">
         <div class="post left"></div>
         <div class="post right"></div>
         <div class="crossbar"></div>
+        <div class="net"></div>
       </div>
 
       <!-- Targets -->
@@ -1244,163 +1691,222 @@
       <div class="target t-centre" aria-hidden="true"></div>
       <div class="target t-right" aria-hidden="true"></div>
 
-      <!-- Click zones (stay on top, invisible) -->
+      <!-- 3 invisible tap zones -->
       <div class="goal-zone" data-zone="left" aria-label="Shoot left"></div>
       <div class="goal-zone" data-zone="centre" aria-label="Shoot centre"></div>
       <div class="goal-zone" data-zone="right" aria-label="Shoot right"></div>
 
-      <!-- Keeper + ball (SVG for cleaner look) -->
+      <!-- Keeper -->
       <div id="keeper" class="keeper" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="keeper-svg" role="img" aria-label="Goalkeeper">
-          <circle cx="60" cy="28" r="12" fill="rgba(255,220,180,0.95)"/>
-          <rect x="44" y="40" width="32" height="38" rx="10" fill="rgba(220,40,40,0.95)"/>
-          <rect x="26" y="46" width="20" height="12" rx="6" fill="rgba(220,40,40,0.95)"/>
-          <rect x="74" y="46" width="20" height="12" rx="6" fill="rgba(220,40,40,0.95)"/>
-          <circle cx="30" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <circle cx="90" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <rect x="48" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <rect x="62" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <circle cx="53" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-          <circle cx="67" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
+        <svg class="keeper-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="60" cy="30" r="14" fill="#ffd1a1"/>
+          <rect x="35" y="44" width="50" height="44" rx="14" fill="#ef4444"/>
+          <rect x="22" y="54" width="20" height="12" rx="6" fill="#ef4444"/>
+          <rect x="78" y="54" width="20" height="12" rx="6" fill="#ef4444"/>
+          <rect x="42" y="84" width="14" height="24" rx="7" fill="#0b1020"/>
+          <rect x="64" y="84" width="14" height="24" rx="7" fill="#0b1020"/>
+          <circle cx="28" cy="60" r="7" fill="#ffffff"/>
+          <circle cx="92" cy="60" r="7" fill="#ffffff"/>
         </svg>
       </div>
 
+      <!-- Ball -->
       <div id="ball" class="ball" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="ball-svg" role="img" aria-label="Ball">
-          <circle cx="60" cy="60" r="54" fill="#fff"/>
-          <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="4"/>
-          <polygon points="60,32 44,44 50,62 70,62 76,44" fill="#111"/>
-          <path d="M44 44 L30 56 L38 76 L50 62 Z" fill="#111"/>
-          <path d="M76 44 L90 56 L82 76 L70 62 Z" fill="#111"/>
-          <path d="M50 62 L38 76 L52 92 L60 80 L70 62 Z" fill="#111" opacity="0.9"/>
-          <path d="M70 62 L60 80 L68 94 L82 76 Z" fill="#111" opacity="0.9"/>
+        <svg class="ball-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="60" cy="60" r="46" fill="#ffffff"/>
+          <circle cx="60" cy="60" r="46" fill="none" stroke="#111" stroke-width="6"/>
+          <polygon points="60,36 44,50 50,70 70,70 76,50" fill="#111"/>
         </svg>
       </div>
     </div>
 
-    <div class="penalty-controls">
-      <button class="menu-btn" id="penaltyStartBtn" onclick="startPenaltyGame()">Start</button>
-      <button class="menu-btn" id="penaltyAgainBtn" onclick="startPenaltyGame()" style="display:none">Play Again</button>
-      <button class="back-btn" onclick="closePenalty()">Back</button>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px">
+      <button id="penaltyStartBtn" class="menu-btn" onclick="startPenaltyGame()">Start</button>
+      <button id="penaltyAgainBtn" class="menu-btn" style="display:none;background:#16a34a;color:white" onclick="startPenaltyGame()">Play again</button>
+    </div>
+
+    <button class="back-btn" onclick="closePenalty()">Back to Home</button>
+  </div>
+</div>
+
+
+
+<div id="topTrumpsScreen" class="overlay">
+  <div class="overlay-content tt-wrap">
+    <div class="tt-topbar">
+      <div class="tt-banner">TOP TRUMPS</div>
+      <div class="tt-scoreboard fun-scoreboard">
+        <div class="sb-row"><span>You</span><strong id="ttYouCount">0</strong></div>
+        <div class="sb-row"><span>Opponent</span><strong id="ttCpuCount">0</strong></div>
+        <div class="sb-row"><span>Pot</span><strong id="ttPotCount">0</strong></div>
+      </div>
+      <button class="tt-back-top" type="button" onclick="closeTopTrumps()">Back</button>
+    </div>
+
+    <div id="ttMessage" class="tt-message">Press Start to begin</div>
+<div id="ttFlash" class="tt-flash" style="display:none;">WINNER</div>
+<div id="ttFinal" class="tt-final" style="display:none;"></div>
+
+    <div class="tt-table">
+      <div class="tt-side">
+        <div class="tt-name" id="ttYouName">Your card</div>
+        <div class="tt-card" id="ttYouCard">
+          <img id="ttYouImg" class="tt-cardimg" src="assets/images/card_back.png" alt="Your Top Trumps card">
+          <div class="tt-mask top"></div>
+          <div class="tt-mask bottom"></div>
+        </div>
+      </div>
+
+      <div class="tt-side">
+        <div class="tt-name" id="ttCpuName">Opponent card</div>
+        <div class="tt-card" id="ttCpuCard">
+          <img id="ttCpuImg" class="tt-cardimg" src="assets/images/card_back.png" alt="Opponent Top Trumps card">
+          <div class="tt-mask top"></div>
+          <div class="tt-mask bottom"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ttStatButtons" class="tt-stats" aria-label="Choose a stat">
+      <!-- buttons injected by JS -->
+    </div>
+
+    <div class="tt-controls">
+      <button class="menu-btn" id="ttStartBtn" onclick="startTopTrumps()">Start</button>
+      <button class="menu-btn" id="ttNextBtn" onclick="nextTopTrumpsRound()" style="display:none;background:#16a34a;color:white;">Next Round</button>
+      <button id="ttBackBtn" class="back-btn" onclick="closeTopTrumps()">Back</button>
     </div>
   </div>
 </div>
 
 <!-- =========================
-     STRIKER'S CHOICE OVERLAY
+     OFFSIDE TRAINER OVERLAYS
 ========================== -->
-<div id="strikerGame" class="overlay">
-  <div class="overlay-content striker-wrap">
-    <div class="striker-topbar">
-      <div class="striker-banner">MAKE YOUR DECISION</div>
-      <div class="striker-scoreboard">
-        <div class="sb-row"><span>Scenario</span><strong id="strikerScenarioInfo">1 / 5</strong></div>
-        <div class="sb-row"><span>Score</span><strong id="strikerScoreInfo">0</strong></div>
+<div id="offsideMenuScreen" class="overlay">
+  <div class="overlay-card" style="width:min(860px,94vw);">
+    <h2 style="margin:0 0 18px;font-size:42px;font-weight:900;">🚩 Offside Trainer</h2>
+    <div style="font-size:1.35rem;font-weight:800;margin:0 0 18px;color:#2d1b69;">
+      Offside is checked <u>when the pass is played</u>.
+    </div>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <button id="offsidePlayBtn" class="menu-btn" style="background:#16a34a;color:white;">Play: Onside or Offside?</button>
+      <button id="offsideLearnBtn" class="menu-btn" style="background:#2563eb;color:white;">Learn: Slider Demo</button>
+    </div>
+    <button class="back-btn" style="margin-top:18px" onclick="closeOffsideMenu()">Back</button>
+  </div>
+</div>
+
+<div id="offsideGameScreen" class="overlay">
+  <div class="overlay-content" style="max-width:1100px;text-align:center;">
+    <div class="penalty-topbar" style="margin-bottom:8px;">
+      <div class="penalty-banner">ON-SIDE or OFF-SIDE?</div>
+      <div class="penalty-scoreboard" style="width:260px;">
+        <div class="sb-row"><span>Score</span><strong id="offScore">0</strong></div>
+        <div class="sb-row"><span>Streak</span><strong id="offStreak">0</strong></div>
+        <div class="sb-row"><span>Round</span><strong id="offRound">1</strong></div>
       </div>
     </div>
 
-    <div id="strikerMessage" class="striker-message">Press Start to begin</div>
+    <div class="offside-pitch" aria-label="Offside pitch">
+      <div class="offside-halfline"></div>
+      <div class="offside-goal"></div>
+      <div class="offside-lastdef" id="offLastLine"></div>
 
-    <div id="strikerPitch" class="striker-pitch" aria-label="Pitch - choose to shoot or pass">
-      <!-- Visual pitch layers -->
-      <div class="stadium-sky"></div>
-      <div class="stadium-stands"></div>
-      <div class="pitch"></div>
+      <div class="offside-ball" id="offBall" title="Ball"></div>
+      <div class="offside-attacker" id="offAtt" title="Attacker"></div>
+      <div class="offside-defender" id="offDef" title="Last defender"></div>
 
-      <div class="goal-frame">
-        <div class="net"></div>
-        <div class="post left"></div>
-        <div class="post right"></div>
-        <div class="crossbar"></div>
-      </div>
+      <div class="offside-label" style="left:10px;top:10px;">Your half</div>
+      <div class="offside-label" style="right:10px;top:10px;">Goal</div>
+    </div>
 
-      <!-- Players (positions set via JS) -->
-      <div id="strikerPlayer" class="striker-player player-striker" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="player-svg" role="img" aria-label="Striker">
-          <circle cx="60" cy="28" r="12" fill="rgba(255,220,180,0.95)"/>
-          <rect x="44" y="40" width="32" height="38" rx="10" fill="rgba(40,40,220,0.95)"/>
-          <rect x="26" y="46" width="20" height="12" rx="6" fill="rgba(40,40,220,0.95)"/>
-          <rect x="74" y="46" width="20" height="12" rx="6" fill="rgba(40,40,220,0.95)"/>
-          <circle cx="30" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <circle cx="90" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <rect x="48" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <rect x="62" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <circle cx="53" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-          <circle cx="67" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-        </svg>
-      </div>
-      <div id="keeperPlayer" class="striker-player player-keeper" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="player-svg" role="img" aria-label="Goalkeeper">
-          <circle cx="60" cy="28" r="12" fill="rgba(255,220,180,0.95)"/>
-          <rect x="44" y="40" width="32" height="38" rx="10" fill="rgba(220,40,40,0.95)"/>
-          <rect x="26" y="46" width="20" height="12" rx="6" fill="rgba(220,40,40,0.95)"/>
-          <rect x="74" y="46" width="20" height="12" rx="6" fill="rgba(220,40,40,0.95)"/>
-          <circle cx="30" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <circle cx="90" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <rect x="48" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <rect x="62" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <circle cx="53" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-          <circle cx="67" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-        </svg>
-      </div>
-      <div id="defender1" class="striker-player player-defender" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="player-svg" role="img" aria-label="Defender">
-          <circle cx="60" cy="28" r="12" fill="rgba(255,220,180,0.95)"/>
-          <rect x="44" y="40" width="32" height="38" rx="10" fill="rgba(255,255,255,0.95)"/>
-          <rect x="26" y="46" width="20" height="12" rx="6" fill="rgba(255,255,255,0.95)"/>
-          <rect x="74" y="46" width="20" height="12" rx="6" fill="rgba(255,255,255,0.95)"/>
-          <circle cx="30" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <circle cx="90" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <rect x="48" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <rect x="62" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <circle cx="53" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-          <circle cx="67" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-        </svg>
-      </div>
-      <div id="teammate1" class="striker-player player-teammate" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="player-svg" role="img" aria-label="Teammate">
-          <circle cx="60" cy="28" r="12" fill="rgba(255,220,180,0.95)"/>
-          <rect x="44" y="40" width="32" height="38" rx="10" fill="rgba(40,40,220,0.95)"/>
-          <rect x="26" y="46" width="20" height="12" rx="6" fill="rgba(40,40,220,0.95)"/>
-          <rect x="74" y="46" width="20" height="12" rx="6" fill="rgba(40,40,220,0.95)"/>
-          <circle cx="30" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <circle cx="90" cy="52" r="7" fill="rgba(240,240,240,0.95)"/>
-          <rect x="48" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <rect x="62" y="78" width="10" height="26" rx="5" fill="rgba(40,40,40,0.9)"/>
-          <circle cx="53" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-          <circle cx="67" cy="108" r="6" fill="rgba(20,20,20,0.9)"/>
-        </svg>
-      </div>
-      <div id="ball" class="striker-ball" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="ball-svg" role="img" aria-label="Ball">
-          <circle cx="60" cy="60" r="54" fill="#fff"/>
-          <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="4"/>
-          <polygon points="60,32 44,44 50,62 70,62 76,44" fill="#111"/>
-          <path d="M44 44 L30 56 L38 76 L50 62 Z" fill="#111"/>
-          <path d="M76 44 L90 56 L82 76 L70 62 Z" fill="#111"/>
-          <path d="M50 62 L38 76 L52 92 L60 80 L70 62 Z" fill="#111" opacity="0.9"/>
-          <path d="M70 62 L60 80 L68 94 L82 76 Z" fill="#111" opacity="0.9"/>
-        </svg>
+    <div class="offside-help" id="offHelp">Tap ON-SIDE or OFF-SIDE for this position.</div>
+
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px;">
+      <button class="menu-btn" style="background:#16a34a;color:white;width:auto;padding:18px 28px;font-size:1.6rem" onclick="answerOffside(false)">✅ ON-SIDE</button>
+      <button class="menu-btn" style="background:#ef4444;color:white;width:auto;padding:18px 28px;font-size:1.6rem" onclick="answerOffside(true)">🚫 OFF-SIDE</button>
+      <button class="menu-btn" style="background:#ffe66d;color:#2d1b69;width:auto;padding:18px 22px;font-size:1.2rem" onclick="nextOffsideRound()">Next</button>
+    </div>
+
+    <button class="back-btn" style="margin-top:14px" onclick="closeOffsideGame()">Back</button>
+  </div>
+</div>
+
+<!-- =========================
+     OFFSIDE SLIDER DEMO (Learn)
+========================== -->
+<div id="offsideLearnScreen" class="overlay">
+  <div class="overlay-content offlearn-container">
+    <div class="offlearn-toprow">
+      <div class="penalty-banner offlearn-title">OFFSIDE SLIDER DEMO</div>
+      <div class="penalty-scoreboard offlearn-status">
+        <div class="sb-row"><span>Status</span><strong id="learnStatus">ON-SIDE</strong></div>
+        <div class="sb-row"><span>Rule</span><strong style="font-size:0.95rem">Checked when pass is played</strong></div>
       </div>
     </div>
 
-    <div class="striker-controls">
-      <button class="menu-btn" id="strikerStartBtn" onclick="startStrikerGame()">Start</button>
-      <button class="menu-btn" id="strikerShootBtn" onclick="showShootOptions()" style="display:none">Shoot</button>
-      <div id="shootOptions" style="display:none; flex-wrap:wrap; gap:12px; justify-content:center; margin:10px 0">
-        <button class="menu-btn" onclick="takeStrikerAction('shoot-low')">Low</button>
-        <button class="menu-btn" onclick="takeStrikerAction('shoot-high')">High</button>
-        <button class="menu-btn" onclick="takeStrikerAction('shoot-corner')">Corner</button>
+    <div class="offlearn-shell">
+      <!-- COACH (left) -->
+      <div class="offlearn-coachpanel">
+        <img class="offlearn-coachimg" src="assets/images/mean-coach-lee.jpg" alt="Coach Lee">
+        <div class="offlearn-coachbox" id="learnHelp">
+          👋 Coach says: Move <b>YOU</b> with the slider, then press <b>Play the pass</b>.
+          We check offside at the <b>freeze-frame moment</b> when the pass is played.
+        </div>
       </div>
-      <button class="menu-btn" id="strikerPassBtn" onclick="takeStrikerAction('pass')" style="display:none">Pass</button>
-      <button class="menu-btn" id="strikerReplayBtn" onclick="replayStrikerScenario()" style="display:none">Replay</button>
-      <button class="menu-btn" id="strikerNextBtn" onclick="nextStrikerScenario()" style="display:none">Next</button>
-      <button class="back-btn" onclick="closeStrikerGame()">Back</button>
+
+      <!-- MAIN (center) -->
+      <div class="offlearn-main">
+        <div class="offlearn-pitchwrap">
+          <div class="offside-pitch offlearn-pitch" aria-label="Offside slider pitch">
+            <div class="offside-halfline"></div>
+            <div class="offside-goal"></div>
+            <div class="offside-lastdef" id="learnLastLine"></div>
+
+            <div class="offlearn-freeze" id="learnFreeze">⏸️ FREEZE FRAME — CHECK NOW!</div>
+            <div class="offlearn-badge" id="learnBadge">✅ ON-SIDE!</div>
+
+            <div class="offside-ball offlearn-ball" id="learnBall" title="Ball">
+              <div class="player-label yellow">BALL</div>
+            </div>
+            <div class="offside-attacker" id="learnAtt" title="Attacker">
+              <div class="player-label blue">YOU</div>
+            </div>
+            <div class="offside-defender" id="learnDef" title="Last defender">
+              <div class="player-label red">DEFENDER</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offlearn-controlsbox">
+          <div class="offside-controls">
+            <div class="offside-row">
+              <label><strong>Move attacker</strong></label>
+              <input id="attSlider" type="range" min="10" max="90" value="55">
+            </div>
+
+            <div class="offside-row">
+              <label><strong>Attacker behind ball?</strong></label>
+              <input id="behindBallToggle" type="checkbox">
+            </div>
+
+            <div class="offside-row offlearn-btnrow">
+              <button class="menu-btn offlearn-btn play" onclick="playOffsidePass()">▶️ Play the pass</button>
+              <button class="menu-btn offlearn-btn rand" onclick="randomiseOffsideLearn()">🎲 Random</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="offlearn-rulebar" id="learnRuleBar">
+          ON-SIDE: level/behind the last defender, OR behind the ball, OR in your own half.
+        </div>
+
+        <button class="back-btn offlearn-back" onclick="closeOffsideLearn()">Back</button>
+      </div>
     </div>
   </div>
 </div>
 
-  
 <!-- =========================
      TROPHY CABINET OVERLAY
 ========================== -->
@@ -1414,39 +1920,9 @@
     <div class="trophy-sub">We are the Champions 🏆</div>
 
     <div class="trophy-grid">
-          <img class="trophy-img" src="assets/images/champions/Champ (1).jpg" alt="Champ (1).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (2).jpg" alt="Champ (2).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (3).jpg" alt="Champ (3).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (4).jpg" alt="Champ (4).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (5).jpg" alt="Champ (5).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (6).jpg" alt="Champ (6).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (7).jpg" alt="Champ (7).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (8).jpg" alt="Champ (8).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (9).jpg" alt="Champ (9).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (10).jpg" alt="Champ (10).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (11).jpg" alt="Champ (11).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (12).jpg" alt="Champ (12).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (13).jpg" alt="Champ (13).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (14).jpg" alt="Champ (14).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (15).jpg" alt="Champ (15).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (16).jpg" alt="Champ (16).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (17).jpg" alt="Champ (17).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (18).jpg" alt="Champ (18).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (19).jpg" alt="Champ (19).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (20).jpg" alt="Champ (20).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (21).jpg" alt="Champ (21).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (22).jpg" alt="Champ (22).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (23).jpg" alt="Champ (23).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (24).jpg" alt="Champ (24).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (25).jpg" alt="Champ (25).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
-          <img class="trophy-img" src="assets/images/champions/Champ (26).jpg" alt="Champ (26).jpg" loading="lazy" onclick="openTrophyLightbox(this.src)">
+      <div id="trophyGrid" class="trophy-grid-inner"></div>
     </div>
 
-    <audio id="championsAudio" src="assets/audio/we_are_the_champions.mp3" loop></audio>
-  </div>
-</div>
-
-<!-- Trophy lightbox -->
 <div id="trophyLightbox" class="trophy-lightbox" onclick="closeTrophyLightbox()">
   <img id="trophyLightboxImg" alt="Trophy image">
 </div>
@@ -1718,10 +2194,343 @@
       {q:"Why do we spread out on the pitch?",choices:['To make space and give teammates options','To stand close together','To make it easier for the other team'],ans:"To make space and give teammates options"}
     ];
 
+    // 5 topics × 10 questions
+    
+    /* =========================
+       OFFSIDE TRAINER (game + slider demo)
+    ========================= */
+    function openOffsideMenu(){ document.getElementById('offsideMenuScreen').classList.add('active'); }
+    function closeOffsideMenu(){ document.getElementById('offsideMenuScreen').classList.remove('active'); }
+    function closeOffsideGame(){ document.getElementById('offsideGameScreen').classList.remove('active'); }
+    function closeOffsideLearn(){ document.getElementById('offsideLearnScreen').classList.remove('active'); }
+
+    // --- Option 1: Onside/Offside mini game ---
+    let offState = { round:1, score:0, streak:0, isOffside:false };
+
+    function startOffsideGame(){
+      closeOffsideMenu();
+      offState = { round:1, score:0, streak:0, isOffside:false };
+      document.getElementById('offsideGameScreen').classList.add('active');
+      nextOffsideRound(true);
+    }
+
+    function positionEl(el, xPct, yPct){
+      if(!el) return;
+      el.style.left = xPct + '%';
+      el.style.top = yPct + '%';
+      // store for easy rule checking
+      el.dataset.x = String(xPct);
+      el.dataset.y = String(yPct);
+    }
+
+    function nextOffsideRound(reset=false){
+      if(!document.getElementById('offsideGameScreen').classList.contains('active')) return;
+
+      if(reset){
+        offState.round = 1; offState.score=0; offState.streak=0;
+      }else{
+        offState.round++;
+      }
+
+      // Scenario:
+      // goal is on the right. Defender line at 55–80%.
+      const defX = Math.floor(55 + Math.random()*25);
+      const attX = Math.floor(35 + Math.random()*55);
+      const ballX = Math.floor(30 + Math.random()*45);
+      const y1 = Math.floor(28 + Math.random()*44);
+      const y2 = Math.max(18, Math.min(82, y1 + (Math.random()*24 - 12)));
+
+      // Simplified offside (kid version):
+      // OFFSIDE if attacker is in opponents half AND ahead of ball AND ahead of last defender.
+      const isInOppHalf = attX > 50;
+      offState.isOffside = isInOppHalf && (attX > ballX) && (attX > defX);
+
+      const lastLine = document.getElementById('offLastLine');
+      if(lastLine) lastLine.style.left = defX + '%';
+
+      positionEl(document.getElementById('offDef'), defX, y2);
+      positionEl(document.getElementById('offAtt'), attX, y1);
+      positionEl(document.getElementById('offBall'), ballX, Math.floor(58 + Math.random()*18));
+
+      const help = document.getElementById('offHelp');
+      if(help) help.textContent = "Freeze-frame (pass moment)… ON-SIDE or OFF-SIDE?";
+      document.getElementById('offRound').textContent = offState.round;
+      document.getElementById('offScore').textContent = offState.score;
+      document.getElementById('offStreak').textContent = offState.streak;
+    }
+
+    function answerOffside(userSaysOffside){
+      const help = document.getElementById('offHelp');
+      const correct = (userSaysOffside === offState.isOffside);
+
+      if(correct){
+        offState.score++;
+        offState.streak++;
+        if(help) help.textContent = "✅ Correct! " + (offState.isOffside ? "Ahead of the last defender AND the ball." : "Level/behind the line, or behind the ball, or in own half.");
+        playSound('cheer');
+      }else{
+        offState.streak = 0;
+        if(help) help.textContent = "❌ Not quite. " + (offState.isOffside ? "It WAS offside: ahead of the line AND ahead of the ball." : "It was ON-SIDE: level/behind the line, or behind the ball, or in own half.");
+        playSound('beep');
+      }
+      document.getElementById('offScore').textContent = offState.score;
+      document.getElementById('offStreak').textContent = offState.streak;
+    }
+
+    // --- Option 2: Slider demo ---
+    function openOffsideLearn(){
+      closeOffsideMenu();
+      document.getElementById('offsideLearnScreen').classList.add('active');
+      initOffsideLearn();
+    }
+
+    function initOffsideLearn(){
+      const defX = 70;
+      const ballX = 48;
+
+      const last = document.getElementById('learnLastLine');
+      if(last) last.style.left = defX + '%';
+
+      positionEl(document.getElementById('learnDef'), defX, 55);
+      positionEl(document.getElementById('learnBall'), ballX, 70);
+
+      const slider = document.getElementById('attSlider');
+      const toggle = document.getElementById('behindBallToggle');
+
+      if(slider){
+        slider.value = 55;
+        slider.oninput = () => updateOffsideLearn();
+      }
+      if(toggle){
+        toggle.checked = false;
+        toggle.onchange = () => updateOffsideLearn();
+      }
+
+      updateOffsideLearn();
+    }
+
+    function updateOffsideLearn(){
+      const last = document.getElementById('learnLastLine');
+      const defX = last ? parseFloat(last.style.left) : 70;
+
+      const ballEl = document.getElementById('learnBall');
+      const ballX = ballEl ? parseFloat(ballEl.style.left) : 48;
+
+      const slider = document.getElementById('attSlider');
+      const toggle = document.getElementById('behindBallToggle');
+
+      let attX = slider ? parseFloat(slider.value) : 55;
+      if(toggle && toggle.checked){
+        attX = Math.min(attX, ballX - 2); // force behind ball
+      }
+
+      positionEl(document.getElementById('learnAtt'), attX, 45);
+
+      const isInOppHalf = attX > 50;
+      const isOff = isInOppHalf && (attX > ballX) && (attX > defX);
+
+      const status = document.getElementById('learnStatus');
+      const help = document.getElementById('learnHelp');
+      if(status){
+        status.textContent = isOff ? "OFF-SIDE" : "ON-SIDE";
+        status.style.color = isOff ? "#ffb7b7" : "#d6ffb7";
+      }
+      if(help){
+        help.textContent = isOff
+          ? "OFF-SIDE: ahead of the last defender AND ahead of the ball (in their half)."
+          : "ON-SIDE: level/behind the last defender, OR behind the ball, OR in your own half.";
+      }
+    }
+
+    function playOffsidePass(){
+      const lastLine = document.getElementById('learnLastLine');
+      const badge = document.getElementById('learnBadge');
+      const freeze = document.getElementById('learnFreeze');
+      const help = document.getElementById('learnHelp');
+      const ball = document.getElementById('learnBall');
+      const att = document.getElementById('learnAtt');
+      const def = document.getElementById('learnDef');
+      const behind = document.getElementById('behindBallToggle');
+
+      // Determine verdict at the exact moment the pass is played (NOW)
+      const attX = Number(att?.dataset.x || 55);
+      const defX = Number(def?.dataset.x || 70);
+      const behindBall = !!(behind && behind.checked);
+
+      const onside = behindBall || (attX <= defX); // level is on-side
+      const verdict = onside ? 'onside' : 'offside';
+
+      // UI effects: freeze-frame + pulsing line
+      if(lastLine) lastLine.classList.add('pulse');
+      if(freeze){
+        freeze.classList.add('show');
+        setTimeout(()=>freeze.classList.remove('show'), 1200);
+      }
+
+      // Ball kick animation: fly from its current position toward YOU
+      if(ball && att){
+        const b = ball.getBoundingClientRect();
+        const a = att.getBoundingClientRect();
+        const dx = (a.left + a.width/2) - (b.left + b.width/2);
+        const dy = (a.top + a.height/2) - (b.top + b.height/2);
+        ball.style.setProperty('--dx', dx + 'px');
+        ball.style.setProperty('--dy', dy + 'px');
+        ball.classList.add('flying');
+        setTimeout(()=>ball.classList.remove('flying'), 750);
+      }
+
+      // Big badge result
+      if(badge){
+        badge.classList.remove('onside','offside');
+        badge.classList.add(verdict,'show');
+        badge.textContent = onside ? '✅ ON-SIDE!' : '🚫 OFF-SIDE!';
+        setTimeout(()=>badge.classList.remove('show'), 1400);
+      }
+
+      // Update status text
+      const status = document.getElementById('learnStatus');
+      if(status){
+        status.textContent = onside ? 'ON-SIDE' : 'OFF-SIDE';
+        status.style.color = onside ? '#bbf7d0' : '#fecaca';
+      }
+
+      // Coach says…
+      if(help){
+        help.innerHTML = onside
+          ? "✅ Coach says: At the pass moment, YOU are <b>level/behind</b> the DEFENDER line or behind the BALL ⇒ <b>ON-SIDE</b>."
+          : "🚫 Coach says: At the pass moment, YOU are <b>in front</b> of the DEFENDER line ⇒ <b>OFF-SIDE</b>.";
+      }
+
+      try{ playSound('whistle'); }catch(e){}
+    }
+
+    function randomiseOffsideLearn(){
+      const defX = Math.floor(55 + Math.random()*25);
+      const ballX = Math.floor(35 + Math.random()*35);
+
+      const last = document.getElementById('learnLastLine');
+      if(last) last.style.left = defX + '%';
+
+      positionEl(document.getElementById('learnDef'), defX, 55);
+      positionEl(document.getElementById('learnBall'), ballX, 70);
+
+      const slider = document.getElementById('attSlider');
+      if(slider) slider.value = Math.floor(20 + Math.random()*75);
+      const toggle = document.getElementById('behindBallToggle');
+      if(toggle) toggle.checked = false;
+
+      updateOffsideLearn();
+    }
+
+const QUIZ_SETS = {
+      rules: [
+        {q:"What do we call it when the ball goes out over the side line?",choices:['Throw-in','Corner','Penalty'],ans:"Throw-in"},
+        {q:"What colour card is a warning?",choices:['Yellow','Red','Blue'],ans:"Yellow"},
+        {q:"What colour card means you must leave the pitch?",choices:['Yellow','Red','Green'],ans:"Red"},
+        {q:"If a defender touches the ball last and it goes out behind their goal, what do we get?",choices:['Corner kick','Goal kick','Kick-off'],ans:"Corner kick"},
+        {q:"If the attacking team touches the ball last and it goes out behind the goal, what do we get?",choices:['Goal kick','Corner kick','Free kick'],ans:"Goal kick"},
+        {q:"What is a foul?",choices:['Breaking the rules','Scoring a goal','Taking a throw-in'],ans:"Breaking the rules"},
+        {q:"What is a penalty kick?",choices:['A free shot from the penalty spot','A throw-in','A corner'],ans:"A free shot from the penalty spot"},
+        {q:"What do we call it when play stops for a broken rule and restarts with a kick?",choices:['Free kick','Kick-off','Drop ball'],ans:"Free kick"},
+        {q:"In simple terms, offside means…",choices:['You can’t stand behind the last defender when the pass is played','You can’t use your hands','You must stay in your half'],ans:"You can’t stand behind the last defender when the pass is played"},
+        {q:"Who makes sure the rules are followed?",choices:['Referee','Striker','Goalkeeper'],ans:"Referee"}
+      ],
+      skills: [
+        {q:"What do we call a gentle lift of the ball over an opponent?",choices:['Chip','Tackle','Clearance'],ans:"Chip"},
+        {q:"What is a tackle for?",choices:['To win the ball','To pick the ball up','To stop the clock'],ans:"To win the ball"},
+        {q:"What does 'dribbling' mean?",choices:['Running with the ball close to your feet','Throwing the ball','Standing still'],ans:"Running with the ball close to your feet"},
+        {q:"What is a 'pass'?",choices:['Kicking the ball to a teammate','Kicking the ball out','Shooting'],ans:"Kicking the ball to a teammate"},
+        {q:"What is a 'shot'?",choices:['Trying to score a goal','A throw-in','A warm up'],ans:"Trying to score a goal"},
+        {q:"What is a 'header'?",choices:['Hitting the ball with your head','Kicking with your heel','Using your hands'],ans:"Hitting the ball with your head"},
+        {q:"What is the best first touch?",choices:['One that sets up your next action','A huge bounce away','No touch at all'],ans:"One that sets up your next action"},
+        {q:"What does 'control' mean?",choices:['Keeping the ball close and safe','Kicking it away','Only shooting'],ans:"Keeping the ball close and safe"},
+        {q:"Why do we look up when dribbling?",choices:['To find space and teammates','To close our eyes','To run slower'],ans:"To find space and teammates"},
+        {q:"What is a 'cross'?",choices:['A ball played into the box from wide','A pass backwards only','A goal kick'],ans:"A ball played into the box from wide"}
+      ],
+      positions: [
+        {q:"Who stands in goal and tries to stop shots?",choices:['Striker','Goalkeeper','Defender'],ans:"Goalkeeper"},
+        {q:"Which players try to score goals?",choices:['Goalkeepers','Defenders','Forwards'],ans:"Forwards"},
+        {q:"Who helps move the ball from defence to attack?",choices:['Goalkeeper','Midfielders','Strikers'],ans:"Midfielders"},
+        {q:"What do defenders try to do most?",choices:['Stop goals and win the ball','Only score goals','Take corners only'],ans:"Stop goals and win the ball"},
+        {q:"What does a goalkeeper wear that is different?",choices:['Gloves','Skates','A helmet'],ans:"Gloves"},
+        {q:"If your team is attacking, what can defenders do?",choices:['Support and pass forward','Leave the pitch','Only sit down'],ans:"Support and pass forward"},
+        {q:"What is teamwork in football?",choices:['Helping each other on and off the ball','Playing alone','Never passing'],ans:"Helping each other on and off the ball"},
+        {q:"Who often takes throw-ins?",choices:['Any player','Only the referee','Only the goalkeeper'],ans:"Any player"},
+        {q:"Who usually starts play with a goal kick?",choices:['Goalkeeper','Striker','Referee'],ans:"Goalkeeper"},
+        {q:"What do we call the player who leads the team on the pitch?",choices:['Captain','Umpire','Coach'],ans:"Captain"}
+      ],
+      matchday: [
+        {q:"What should you always do before a game?",choices:['Warm up','Eat lots of sweets','Sit down and wait'],ans:"Warm up"},
+        {q:"What do we call the start of the game?",choices:['Kick-off','Throw-in','Corner'],ans:"Kick-off"},
+        {q:"If the ball goes out over the goal line after the attacker touched it last, it's…",choices:['Goal kick','Corner kick','Penalty'],ans:"Goal kick"},
+        {q:"What should you do when your teammate has the ball?",choices:['Make a run into space','Stand still','Shout at them'],ans:"Make a run into space"},
+        {q:"What should you do when you win the ball back?",choices:['Look for a teammate','Run with it forever','Kick it anywhere'],ans:"Look for a teammate"},
+        {q:"What is the safest place to defend?",choices:['Between the ball and your goal','Behind the goal','In the corner flag'],ans:"Between the ball and your goal"},
+        {q:"What does the whistle usually mean?",choices:['Stop / start play','Everyone scores','The match is over forever'],ans:"Stop / start play"},
+        {q:"What should you bring to training?",choices:['Water bottle','A TV','A pillow'],ans:"Water bottle"},
+        {q:"If you make a mistake, what should you do?",choices:['Try again and keep going','Give up','Blame everyone'],ans:"Try again and keep going"},
+        {q:"What’s the most important thing in football?",choices:['Having fun and trying your best','Winning every game','Never passing'],ans:"Having fun and trying your best"}
+      ],
+      teamwork: [
+        {q:"When your teammate is under pressure, what can you do?",choices:['Offer a passing option','Hide','Stand behind opponents'],ans:"Offer a passing option"},
+        {q:"Why is talking on the pitch helpful?",choices:['It helps teammates know what’s on','It makes you slower','It stops the ball'],ans:"It helps teammates know what’s on"},
+        {q:"What is 'support' in football?",choices:['Getting close to help the player with the ball','Running away','Only shouting'],ans:"Getting close to help the player with the ball"},
+        {q:"What should you do after you pass the ball?",choices:['Move to help again','Stop and watch only','Leave the pitch'],ans:"Move to help again"},
+        {q:"What is a good attitude?",choices:['Encourage teammates','Laugh at mistakes','Argue with everyone'],ans:"Encourage teammates"},
+        {q:"What should you do when defending as a team?",choices:['Stay compact and help each other','All chase the ball alone','Ignore your position'],ans:"Stay compact and help each other"},
+        {q:"What is fair play?",choices:['Respecting opponents and officials','Cheating','Wasting time always'],ans:"Respecting opponents and officials"},
+        {q:"What should you do if someone gets hurt?",choices:['Tell an adult/coach','Keep playing over them','Hide it'],ans:"Tell an adult/coach"},
+        {q:"What does 'switch play' mean?",choices:['Move the ball to the other side','Swap boots','Stop the match'],ans:"Move the ball to the other side"},
+        {q:"What’s a great way to improve?",choices:['Practice regularly','Never train','Only play once'],ans:"Practice regularly"}
+      ]
+    
+      ,
+      offside: [
+        {q:"Offside is checked when…",choices:["You shoot","The ball is passed","The ball goes out"],ans:"The ball is passed"},
+        {q:"You are ON-SIDE if you are…",choices:["Level with the last defender","Always behind the goal","Next to the goalkeeper"],ans:"Level with the last defender"},
+        {q:"You are ON-SIDE if you are…",choices:["Behind the ball","In front of the goal","Touching the referee"],ans:"Behind the ball"},
+        {q:"If you are in your own half, can you be offside?",choices:["Yes","No","Only on corners"],ans:"No"},
+        {q:"If you are closer to the goal than the last defender when the pass is played, you are…",choices:["ON-SIDE","OFF-SIDE","A goalkeeper"],ans:"OFF-SIDE"},
+        {q:"Offside is about where you are when your teammate…",choices:["Kicks the ball to you","Shouts your name","Tackles someone"],ans:"Kicks the ball to you"},
+        {q:"If you are level with the last defender, you are…",choices:["OFF-SIDE","ON-SIDE","It depends on your boots"],ans:"ON-SIDE"},
+        {q:"If you are behind the ball, you are…",choices:["ON-SIDE","OFF-SIDE","Yellow card"],ans:"ON-SIDE"},
+        {q:"What do we call the defender you must be level with or behind?",choices:["Last defender","Best defender","Middle defender"],ans:"Last defender"},
+        {q:"If you run too early and are offside, what happens?",choices:["Free kick to the other team","Corner to you","Penalty to you"],ans:"Free kick to the other team"},
+      ]
+};
+
+
+
     let quizTimerInterval;
     let quizTimeLeft = 120;
 
-    function openQuiz(){
+    
+    // =========================
+    // QUIZ TOPICS
+    // =========================
+    let ACTIVE_QUIZ = null;
+    let quizTotalSeconds = 90;
+
+    function openQuizMenu(){
+      document.getElementById('quizMenuScreen').classList.add('active');
+    }
+    function closeQuizMenu(){
+      document.getElementById('quizMenuScreen').classList.remove('active');
+    }
+    function backToQuizTopics(){
+      closeQuiz();
+      openQuizMenu();
+    }
+
+    function startQuizTopic(topicKey){
+      // Pick the 10-question set, then start the existing quiz engine
+      ACTIVE_QUIZ = QUIZ_SETS[topicKey] || QUIZZES.slice(0,10);
+      quizTotalSeconds = 90; // 10 questions
+      closeQuizMenu();
+      openQuiz();
+    }
+
+function openQuiz(){
       document.getElementById('quizScreen').classList.add('active');
 
       const resultEl = document.getElementById('quizResult');
@@ -1734,6 +2543,7 @@
     }
 
     function closeQuiz(){
+      ACTIVE_QUIZ = null;
       document.getElementById('quizScreen').classList.remove('active');
       clearInterval(quizTimerInterval);
 
@@ -1744,9 +2554,10 @@
     }
 
     function startQuizTimer(){
-      let timeLeft = 120;
-      quizTimeLeft = 120;
+      let timeLeft = quizTotalSeconds;
+      quizTimeLeft = quizTotalSeconds;
       document.getElementById('quizTimer').textContent = timeLeft;
+      document.getElementById('quizTimer').classList.remove('warn','danger');
       quizTimerInterval = setInterval(()=>{
         timeLeft--;
         quizTimeLeft = timeLeft;
@@ -1775,8 +2586,10 @@
     }
 
     function startFullQuiz(){
+      if(!ACTIVE_QUIZ) ACTIVE_QUIZ = ACTIVE_QUIZ;
+
       let html = '';
-      QUIZZES.forEach((q,i)=>{
+      ACTIVE_QUIZ.forEach((q,i)=>{
         html += `<div class="quiz-question">${i+1}. ${q.q}</div><div class="quiz-options">`;
         const shuffled = [...q.choices].sort(() => 0.5 - Math.random());
         shuffled.forEach(c => html += `<label><input type="radio" name="q${i}" value="${c}"> ${c}</label>`);
@@ -1902,7 +2715,7 @@ I scored ${entry.score}/${entry.total} in ${timeStr}! ⚽🔥`;
       clearInterval(quizTimerInterval);
 
       let score = 0;
-      QUIZZES.forEach((q,i)=>{
+      ACTIVE_QUIZ.forEach((q,i)=>{
         const sel = document.querySelector(`input[name="q${i}"]:checked`);
         if(sel && sel.value === q.ans) score++;
       });
@@ -1914,7 +2727,7 @@ I scored ${entry.score}/${entry.total} in ${timeStr}! ⚽🔥`;
 
       const entry = {
         score,
-        total: QUIZZES.length,
+        total: ACTIVE_QUIZ.length,
         seconds: secondsSpent,
         timeUp: !!timeUp,
         ts: new Date().toISOString()
@@ -1952,8 +2765,8 @@ function resetPenaltyUI(){
   if(startBtn) startBtn.style.display = 'inline-block';
   if(againBtn) againBtn.style.display = 'none';
 
-  document.getElementById('penaltyShotInfo').textContent = `Shot ${penaltyShot} / ${PENALTY_TOTAL}`;
-  document.getElementById('penaltyScoreInfo').textContent = `Score: ${penaltyScore}`;
+  document.getElementById('penaltyShotInfo').textContent = `${penaltyShot} / ${PENALTY_TOTAL}`;
+  document.getElementById('penaltyScoreInfo').textContent = `${penaltyScore}`;
   setPenaltyMessage('Press Start to begin', '');
 
   resetKeeperBall();
@@ -1969,9 +2782,9 @@ function startPenaltyGame(){
   if(startBtn) startBtn.style.display = 'none';
   if(againBtn) againBtn.style.display = 'none';
 
-  document.getElementById('penaltyShotInfo').textContent = `Shot ${penaltyShot} / ${PENALTY_TOTAL}`;
-  document.getElementById('penaltyScoreInfo').textContent = `Score: ${penaltyScore}`;
-  setPenaltyMessage('Tap LEFT / CENTRE / RIGHT to shoot', '');
+  document.getElementById('penaltyShotInfo').textContent = `${penaltyShot} / ${PENALTY_TOTAL}`;
+  document.getElementById('penaltyScoreInfo').textContent = `${penaltyScore}`;
+  setPenaltyMessage('Choose where to shoot', '');
 
   resetKeeperBall();
 }
@@ -2034,7 +2847,7 @@ function takePenalty(playerZone){
       setPenaltyMessage('SAVED! 🧤', 'bad');
       playSound('crowd');
     }
-    document.getElementById('penaltyScoreInfo').textContent = `Score: ${penaltyScore}`;
+    document.getElementById('penaltyScoreInfo').textContent = `${penaltyScore}`;
   }, 700);
 
   setTimeout(()=>{
@@ -2043,15 +2856,22 @@ function takePenalty(playerZone){
       finishPenaltyGame();
       return;
     }
-    document.getElementById('penaltyShotInfo').textContent = `Shot ${penaltyShot} / ${PENALTY_TOTAL}`;
-    setPenaltyMessage('Tap LEFT / CENTRE / RIGHT to shoot', '');
+    document.getElementById('penaltyShotInfo').textContent = `${penaltyShot} / ${PENALTY_TOTAL}`;
+    setPenaltyMessage('Choose where to shoot', '');
     resetKeeperBall();
     penaltyLocked = false;
   }, 1400);
 }
 
 function finishPenaltyGame(){
-  setPenaltyMessage(`Final score: ${penaltyScore} / ${PENALTY_TOTAL}`, 'good');
+  // Show final score + fun end-of-game visuals (same as Top Trumps)
+  const result = (penaltyScore >= 3) ? "WINNER" : "LOSER";
+  setPenaltyMessage(`Final score: ${penaltyScore} / ${PENALTY_TOTAL}`, result === "WINNER" ? "good" : "bad");
+
+  // Reuse Top Trumps flash + big final overlay
+  try{ showTTFlash(result); }catch(e){}
+  try{ showGlobalFinal(result); }catch(e){}
+
   const againBtn = document.getElementById('penaltyAgainBtn');
   if(againBtn) againBtn.style.display = 'inline-block';
   penaltyLocked = true;
@@ -2075,334 +2895,28 @@ function finishPenaltyGame(){
 /* =========================
    STRIKER'S CHOICE GAME LOGIC
 ========================= */
-const STRIKER_SCENARIOS = [
-  {
-    id: 1,
-    description: "You're in front of goal, but a defender is close on your left. Your teammate is open on the right.",
-    players: {
-      striker: { left: "50%", top: "70%" },
-      keeper: { left: "50%", top: "20%" },
-      defender1: { left: "30%", top: "50%" },
-      teammate1: { left: "75%", top: "40%" },
-      ball: { left: "50%", top: "75%" }
-    },
-    optimal: "pass",
-    shoot: {
-      "low": { success: 0.2, message: "Blocked by the defender!", tip: "Better to pass to your open teammate." },
-      "high": { success: 0.3, message: "Saved by the keeper!", tip: "Better to pass to your open teammate." },
-      "corner": { success: 0.4, message: "Just wide!", tip: "Better to pass to your open teammate." }
-    },
-    pass: { success: 0.9, message: "Great pass! Your teammate scores a tap-in!", tip: "" }
-  },
-  {
-    id: 2,
-    description: "You're clear on goal with no defenders nearby. The keeper is slightly off-center.",
-    players: {
-      striker: { left: "50%", top: "60%" },
-      keeper: { left: "55%", top: "20%" },
-      defender1: { left: "10%", top: "50%", hidden: true },
-      teammate1: { left: "80%", top: "60%", hidden: true },
-      ball: { left: "50%", top: "65%" }
-    },
-    optimal: "shoot-corner",
-    shoot: {
-      "low": { success: 0.5, message: "Saved by the keeper!", tip: "Aim for the corner next time." },
-      "high": { success: 0.6, message: "Over the bar!", tip: "Aim for the corner next time." },
-      "corner": { success: 0.9, message: "Goal! Perfect shot!", tip: "" }
-    },
-    pass: { success: 0.1, message: "No one was there!", tip: "Better to shoot when you're clear on goal." }
-  },
-  {
-    id: 3,
-    description: "A defender is right in front of you, but your teammate is marked tightly.",
-    players: {
-      striker: { left: "50%", top: "65%" },
-      keeper: { left: "50%", top: "20%" },
-      defender1: { left: "50%", top: "50%" },
-      teammate1: { left: "70%", top: "45%" },
-      ball: { left: "50%", top: "70%" }
-    },
-    optimal: "shoot-high",
-    shoot: {
-      "low": { success: 0.1, message: "Blocked by the defender!", tip: "Try shooting high to get over the defender." },
-      "high": { success: 0.8, message: "Goal! Over the defender!", tip: "" },
-      "corner": { success: 0.3, message: "Wide of the post!", tip: "Try shooting high to get over the defender." }
-    },
-    pass: { success: 0.2, message: "Intercepted! Your teammate was marked.", tip: "Better to shoot over the defender." }
-  },
-  {
-    id: 4,
-    description: "You're at an angle, with a defender on your right. Your teammate is free in the center.",
-    players: {
-      striker: { left: "30%", top: "60%" },
-      keeper: { left: "50%", top: "20%" },
-      defender1: { left: "45%", top: "50%" },
-      teammate1: { left: "55%", top: "40%" },
-      ball: { left: "30%", top: "65%" }
-    },
-    optimal: "pass",
-    shoot: {
-      "low": { success: 0.2, message: "Blocked by the defender!", tip: "Better to pass to your free teammate." },
-      "high": { success: 0.3, message: "Saved by the keeper!", tip: "Better to pass to your free teammate." },
-      "corner": { success: 0.4, message: "Missed the target!", tip: "Better to pass to your free teammate." }
-    },
-    pass: { success: 0.85, message: "Perfect pass! Your teammate scores!", tip: "" }
-  },
-  {
-    id: 5,
-    description: "You're one-on-one with the keeper, no defenders or teammates nearby.",
-    players: {
-      striker: { left: "50%", top: "60%" },
-      keeper: { left: "50%", top: "20%" },
-      defender1: { left: "10%", top: "50%", hidden: true },
-      teammate1: { left: "80%", top: "60%", hidden: true },
-      ball: { left: "50%", top: "65%" }
-    },
-    optimal: "shoot-low",
-    shoot: {
-      "low": { success: 0.9, message: "Goal! Slotted past the keeper!", tip: "" },
-      "high": { success: 0.4, message: "Over the bar!", tip: "Keep it low for better control." },
-      "corner": { success: 0.7, message: "Goal! Nice finish!", tip: "" }
-    },
-    pass: { success: 0.1, message: "No one was there!", tip: "Better to shoot when you're one-on-one." }
-  }
-];
 
-let strikerScenario = 1;
-let strikerScore = 0;
-const STRIKER_TOTAL = 5;
-let strikerLocked = false;
-let currentScenario = null;
 
-function openStrikerGame() {
-  document.getElementById('strikerGame').classList.add('active');
-  resetStrikerUI();
-}
-
-function closeStrikerGame() {
-  document.getElementById('strikerGame').classList.remove('active');
-  strikerLocked = false;
-}
-
-function resetStrikerUI() {
-  strikerScenario = 1;
-  strikerScore = 0;
-  strikerLocked = false;
-  currentScenario = null;
-
-  const startBtn = document.getElementById('strikerStartBtn');
-  const shootBtn = document.getElementById('strikerShootBtn');
-  const passBtn = document.getElementById('strikerPassBtn');
-  const replayBtn = document.getElementById('strikerReplayBtn');
-  const nextBtn = document.getElementById('strikerNextBtn');
-  const shootOptions = document.getElementById('shootOptions');
-
-  if (startBtn) startBtn.style.display = 'inline-block';
-  if (shootBtn) shootBtn.style.display = 'none';
-  if (passBtn) passBtn.style.display = 'none';
-  if (replayBtn) replayBtn.style.display = 'none';
-  if (nextBtn) nextBtn.style.display = 'none';
-  if (shootOptions) shootOptions.style.display = 'none';
-
-  document.getElementById('strikerScenarioInfo').textContent = `Scenario ${strikerScenario} / ${STRIKER_TOTAL}`;
-  document.getElementById('strikerScoreInfo').textContent = `Score: ${strikerScore}`;
-  setStrikerMessage('Press Start to begin', '');
-
-  renderStrikerScenario();
-}
-
-function startStrikerGame() {
-  strikerScenario = 1;
-  strikerScore = 0;
-  strikerLocked = false;
-
-  const startBtn = document.getElementById('strikerStartBtn');
-  const shootBtn = document.getElementById('strikerShootBtn');
-  const passBtn = document.getElementById('strikerPassBtn');
-  const replayBtn = document.getElementById('strikerReplayBtn');
-  const nextBtn = document.getElementById('strikerNextBtn');
-  const shootOptions = document.getElementById('shootOptions');
-
-  if (startBtn) startBtn.style.display = 'none';
-  if (shootBtn) shootBtn.style.display = 'inline-block';
-  if (passBtn) passBtn.style.display = 'inline-block';
-  if (replayBtn) replayBtn.style.display = 'none';
-  if (nextBtn) nextBtn.style.display = 'none';
-  if (shootOptions) shootOptions.style.display = 'none';
-
-  document.getElementById('strikerScenarioInfo').textContent = `Scenario ${strikerScenario} / ${STRIKER_TOTAL}`;
-  document.getElementById('strikerScoreInfo').textContent = `Score: ${strikerScore}`;
-  setStrikerMessage('Choose to SHOOT or PASS', '');
-
-  renderStrikerScenario();
-}
-
-function setStrikerMessage(text, mood) {
-  const el = document.getElementById('strikerMessage');
-  el.textContent = text;
-  el.classList.remove('good', 'bad');
-  if (mood) el.classList.add(mood);
-}
-
-function renderStrikerScenario() {
-  currentScenario = STRIKER_SCENARIOS[strikerScenario - 1];
-  if (!currentScenario) return;
-
-  const players = {
-    strikerPlayer: currentScenario.players.striker,
-    keeperPlayer: currentScenario.players.keeper,
-    defender1: currentScenario.players.defender1,
-    teammate1: currentScenario.players.teammate1,
-    ball: currentScenario.players.ball
-  };
-
-  Object.keys(players).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.style.left = players[id].left;
-      el.style.top = players[id].top;
-      el.style.display = players[id].hidden ? 'none' : 'block';
-    }
-  });
-}
-
-function showShootOptions() {
-  const shootOptions = document.getElementById('shootOptions');
-  const shootBtn = document.getElementById('strikerShootBtn');
-  const passBtn = document.getElementById('strikerPassBtn');
-  if (shootOptions) shootOptions.style.display = 'flex';
-  if (shootBtn) shootBtn.style.display = 'none';
-  if (passBtn) passBtn.style.display = 'none';
-}
-
-function takeStrikerAction(action) {
-  if (strikerLocked || !currentScenario) return;
-
-  const startBtn = document.getElementById('strikerStartBtn');
-  if (startBtn && startBtn.style.display !== 'none') return;
-
-  strikerLocked = true;
-
-  const shootOptions = document.getElementById('shootOptions');
-  const shootBtn = document.getElementById('strikerShootBtn');
-  const passBtn = document.getElementById('strikerPassBtn');
-  const replayBtn = document.getElementById('strikerReplayBtn');
-  const nextBtn = document.getElementById('strikerNextBtn');
-
-  if (shootOptions) shootOptions.style.display = 'none';
-  if (shootBtn) shootBtn.style.display = 'none';
-  if (passBtn) passBtn.style.display = 'none';
-
-  let outcome = null;
-  let isSuccess = false;
-
-  if (action.startsWith('shoot')) {
-    const shotType = action.split('-')[1];
-    outcome = currentScenario.shoot[shotType];
-    isSuccess = Math.random() < outcome.success;
-  } else if (action === 'pass') {
-    outcome = currentScenario.pass;
-    isSuccess = Math.random() < outcome.success;
-  }
-
-  playSound('whistle');
-
-  setTimeout(() => {
-    if (isSuccess) {
-      strikerScore += action === 'pass' ? 5 : 10;
-      setStrikerMessage(outcome.message, 'good');
-      playSound('cheer');
-      if (nextBtn) nextBtn.style.display = 'inline-block';
-    } else {
-      setStrikerMessage(`${outcome.message} ${outcome.tip}`, 'bad');
-      playSound('crowd');
-      if (replayBtn) replayBtn.style.display = 'inline-block';
-    }
-    document.getElementById('strikerScoreInfo').textContent = `Score: ${strikerScore}`;
-  }, 700);
-
-  setTimeout(() => {
-    if (strikerScenario >= STRIKER_TOTAL && isSuccess) {
-      finishStrikerGame();
-    }
-    strikerLocked = false;
-  }, 1400);
-}
-
-function replayStrikerScenario() {
-  const shootBtn = document.getElementById('strikerShootBtn');
-  const passBtn = document.getElementById('strikerPassBtn');
-  const replayBtn = document.getElementById('strikerReplayBtn');
-  const nextBtn = document.getElementById('strikerNextBtn');
-  const shootOptions = document.getElementById('shootOptions');
-
-  if (shootBtn) shootBtn.style.display = 'inline-block';
-  if (passBtn) passBtn.style.display = 'inline-block';
-  if (replayBtn) replayBtn.style.display = 'none';
-  if (nextBtn) nextBtn.style.display = 'none';
-  if (shootOptions) shootOptions.style.display = 'none';
-
-  setStrikerMessage('Choose to SHOOT or PASS', '');
-  renderStrikerScenario();
-  strikerLocked = false;
-}
-
-function nextStrikerScenario() {
-  strikerScenario++;
-  if (strikerScenario > STRIKER_TOTAL) {
-    finishStrikerGame();
-    return;
-  }
-
-  const shootBtn = document.getElementById('strikerShootBtn');
-  const passBtn = document.getElementById('strikerPassBtn');
-  const replayBtn = document.getElementById('strikerReplayBtn');
-  const nextBtn = document.getElementById('strikerNextBtn');
-  const shootOptions = document.getElementById('shootOptions');
-
-  if (shootBtn) shootBtn.style.display = 'inline-block';
-  if (passBtn) passBtn.style.display = 'inline-block';
-  if (replayBtn) replayBtn.style.display = 'none';
-  if (nextBtn) nextBtn.style.display = 'none';
-  if (shootOptions) shootOptions.style.display = 'none';
-
-  document.getElementById('strikerScenarioInfo').textContent = `Scenario ${strikerScenario} / ${STRIKER_TOTAL}`;
-  setStrikerMessage('Choose to SHOOT or PASS', '');
-  renderStrikerScenario();
-  strikerLocked = false;
-}
-
-function finishStrikerGame() {
-  setStrikerMessage(`Game Over! Final score: ${strikerScore} points`, 'good');
-  const replayBtn = document.getElementById('strikerReplayBtn');
-  const nextBtn = document.getElementById('strikerNextBtn');
-  if (replayBtn) replayBtn.style.display = 'none';
-  if (nextBtn) nextBtn.style.display = 'none';
-  const startBtn = document.getElementById('strikerStartBtn');
-  if (startBtn) startBtn.style.display = 'inline-block';
-  strikerLocked = true;
-}
 /* =========================
-   GAMES MENU FUNCTIONS
+   GAMES MENU LOGIC
 ========================= */
-
 function openGamesMenu(){
-  document.getElementById('gamesMenuScreen').classList.add('active');
+  const el = document.getElementById('gamesMenuScreen');
+  if(el) el.classList.add('active');
 }
-
 function closeGamesMenu(){
-  document.getElementById('gamesMenuScreen').classList.remove('active');
+  const el = document.getElementById('gamesMenuScreen');
+  if(el) el.classList.remove('active');
 }
-
 function openPenaltyFromGames(){
-  openPenalty();           // open penalty first (on top)
-  closeGamesMenu();        // then close the games menu
+  closeGamesMenu();
+  openPenalty();
 }
 
 
 function futureGameToast(){
-  playSound('crowd');
-  alert("New game coming soon! ⚽✨");
+  try{ playSound('crowd'); }catch(e){}
+  alert('New game coming soon! ⚽✨');
 }
 
 /* =========================
@@ -2410,99 +2924,74 @@ function futureGameToast(){
 ========================= */
 
 // Put your player card PNGs (and card_back.png) in ./assets/images/
-const TT_IMG_BASE = "assets/images/";
+const TT_IMG_BASE = "./assets/images/";
 const TT_CARD_BACK = "card_back.png";
 
 const TT_CARDS = [
-  // Goalkeepers you have
+  // Goalkeepers (no David Raya image)
   { id: 1,  name: "Alisson", position: "Goalkeeper", team: "Liverpool", img: "alisson.png",
     stats: { Attack: 40, Speed: 65, Strength: 85, Skill: 88 } },
-
   { id: 2,  name: "Ederson", position: "Goalkeeper", team: "Manchester City", img: "ederson.png",
     stats: { Attack: 45, Speed: 70, Strength: 82, Skill: 90 } },
-
-  { id: 4,  name: "Nick Pope", position: "Goalkeeper", team: "Newcastle United", img: "nick_pope.png",
+  { id: 3,  name: "Nick Pope", position: "Goalkeeper", team: "Newcastle United", img: "nick_pope.png",
     stats: { Attack: 35, Speed: 68, Strength: 88, Skill: 78 } },
-
-  { id: 5,  name: "André Onana", position: "Goalkeeper", team: "Manchester United", img: "andre_onana.png",
+  { id: 4,  name: "André Onana", position: "Goalkeeper", team: "Manchester United", img: "andre_onana.png",
     stats: { Attack: 42, Speed: 66, Strength: 83, Skill: 86 } },
 
-  // Defenders you have
-  { id: 6,  name: "Virgil van Dijk", position: "Defender", team: "Liverpool", img: "virgil_van_dijk.png",
+  // Defenders
+  { id: 5,  name: "Virgil van Dijk", position: "Defender", team: "Liverpool", img: "virgil_van_dijk.png",
     stats: { Attack: 70, Speed: 78, Strength: 95, Skill: 82 } },
-
-  { id: 7,  name: "William Saliba", position: "Defender", team: "Arsenal", img: "william_saliba.png",
+  { id: 6,  name: "William Saliba", position: "Defender", team: "Arsenal", img: "william_saliba.png",
     stats: { Attack: 65, Speed: 80, Strength: 90, Skill: 80 } },
-
-  { id: 8,  name: "Rúben Dias", position: "Defender", team: "Manchester City", img: "ruben_dias.png",
+  { id: 7,  name: "Rúben Dias", position: "Defender", team: "Manchester City", img: "ruben_dias.png",
     stats: { Attack: 68, Speed: 75, Strength: 92, Skill: 78 } },
-
-  { id: 9,  name: "Gabriel Magalhães", position: "Defender", team: "Arsenal", img: "gabriel_magalhaes.png",
+  { id: 8,  name: "Gabriel Magalhães", position: "Defender", team: "Arsenal", img: "gabriel_magalhaes.png",
     stats: { Attack: 66, Speed: 74, Strength: 90, Skill: 76 } },
-
-  { id: 10, name: "Ben White", position: "Defender", team: "Arsenal", img: "ben_white.png",
+  { id: 9,  name: "Ben White", position: "Defender", team: "Arsenal", img: "ben_white.png",
     stats: { Attack: 72, Speed: 79, Strength: 85, Skill: 82 } },
-
-  { id: 11, name: "Trent Alexander-Arnold", position: "Defender", team: "Liverpool", img: "trent_alexander_arnold.png",
+  { id: 10, name: "Trent Alexander-Arnold", position: "Defender", team: "Liverpool", img: "trent_alexander_arnold.png",
     stats: { Attack: 85, Speed: 78, Strength: 70, Skill: 92 } },
-
-  { id: 12, name: "Kyle Walker", position: "Defender", team: "Manchester City", img: "kyle_walker.png",
+  { id: 11, name: "Kyle Walker", position: "Defender", team: "Manchester City", img: "kyle_walker.png",
     stats: { Attack: 75, Speed: 95, Strength: 88, Skill: 78 } },
-
-  { id: 13, name: "Joško Gvardiol", position: "Defender", team: "Manchester City", img: "josko_gvardiol.png",
+  { id: 12, name: "Joško Gvardiol", position: "Defender", team: "Manchester City", img: "josko_gvardiol.png",
     stats: { Attack: 73, Speed: 82, Strength: 89, Skill: 80 } },
-
-  { id: 14, name: "Lisandro Martínez", position: "Defender", team: "Manchester United", img: "lisandro_martinez.png",
+  { id: 13, name: "Lisandro Martínez", position: "Defender", team: "Manchester United", img: "lisandro_martinez.png",
     stats: { Attack: 70, Speed: 76, Strength: 86, Skill: 84 } },
-
-  { id: 15, name: "John Stones", position: "Defender", team: "Manchester City", img: "john_stones.png",
+  { id: 14, name: "John Stones", position: "Defender", team: "Manchester City", img: "john_stones.png",
     stats: { Attack: 74, Speed: 77, Strength: 88, Skill: 86 } },
 
-  // Midfielders you have
-  { id: 16, name: "Kevin De Bruyne", position: "Midfielder", team: "Manchester City", img: "kevin_de_bruyne.png",
+  // Midfielders
+  { id: 15, name: "Kevin De Bruyne", position: "Midfielder", team: "Manchester City", img: "kevin_de_bruyne.png",
     stats: { Attack: 92, Speed: 82, Strength: 78, Skill: 96 } },
-
-  { id: 17, name: "Rodri", position: "Midfielder", team: "Manchester City", img: "rodri.png",
+  { id: 16, name: "Rodri", position: "Midfielder", team: "Manchester City", img: "rodri.png",
     stats: { Attack: 78, Speed: 72, Strength: 90, Skill: 86 } },
-
-  { id: 18, name: "Martin Ødegaard", position: "Midfielder", team: "Arsenal", img: "martin_odegaard.png",
+  { id: 17, name: "Martin Ødegaard", position: "Midfielder", team: "Arsenal", img: "martin_odegaard.png",
     stats: { Attack: 88, Speed: 80, Strength: 70, Skill: 94 } },
-
-  { id: 19, name: "Bruno Fernandes", position: "Midfielder", team: "Manchester United", img: "bruno_fernandes.png",
+  { id: 18, name: "Bruno Fernandes", position: "Midfielder", team: "Manchester United", img: "bruno_fernandes.png",
     stats: { Attack: 90, Speed: 78, Strength: 75, Skill: 92 } },
-
-  { id: 20, name: "Declan Rice", position: "Midfielder", team: "Arsenal", img: "declan_rice.png",
+  { id: 19, name: "Declan Rice", position: "Midfielder", team: "Arsenal", img: "declan_rice.png",
     stats: { Attack: 80, Speed: 77, Strength: 88, Skill: 82 } },
-
-  { id: 21, name: "Bernardo Silva", position: "Midfielder", team: "Manchester City", img: "bernardo_silva.png",
+  { id: 20, name: "Bernardo Silva", position: "Midfielder", team: "Manchester City", img: "bernardo_silva.png",
     stats: { Attack: 86, Speed: 83, Strength: 72, Skill: 95 } },
-
-  { id: 22, name: "Phil Foden", position: "Midfielder", team: "Manchester City", img: "phil_foden.png",
+  { id: 21, name: "Phil Foden", position: "Midfielder", team: "Manchester City", img: "phil_foden.png",
     stats: { Attack: 89, Speed: 88, Strength: 70, Skill: 93 } },
-
-  { id: 23, name: "James Maddison", position: "Midfielder", team: "Tottenham Hotspur", img: "james_maddison.png",
+  { id: 22, name: "James Maddison", position: "Midfielder", team: "Tottenham Hotspur", img: "james_maddison.png",
     stats: { Attack: 87, Speed: 79, Strength: 72, Skill: 91 } },
-
-  { id: 24, name: "Alexis Mac Allister", position: "Midfielder", team: "Liverpool", img: "alexis_mac_allister.png",
+  { id: 23, name: "Alexis Mac Allister", position: "Midfielder", team: "Liverpool", img: "alexis_mac_allister.png",
     stats: { Attack: 84, Speed: 76, Strength: 74, Skill: 88 } },
-
-  { id: 25, name: "Enzo Fernández", position: "Midfielder", team: "Chelsea", img: "enzo_fernandez.png",
+  { id: 24, name: "Enzo Fernández", position: "Midfielder", team: "Chelsea", img: "enzo_fernandez.png",
     stats: { Attack: 82, Speed: 75, Strength: 76, Skill: 89 } },
 
-  // Forwards you have
-  { id: 26, name: "Erling Haaland", position: "Forward", team: "Manchester City", img: "erling_haaland.png",
+  // Forwards
+  { id: 25, name: "Erling Haaland", position: "Forward", team: "Manchester City", img: "erling_haaland.png",
     stats: { Attack: 99, Speed: 90, Strength: 95, Skill: 88 } },
-
-  { id: 27, name: "Mohamed Salah", position: "Forward", team: "Liverpool", img: "mohamed_salah.png",
+  { id: 26, name: "Mohamed Salah", position: "Forward", team: "Liverpool", img: "mohamed_salah.png",
     stats: { Attack: 94, Speed: 92, Strength: 78, Skill: 91 } },
-
-  { id: 28, name: "Bukayo Saka", position: "Forward", team: "Arsenal", img: "bukayo_saka.png",
+  { id: 27, name: "Bukayo Saka", position: "Forward", team: "Arsenal", img: "bukayo_saka.png",
     stats: { Attack: 90, Speed: 88, Strength: 76, Skill: 89 } },
-
-  { id: 29, name: "Son Heung-min", position: "Forward", team: "Tottenham Hotspur", img: "son_heung_min.png",
+  { id: 28, name: "Son Heung-min", position: "Forward", team: "Tottenham Hotspur", img: "son_heung_min.png",
     stats: { Attack: 93, Speed: 90, Strength: 77, Skill: 90 } },
-
-  { id: 30, name: "Ollie Watkins", position: "Forward", team: "Aston Villa", img: "ollie_watkins.png",
+  { id: 29, name: "Ollie Watkins", position: "Forward", team: "Aston Villa", img: "ollie_watkins.png",
     stats: { Attack: 88, Speed: 87, Strength: 82, Skill: 84 } },
 ];
 
@@ -2510,15 +2999,15 @@ const TT_STAT_KEYS = ["Attack", "Speed", "Strength", "Skill"];
 
 let ttState = null;
 
-function safeImgPath(fileName){
-  if(!fileName) return TT_IMG_BASE + TT_CARD_BACK;
-  return TT_IMG_BASE + fileName;
+// --- UI helpers
+function openTopTrumps(){
+  document.getElementById('topTrumpsScreen').classList.add('active');
+  resetTopTrumpsUI();
 }
 
-function showCpuHidden(isHidden){
-  const cover = document.getElementById("ttCpuCover");
-  if(!cover) return;
-  cover.classList.toggle("hidden", !isHidden);
+function closeTopTrumps(){
+  document.getElementById('topTrumpsScreen').classList.remove('active');
+  ttState = null;
 }
 
 function resetTopTrumpsUI(){
@@ -2528,42 +3017,20 @@ function resetTopTrumpsUI(){
   if(startBtn) startBtn.style.display = "inline-block";
   if(nextBtn)  nextBtn.style.display  = "none";
 
-  document.getElementById("ttYouName").textContent = "Your card";
-  document.getElementById("ttCpuName").textContent = "CPU card";
+  // reset scoreboard
+  setTTScore(0, 0, 0);
 
-  document.getElementById("ttYouImg").src = safeImgPath(TT_CARD_BACK);
-  document.getElementById("ttCpuImg").src = safeImgPath(TT_CARD_BACK);
+  // blank splash (use card back for both)
+  setTTCardFacing("you", TT_CARD_BACK);
+  setTTCardFacing("opp", TT_CARD_BACK);
+  setTTCardName("you","Your card");
+  setTTCardName("opp","Opponent card");
 
-  document.getElementById("ttStatButtons").innerHTML = "";
+  // No masks on the card backs
+  setTTMasksVisible(false, false);
 
-  document.getElementById("ttYouCount").textContent = "0";
-  document.getElementById("ttCpuCount").textContent = "0";
-  document.getElementById("ttPotCount").textContent = "0";
-
-  showCpuHidden(true);
-}
-
-function openTopTrumps(){
-  document.getElementById("topTrumpsScreen").classList.add("active");
-  resetTopTrumpsUI();
-}
-
-function closeTopTrumps(){
-  document.getElementById("topTrumpsScreen").classList.remove("active");
-  ttState = null;
-}
-
-function startTopTrumps(){
-  ttState = createTTGame(TT_CARDS);
-  const startBtn = document.getElementById("ttStartBtn");
-  if(startBtn) startBtn.style.display = "none";
-  dealAndShowCards();
-}
-
-function nextTopTrumpsRound(){
-  const nextBtn = document.getElementById("ttNextBtn");
-  if(nextBtn) nextBtn.style.display = "none";
-  dealAndShowCards();
+  // buttons
+  renderTTChoiceButtons(false);
 }
 
 function setTTMessage(text, mood){
@@ -2574,9 +3041,72 @@ function setTTMessage(text, mood){
   if(mood) el.classList.add(mood);
 }
 
+function setTTScore(youPts, oppPts, roundNum){
+  const you = document.getElementById("ttYouCount");
+  const opp = document.getElementById("ttCpuCount");
+  const rnd = document.getElementById("ttPotCount");
+  if(you) you.textContent = String(youPts);
+  if(opp) opp.textContent = String(oppPts);
+  if(rnd) rnd.textContent = `${roundNum} / 10`;
+}
+
+function setTTCardName(side, text){
+  const el = document.getElementById(side === "you" ? "ttYouName" : "ttCpuName");
+  if(el) el.textContent = text;
+}
+
+function safeSetImg(imgEl, filename){
+  if(!imgEl) return;
+  const url = TT_IMG_BASE + filename;
+  imgEl.onerror = () => {
+    // If an image filename is wrong/missing, fall back to card back instead of breaking the round
+    imgEl.onerror = null;
+    imgEl.src = TT_IMG_BASE + TT_CARD_BACK;
+  };
+  imgEl.src = url;
+}
+
+function setTTCardFacing(side, filename){
+  const img = document.getElementById(side === "you" ? "ttYouImg" : "ttCpuImg");
+  safeSetImg(img, filename);
+}
+
+function setTTMasksVisible(youMaskOn, oppMaskOn){
+  // Backwards compatible: if only one arg is passed, apply to both
+  if (typeof oppMaskOn === "undefined") oppMaskOn = youMaskOn;
+
+  const youMasks = document.querySelectorAll("#ttYouCard .tt-mask");
+  const oppMasks = document.querySelectorAll("#ttCpuCard .tt-mask");
+
+  youMasks.forEach(m => m.style.opacity = youMaskOn ? "1" : "0");
+  oppMasks.forEach(m => m.style.opacity = oppMaskOn ? "1" : "0");
+}
+
+function setTTFlipping(isFlipping){
+  const youCard = document.getElementById("ttYouCard");
+  const oppCard = document.getElementById("ttCpuCard");
+  if(youCard) youCard.classList.toggle("flipping", isFlipping);
+  if(oppCard) oppCard.classList.toggle("flipping", isFlipping);
+}
+
+function renderTTChoiceButtons(enabled){
+  const wrap = document.getElementById("ttStatButtons");
+  if(!wrap) return;
+  wrap.innerHTML = "";
+  TT_STAT_KEYS.forEach(k => {
+    const btn = document.createElement("button");
+    btn.className = "tt-statbtn";
+    btn.textContent = k;
+    btn.disabled = !enabled;
+    btn.onclick = () => chooseTTStat(k);
+    wrap.appendChild(btn);
+  });
+}
+
+// --- game setup
 function shuffleTT(arr){
   const a = [...arr];
-  for(let i=a.length-1;i>0;i--){
+  for(let i=a.length-1;i>0;i--) {
     const j = Math.floor(Math.random()*(i+1));
     [a[i],a[j]] = [a[j],a[i]];
   }
@@ -2585,153 +3115,233 @@ function shuffleTT(arr){
 
 function createTTGame(deck){
   const shuffled = shuffleTT(deck);
-  const you = [];
-  const cpu = [];
-  for(let i=0;i<shuffled.length;i++){
-    (i%2===0 ? you : cpu).push(shuffled[i]);
+
+  // Deal alternately so each side has a deck to draw from
+  const youDeck = [];
+  const oppDeck = [];
+  for(let i=0;i<shuffled.length;i++) {
+    (i%2===0 ? youDeck : oppDeck).push(shuffled[i]);
   }
+
   return {
-    youDeck: you,
-    cpuDeck: cpu,
-    pot: [],
-    chooser: "you",
+    youDeck,
+    oppDeck,
+    round: 0,
+    maxRounds: 10,
+    youPts: 0,
+    oppPts: 0,
     youCard: null,
-    cpuCard: null,
-    roundLocked: false,
-    gameOver: false,
-    winner: null,
-    cpuRealImg: null
+    oppCard: null,
+    locked: false,
+    lastChoice: null
   };
 }
 
-function updateTTCounts(){
-  document.getElementById("ttYouCount").textContent = String(ttState.youDeck.length);
-  document.getElementById("ttCpuCount").textContent = String(ttState.cpuDeck.length);
-  document.getElementById("ttPotCount").textContent = String(ttState.pot.length);
-}
-
-function renderTTStatButtons(){
-  const wrap = document.getElementById("ttStatButtons");
-  if(!wrap) return;
-  wrap.innerHTML = "";
-  TT_STAT_KEYS.forEach(k=>{
-    const btn = document.createElement("button");
-    btn.className = "tt-statbtn";
-    btn.type = "button";
-    btn.textContent = `${k}: ${ttState.youCard.stats[k]}`;
-    btn.disabled = ttState.roundLocked || ttState.chooser !== "you";
-    btn.addEventListener("click", ()=> playTTRound(k));
-    wrap.appendChild(btn);
-  });
-}
-
-function dealAndShowCards(){
-  if(!ttState || ttState.gameOver) return;
-
-  if(ttState.youDeck.length === 0) return endTT("cpu");
-  if(ttState.cpuDeck.length === 0) return endTT("you");
-
-  ttState.youCard = ttState.youDeck[0];
-  ttState.cpuCard = ttState.cpuDeck[0];
-
-  document.getElementById("ttYouName").textContent =
-    `${ttState.youCard.name} • ${ttState.youCard.team} • ${ttState.youCard.position}`;
-  document.getElementById("ttCpuName").textContent =
-    `${ttState.cpuCard.name} • ${ttState.cpuCard.team} • ${ttState.cpuCard.position}`;
-
-  // Your card shows immediately
-  document.getElementById("ttYouImg").src = safeImgPath(ttState.youCard.img);
-
-  // CPU card stays hidden until reveal
-  ttState.cpuRealImg = safeImgPath(ttState.cpuCard.img);
-  document.getElementById("ttCpuImg").src = safeImgPath(TT_CARD_BACK);
-  showCpuHidden(true);
-
-  ttState.roundLocked = false;
-
-  updateTTCounts();
-  renderTTStatButtons();
-
-  // Always let the player choose the stat
-  ttState.chooser = "you";
-  setTTMessage("Pick a stat!", "");
-}
-
-function cpuChooseStat(card){
-  let best = TT_STAT_KEYS[0];
-  TT_STAT_KEYS.forEach(k=>{
-    if(card.stats[k] > card.stats[best]) best = k;
-  });
-  return best;
-}
-
-function revealCpu(){
-  document.getElementById("ttCpuImg").src = ttState.cpuRealImg || safeImgPath(TT_CARD_BACK);
-  showCpuHidden(false);
-}
-
-function playTTRound(statKey){
-  if(!ttState || ttState.roundLocked || ttState.gameOver) return;
-  ttState.roundLocked = true;
-
-  // reveal CPU card now that a stat is being compared
-  revealCpu();
-
-  const youTop = ttState.youDeck.shift();
-  const cpuTop = ttState.cpuDeck.shift();
-  ttState.pot.push(youTop, cpuTop);
-
-  const youVal = youTop.stats[statKey];
-  const cpuVal = cpuTop.stats[statKey];
-
-  if(typeof playSound === "function") playSound("whistle");
-
-  if(youVal > cpuVal){
-    ttState.youDeck.push(...ttState.pot);
-    ttState.pot = [];
-    ttState.chooser = "you";
-    setTTMessage(`You win! ${statKey} ${youVal} vs ${cpuVal}`, "good");
-    if(typeof playSound === "function") playSound("cheer");
-  } else if(cpuVal > youVal){
-    ttState.cpuDeck.push(...ttState.pot);
-    ttState.pot = [];
-    ttState.chooser = "you";
-    setTTMessage(`CPU wins. ${statKey} ${youVal} vs ${cpuVal}`, "bad");
-    if(typeof playSound === "function") playSound("crowd");
-  } else {
-    setTTMessage(`Tie! ${statKey} ${youVal} vs ${cpuVal} — pot carries over`, "");
-  }
-
-  updateTTCounts();
-
-  if(ttState.youDeck.length === 0) return endTT("cpu");
-  if(ttState.cpuDeck.length === 0) return endTT("you");
-
-  ttState.roundLocked = false;
-
-  const nextBtn = document.getElementById("ttNextBtn");
-  if(nextBtn) nextBtn.style.display = "inline-block";
-
-  renderTTStatButtons();
-}
-
-function endTT(winner){
-  ttState.gameOver = true;
-  ttState.winner = winner;
-
-  const nextBtn = document.getElementById("ttNextBtn");
+function startTopTrumps(){
+  ttState = createTTGame(TT_CARDS);
   const startBtn = document.getElementById("ttStartBtn");
-  if(nextBtn) nextBtn.style.display = "none";
-  if(startBtn) startBtn.style.display = "inline-block";
-
-  if(winner === "you"){
-    setTTMessage("Game over — YOU WIN! 🏆", "good");
-    if(typeof playSound === "function") playSound("cheer");
-  } else {
-    setTTMessage("Game over — CPU wins!", "bad");
-    if(typeof playSound === "function") playSound("crowd");
-  }
+  const nextBtn  = document.getElementById("ttNextBtn");
+  if(startBtn) startBtn.style.display = "none";
+  if(nextBtn)  nextBtn.style.display  = "none";
+  nextTopTrumpsRound(true);
 }
+
+function nextTopTrumpsRound(isFirst=false){
+  if(!ttState) return;
+
+  // End if we hit 10 rounds
+  if(ttState.round >= ttState.maxRounds) {
+    endTopTrumpsGame();
+    return;
+  }
+
+  // If either deck runs out, end early (rare but possible)
+  if(ttState.youDeck.length === 0 || ttState.oppDeck.length === 0) {
+    endTopTrumpsGame();
+    return;
+  }
+
+  // Draw top cards
+  ttState.youCard = ttState.youDeck[0];
+  ttState.oppCard = ttState.oppDeck[0];
+
+  ttState.round += 1;
+  ttState.locked = false;
+  ttState.lastChoice = null;
+
+  // show card faces (but hide printed info with masks)
+  setTTCardFacing("you", ttState.youCard.img);
+  setTTCardFacing("opp", ttState.oppCard.img);
+
+  setTTCardName("you", `${ttState.youCard.name} • ${ttState.youCard.position}`);
+  setTTCardName("opp", `${ttState.oppCard.name} • Opponent`);
+
+  // Show YOUR card fully, hide CPU printed name/stats until reveal
+  setTTMasksVisible(false, true);
+
+  setTTScore(ttState.youPts, ttState.oppPts, ttState.round);
+  setTTMessage(isFirst ? "Pick an attribute (values hidden!)" : "Pick an attribute", "");
+
+  // enable choice buttons
+  renderTTChoiceButtons(true);
+
+  const nextBtn = document.getElementById("ttNextBtn");
+  if(nextBtn) nextBtn.style.display = "none";
+}
+
+function chooseTTStat(statKey){
+  if(!ttState || ttState.locked) return;
+  ttState.locked = true;
+  ttState.lastChoice = statKey;
+
+  // disable buttons immediately
+  renderTTChoiceButtons(false);
+
+  setTTMessage(`You chose ${statKey}…`, "");
+
+  // Flip both cards down
+  setTTFlipping(true);
+  setTimeout(() => {
+    setTTCardFacing("you", TT_CARD_BACK);
+    setTTCardFacing("opp", TT_CARD_BACK);
+  }, 200);
+
+  // Pause 2 seconds total, then flip up + reveal stats
+  setTimeout(() => {
+    // Flip up (swap src back)
+    setTTCardFacing("you", ttState.youCard.img);
+    setTTCardFacing("opp", ttState.oppCard.img);
+
+    // reveal printed areas (CPU + you)
+    setTTMasksVisible(false, false);
+
+    // remove flip class after transition
+    setTimeout(() => setTTFlipping(false), 420);
+
+    // Decide winner + score
+    const youVal = ttState.youCard.stats[statKey];
+    const oppVal = ttState.oppCard.stats[statKey];
+
+    // Remove the drawn cards from decks
+    ttState.youDeck.shift();
+    ttState.oppDeck.shift();
+
+    if(youVal > oppVal) {
+      ttState.youPts += 1;
+      setTTMessage(`You win the round! (${statKey} ${youVal} vs ${oppVal})`, "good");
+      playSound && playSound("cheer");
+      showTTFlash("WINNER");
+      burstConfetti(1400, 120);
+    } else if(oppVal > youVal) {
+      ttState.oppPts += 1;
+      setTTMessage(`You lose the round. (${statKey} ${youVal} vs ${oppVal})`, "bad");
+      playSound && playSound("crowd");
+      showTTFlash("LOSER");
+    } else {
+      setTTMessage(`Draw! (${statKey} ${youVal} vs ${oppVal})`, "");
+      playSound && playSound("whistle");
+      showTTFlash("DRAW");
+    }
+
+    setTTScore(ttState.youPts, ttState.oppPts, ttState.round);
+
+    // Show Next Round button
+    const nextBtn = document.getElementById("ttNextBtn");
+    if(nextBtn) nextBtn.style.display = "inline-block";
+
+    // If this was round 10, show final result after a short delay
+    if(ttState.round >= ttState.maxRounds) {
+      setTimeout(endTopTrumpsGame, 800);
+    }
+  }, 2000);
+}
+
+
+function burstConfetti(durationMs=1400, pieces=120){
+  const host = document.getElementById("confettiContainer");
+  if(!host) return;
+  // clear any leftovers
+  host.innerHTML = "";
+  const colors = ["#ff6b35","#ffd166","#06d6a0","#118ab2","#ef476f","#ffffff"];
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  for(let i=0;i<pieces;i++){
+    const d = document.createElement("div");
+    d.className = "confetti";
+    d.style.left = Math.floor(Math.random()*vw) + "px";
+    d.style.background = colors[Math.floor(Math.random()*colors.length)];
+    const size = 6 + Math.random()*10;
+    d.style.width = size + "px";
+    d.style.height = (size*1.3) + "px";
+    d.style.animationDuration = (800 + Math.random()*900) + "ms";
+    d.style.animationDelay = (Math.random()*150) + "ms";
+    d.style.opacity = (0.6 + Math.random()*0.4).toFixed(2);
+    host.appendChild(d);
+  }
+  setTimeout(()=>{ host.innerHTML=""; }, durationMs);
+}
+
+function showGlobalFinal(result){
+  const el = document.getElementById("ttFinal");
+  if(!el) return;
+
+  el.textContent = (result === "DRAW") ? "DRAW" : (result === "WINNER" ? "WINNER!" : "LOSER!");
+  el.style.display = "flex";
+  el.classList.remove("win","lose","draw");
+  if(result === "WINNER") el.classList.add("win");
+  if(result === "LOSER") el.classList.add("lose");
+  if(result === "DRAW") el.classList.add("draw");
+
+  // Sounds + confetti (winner only) to match Top Trumps feel
+  if(result === "WINNER") { try{ playSound && playSound("cheer"); }catch(e){} burstConfetti(3000, 220); }
+  else if(result === "LOSER") { try{ playSound && playSound("crowd"); }catch(e){} }
+  else { try{ playSound && playSound("whistle"); }catch(e){} }
+
+  setTimeout(()=>{ el.style.display = "none"; }, 2600);
+}
+
+
+function showTTFlash(text){
+  const el = document.getElementById("ttFlash");
+  if(!el) return;
+  el.textContent = text;
+  el.style.display = "block";
+  el.classList.remove("win","lose","draw");
+  if(text === "WINNER") el.classList.add("win");
+  if(text === "LOSER") el.classList.add("lose");
+  if(text === "DRAW") el.classList.add("draw");
+
+  setTimeout(() => {
+    el.style.display = "none";
+  }, 900);
+}
+
+function endTopTrumpsGame(){
+  if(!ttState) return;
+
+  const result = ttState.youPts > ttState.oppPts ? "WINNER" : (ttState.oppPts > ttState.youPts ? "LOSER" : "DRAW");
+
+  // big final overlay for 3 seconds
+  const el = document.getElementById("ttFinal");
+  if(el) {
+    el.textContent = result === "DRAW" ? "DRAW" : (result === "WINNER" ? "WINNER!" : "LOSER!");
+    el.style.display = "flex";
+    el.classList.remove("win","lose","draw");
+    if(result === "WINNER") el.classList.add("win");
+    if(result === "LOSER") el.classList.add("lose");
+    if(result === "DRAW") el.classList.add("draw");
+  }
+
+  if(result === "WINNER") { playSound && playSound("cheer"); burstConfetti(3000, 220); }
+  else if(result === "LOSER") playSound && playSound("crowd");
+  else playSound && playSound("whistle");
+
+  setTimeout(() => {
+    if(el) el.style.display = "none";
+    // Reset to splash so Start is visible again
+    resetTopTrumpsUI();
+  }, 3000);
+}
+
 
 /* =========================
    TROPHY CABINET LOGIC
@@ -2740,7 +3350,10 @@ function openTrophyCabinet(){
   const screen = document.getElementById('trophyCabinetScreen');
   if(screen) screen.classList.add('active');
 
-  // Start audio on user gesture (this click) - browsers allow it
+  
+  populateTrophyGrid();
+  startChampionsAudio();
+// Start audio on user gesture (this click) - browsers allow it
   const audio = document.getElementById('championsAudio');
   if(audio){
     try{
@@ -2755,7 +3368,9 @@ function closeTrophyCabinet(){
   const screen = document.getElementById('trophyCabinetScreen');
   if(screen) screen.classList.remove('active');
 
-  const audio = document.getElementById('championsAudio');
+  
+  stopChampionsAudio();
+const audio = document.getElementById('championsAudio');
   if(audio){
     try{ audio.pause(); }catch(e){}
   }
@@ -2772,6 +3387,91 @@ function closeTrophyLightbox(){
   const lb = document.getElementById('trophyLightbox');
   if(lb) lb.classList.remove('active');
 }
+
+
+function populateTrophyGrid(){
+  const grid = document.getElementById('trophyGrid');
+  if(!grid) return;
+  if(grid.dataset.built === "1") return;
+  grid.dataset.built = "1";
+  // Builds Champ (1).jpg ... Champ (26).jpg
+  for(let i=1;i<=26;i++){
+    const img = document.createElement('img');
+    img.className = 'trophy-img';
+    img.loading = 'lazy';
+    img.src = `assets/images/champions/Champ (${i}).jpg`;
+    img.alt = `Champ (${i}).jpg`;
+    img.onclick = ()=> openTrophyLightbox(img.src);
+    grid.appendChild(img);
+  }
+}
+
+function startChampionsAudio(){
+  const a = document.getElementById('championsAudio');
+  if(!a) return;
+  a.currentTime = 0;
+  a.loop = true;
+  a.volume = 0.8;
+  a.play().catch(()=>{/* autoplay may be blocked */});
+}
+
+function stopChampionsAudio(){
+  const a = document.getElementById('championsAudio');
+  if(!a) return;
+  a.pause();
+  a.currentTime = 0;
+}
+
+/* Try to autoplay the club song on app open (may be blocked until first tap) */
+function tryAutoPlayClubSong(){
+  const a = document.getElementById('clubSong');
+  if(!a) return;
+  a.loop = true;
+  a.volume = 0.6;
+  const tryPlay = ()=> a.play().catch(()=>{});
+  tryPlay();
+  // If blocked, first user interaction will start it.
+  const unlock = ()=>{
+    tryPlay();
+    window.removeEventListener('pointerdown', unlock);
+    window.removeEventListener('keydown', unlock);
+  };
+  window.addEventListener('pointerdown', unlock, {once:true});
+  window.addEventListener('keydown', unlock, {once:true});
+}
+
+document.addEventListener('DOMContentLoaded', tryAutoPlayClubSong);
+
+
+/* Responsive viewport height fix (mobile address bar) */
+(function(){
+  const setVH = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+  setVH();
+  window.addEventListener('resize', setVH);
+})();
+
+/* clubSongAutostop */
+(function(){
+  const song = document.getElementById("clubSong");
+  if(!song) return;
+  // ensure it plays only once
+  song.loop = false;
+  song.addEventListener("ended", ()=>{ 
+    try{ song.pause(); song.currentTime = 0; }catch(e){} 
+  });
+})();
+
+
+    // Wire Offside Trainer menu buttons (fallback in case inline handlers are blocked)
+    document.addEventListener('DOMContentLoaded', () => {
+      const playBtn = document.getElementById('offsidePlayBtn');
+      const learnBtn = document.getElementById('offsideLearnBtn');
+      if (playBtn) playBtn.addEventListener('click', () => { startOffsideGame(); playSound('whistle'); });
+      if (learnBtn) learnBtn.addEventListener('click', () => { openOffsideLearn(); playSound('whistle'); });
+    });
 
 </script>
 </body>
