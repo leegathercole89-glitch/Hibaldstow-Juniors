@@ -300,7 +300,7 @@
   left:0; right:0; bottom:0;
   padding:14px 12px 18px;
   z-index:50;
-  pointer-events:none;
+  pointer-events:auto;
 }
 
 /* --- Homepage top signs (smaller + tap to zoom) --- */
@@ -1649,6 +1649,159 @@
   .pos-vthumb img{height:160px}
 }
 
+/* =========================
+   KEEPER REACTION GAME
+========================= */
+.keeper-wrap{max-width:1100px;text-align:center}
+.keeper-arena{
+  position:relative;
+  width:min(900px, 92vw);
+  height:min(520px, 56vh);
+  margin:14px auto 10px;
+  border-radius:28px;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(10,15,40,0.85), rgba(0,0,0,0.45));
+  border:2px solid rgba(255,255,255,0.14);
+  box-shadow:0 18px 60px rgba(0,0,0,0.5);
+}
+.keeper-goal{
+  position:absolute; inset:42px 60px 110px 60px;
+  border:8px solid rgba(255,255,255,0.88);
+  border-bottom:10px solid rgba(255,255,255,0.95);
+  border-radius:14px;
+  box-shadow:inset 0 0 0 2px rgba(0,0,0,0.25);
+}
+.keeper-net{
+  position:absolute; inset:42px 60px 110px 60px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.14) 1px, transparent 1px) 0 0/24px 24px,
+    linear-gradient(0deg, rgba(255,255,255,0.14) 1px, transparent 1px) 0 0/24px 24px;
+  opacity:0.55;
+  pointer-events:none;
+}
+.keeper-grass{
+  position:absolute; left:0; right:0; bottom:0; height:170px;
+  background:linear-gradient(180deg, rgba(14,68,45,0.9), rgba(6,36,24,0.95));
+}
+.keeper-grass:before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(255,255,255,0.08) 0 10%, transparent 10% 20%) 0 0/180px 100%;
+  opacity:0.35;
+}
+.keeper-savezone{
+  position:absolute;
+  width:28%;
+  height:34%;
+  border-radius:22px;
+  background:rgba(255,255,255,0.06);
+  border:2px dashed rgba(255,255,255,0.16);
+  backdrop-filter: blur(2px);
+  cursor:pointer;
+  transition:transform .08s ease, background .12s ease, border-color .12s ease;
+}
+.keeper-savezone:active{transform:scale(0.98)}
+.keeper-savezone.good{
+  background:rgba(34,197,94,0.18);
+  border-color:rgba(34,197,94,0.55);
+}
+.keeper-savezone.bad{
+  background:rgba(239,68,68,0.18);
+  border-color:rgba(239,68,68,0.55);
+}
+.kz-tl{left:70px; top:58px}
+.kz-tr{right:70px; top:58px}
+.kz-bl{left:70px; bottom:140px}
+.kz-br{right:70px; bottom:140px}
+
+.keeper-label{
+  position:absolute;
+  top:10px; left:12px;
+  padding:8px 10px;
+  border-radius:999px;
+  font-weight:1000;
+  background:rgba(10,10,20,0.58);
+  border:1px solid rgba(255,255,255,0.14);
+  color:#fff;
+  font-size:0.95rem;
+}
+.keeper-ball{
+  position:absolute;
+  width:44px; height:44px;
+  border-radius:999px;
+  background:#fff;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 14px 30px rgba(0,0,0,0.45);
+  transform:translate(-50%,-50%);
+  left:50%; top:65%;
+  z-index:5;
+}
+.keeper-ball:before{
+  content:"⚽";
+  font-size:26px;
+  transform:translateY(1px);
+}
+.keeper-hint{
+  margin:10px auto 0;
+  max-width:900px;
+  font-weight:900;
+  color:#fff;
+  opacity:0.95;
+}
+.keeper-flash{
+  position:absolute; inset:0;
+  background:rgba(255,255,255,0);
+  pointer-events:none;
+  transition:background .12s ease;
+}
+.keeper-flash.win{background:rgba(34,197,94,0.10)}
+.keeper-flash.lose{background:rgba(239,68,68,0.10)}
+
+@media(max-width:640px){
+  .keeper-goal, .keeper-net{inset:40px 24px 120px 24px}
+  .kz-tl{left:28px; top:56px}
+  .kz-tr{right:28px; top:56px}
+  .kz-bl{left:28px; bottom:150px}
+  .kz-br{right:28px; bottom:150px}
+}
+
+
+/* =========================
+   BUILD YOUR PLAYER (AVATAR)
+========================= */
+.avatar-mini{width:120px; min-width:120px; height:120px; display:flex; align-items:center; justify-content:center;}
+.avatar-large{width:180px; height:180px; display:flex; align-items:center; justify-content:center;}
+.avatar-card{
+  width:min(860px, 94vw);
+  margin:0 auto;
+  padding:16px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.16);
+  box-shadow:0 16px 44px rgba(0,0,0,0.35);
+  color:#fff;
+}
+.avatar-form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+.avatar-form label{font-weight:1000; text-align:left; display:flex; flex-direction:column; gap:6px;}
+.avatar-form select, .avatar-form input{
+  font-size:1.1rem;
+  padding:10px 12px;
+  border-radius:14px;
+  border:2px solid rgba(255,255,255,0.18);
+  background:rgba(0,0,0,0.35);
+  color:#fff;
+}
+@media(max-width:720px){
+  .avatar-form{grid-template-columns:1fr;}
+  .avatar-mini{width:96px; min-width:96px; height:96px;}
+  .avatar-large{width:150px; height:150px;}
+}
+
 </style>
 </head>
 <body>
@@ -1698,6 +1851,9 @@
     <div class="xp-actions">
       <button class="xp-mini-btn" onclick="openChallenges(); playSound('whistle');">🎯 Weekly Challenges</button>
       <button class="xp-mini-btn" onclick="openTrophyCabinet(); playSound('cheer');">🏆 Trophies</button>
+      <button class="xp-mini-btn" onclick="openPlayerBuilder(); playSound('whistle');">🧩 Build Your Player</button>
+        <button class="xp-mini-btn" onclick="openVote()">⭐ Player of the Week</button>
+
     </div>
   </div>
 
@@ -1938,6 +2094,7 @@
     <div id="quizContent"></div>
     <div id="quizResult" style="display:none;margin-top:10px">
       <div style="font-size:2.2rem;font-weight:900;margin:10px 0">Result</div>
+      <div id="quizAvatar" class="avatar-large" aria-label="Your player"></div>
       <div id="quizScoreLine" style="font-size:1.6rem;margin:8px 0"></div>
       <div id="quizBestLine" style="font-size:1.2rem;opacity:0.9;margin:6px 0 16px"></div>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -1983,6 +2140,12 @@
     <div class="gamesmenu-tilelabel">Offside Trainer</div>
   </button>
 
+<!-- Keeper Reaction -->
+<button class="gamesmenu-tile" onclick="closeGamesMenu(); openKeeperGame(); playSound('whistle');" aria-label="Keeper Reaction">
+  <img class="gamesmenu-tileimg" src="assets/images/games.jpg" alt="Keeper Reaction">
+  <div class="gamesmenu-tilelabel">Keeper Reaction</div>
+</button>
+
   <!-- Coming soon -->
   <button class="gamesmenu-tile gamesmenu-tile--empty" onclick="futureGameToast();" aria-label="Coming soon">
     <img class="gamesmenu-tileimg" src="assets/images/games.jpg" alt="Coming soon">
@@ -2004,6 +2167,7 @@
   <div class="overlay-content penalty-wrap">
     <div class="penalty-topbar">
       <div class="penalty-banner">CHOOSE WHERE TO SHOOT</div>
+      <div id="penaltyAvatar" class="avatar-mini" aria-label="Your player"></div>
 
       <div class="penalty-scoreboard fun-scoreboard" aria-label="Scoreboard">
         <div class="sb-row"><span>Shot</span><strong id="penaltyShotInfo">1 / 5</strong></div>
@@ -2092,6 +2256,7 @@
     <div class="tt-table">
       <div class="tt-side">
         <div class="tt-name" id="ttYouName">Your card</div>
+        <div id="ttAvatar" class="avatar-mini" style="margin:10px auto 0;"></div>
         <div class="tt-card" id="ttYouCard">
           <img id="ttYouImg" class="tt-cardimg" src="assets/images/card_back.png" alt="Your Top Trumps card">
           <div class="tt-mask top"></div>
@@ -2181,6 +2346,7 @@
   <div class="overlay-content offlearn-container">
     <div class="offlearn-toprow">
       <div class="penalty-banner offlearn-title">OFFSIDE SLIDER DEMO</div>
+      <div id="offsideAvatar" class="avatar-mini" aria-label="Your player"></div>
       <div class="penalty-scoreboard offlearn-status">
         <div class="sb-row"><span>Status</span><strong id="learnStatus">ON-SIDE</strong></div>
         <div class="sb-row"><span>Rule</span><strong style="font-size:0.95rem">Checked when pass is played</strong></div>
@@ -4244,6 +4410,55 @@ const POS_DATA = {
 
 let POS_CURRENT = null;
 
+
+/* === Overlay visibility hardening (Chromebook/Chrome) === */
+function forceShowOverlayById(id){
+  const el = document.getElementById(id);
+  if(!el){
+    console.warn("Missing overlay element:", id);
+    alert("Missing screen: " + id + " (overlay not found in HTML)");
+    return false;
+  }
+
+  // If a splash layer exists, hide it so it can’t sit above overlays.
+  const splash = document.getElementById("splash");
+  if(splash) splash.style.display = "none";
+
+  // Make sure the overlay is the *last* element in <body> (top of paint order)
+  try{
+    if(el.parentElement !== document.body){
+      document.body.appendChild(el);
+    }else{
+      document.body.appendChild(el); // re-append to move to end
+    }
+  }catch(e){}
+
+  el.classList.add("active");
+
+  // Hard-force visibility & stacking (Chromebook/Chrome-safe)
+  el.style.position = "fixed";
+  el.style.inset = "0";
+  el.style.display = "flex";
+  el.style.opacity = "1";
+  el.style.visibility = "visible";
+  el.style.pointerEvents = "auto";
+  el.style.zIndex = "2147483647"; // max 32-bit int
+  return true;
+}
+
+function forceHideOverlayById(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.classList.remove("active");
+  el.style.display = "";
+  el.style.opacity = "";
+  el.style.visibility = "";
+  el.style.pointerEvents = "";
+  el.style.zIndex = "";
+  el.style.position = "";
+  el.style.inset = "";
+}
+
 function openPositionAcademy(){
   const p = (typeof getProfile === "function") ? getProfile() : {xp:0,level:1,trophies:[]};
   const lvl = document.getElementById("posLevel");
@@ -4252,17 +4467,21 @@ function openPositionAcademy(){
   if(lvl) lvl.textContent = String(p.level||1);
   if(xp) xp.textContent = String(p.xp||0);
   if(bdg) bdg.textContent = String((p.trophies||[]).length);
-  document.getElementById("positionAcademyScreen")?.classList.add("active");
+  forceShowOverlayById("positionAcademyScreen");
 }
 function closePositionAcademy(){
-  document.getElementById("positionAcademyScreen")?.classList.remove("active");
+  forceHideOverlayById("positionAcademyScreen");
 }
 function backToPositionAcademy(){
-  document.getElementById("positionDetailScreen")?.classList.remove("active");
-  document.getElementById("positionAcademyScreen")?.classList.add("active");
+  // Use hardened overlay toggles so the detail screen can’t end up “behind” home on Chromebooks
+  forceHideOverlayById("positionDetailScreen");
+  // refresh top stats
   const p = (typeof getProfile === "function") ? getProfile() : {xp:0,trophies:[]};
-  document.getElementById("posXP").textContent = String(p.xp||0);
-  document.getElementById("posBadges").textContent = String((p.trophies||[]).length);
+  const xpEl = document.getElementById("posXP");
+  const bdgEl = document.getElementById("posBadges");
+  if(xpEl) xpEl.textContent = String(p.xp||0);
+  if(bdgEl) bdgEl.textContent = String((p.trophies||[]).length);
+  forceShowOverlayById("positionAcademyScreen");
 }
 
 function ytThumb(url){
@@ -4279,8 +4498,9 @@ function openPositionDetail(key){
   const d = POS_DATA[key];
   if(!d) return;
 
-  document.getElementById("positionAcademyScreen")?.classList.remove("active");
-  document.getElementById("positionDetailScreen")?.classList.add("active");
+  // Hardened overlay toggles (prevents “opened but hidden behind home”)
+  forceHideOverlayById("positionAcademyScreen");
+  forceShowOverlayById("positionDetailScreen");
 
   const p = (typeof getProfile === "function") ? getProfile() : {xp:0};
   document.getElementById("posTitle").textContent = d.title;
@@ -4317,8 +4537,11 @@ function renderPosQuiz(d){
     });
     out += `</div>`;
   });
-  out += `<div style="margin-top:12px;text-align:center"><button class="menu-btn" style="background:#16a34a;color:white;" onclick="submitPosQuiz()">Submit mini-quiz</button></div>`;
+  out += `<div style="margin-top:12px;text-align:center"><button class="menu-btn" style="background:#16a34a;color:white;" id="posSubmitQuizBtn" type="button">Submit mini-quiz</button></div>`;
   host.innerHTML = out;
+  // Bind click in code (more reliable than inline onclick)
+  const b = document.getElementById("posSubmitQuizBtn");
+  if(b) b.onclick = (e)=>{ try{e.preventDefault(); e.stopPropagation();}catch(_){} submitPosQuiz(); };
 }
 
 function renderPosScenario(d){
@@ -4333,9 +4556,13 @@ function renderPosScenario(d){
       `).join("")}
     </div>
     <div style="margin-top:12px;text-align:center">
-      <button class="menu-btn" style="background:#2563eb;color:white;" onclick="submitPosScenario()">Answer scenario</button>
+      <button class="menu-btn" style="background:#2563eb;color:white;" id="posSubmitScenarioBtn" type="button">Answer scenario</button>
     </div>
   `;
+
+
+  const b2 = document.getElementById("posSubmitScenarioBtn");
+  if(b2) b2.onclick = (e)=>{ try{e.preventDefault(); e.stopPropagation();}catch(_){} submitPosScenario(); };
 }
 
 function submitPosQuiz(){
@@ -4399,6 +4626,442 @@ window.openPositionDetail = openPositionDetail;
 window.backToPositionAcademy = backToPositionAcademy;
 window.submitPosQuiz = submitPosQuiz;
 window.submitPosScenario = submitPosScenario;
+
+
+/* =========================
+   KEEPER REACTION GAME LOGIC
+========================= */
+let keeperRunning = false;
+let keeperTarget = null;
+let keeperTimer = null;
+let keeperRoundTimer = null;
+let keeperSaves = 0;
+let keeperMisses = 0;
+let keeperSpeedLevel = 1; // 1x..
+let keeperTimeLimit = 1300; // ms per shot
+let keeperCanTap = false;
+
+function openKeeperGame(){
+  forceShowOverlayById("keeperGameScreen");
+  resetKeeperGameUI();
+  bindKeeperZonesOnce();
+}
+function closeKeeperGame(){
+  stopKeeperGame();
+  forceHideOverlayById("keeperGameScreen");
+}
+function resetKeeperGameUI(){
+  keeperRunning = false;
+  keeperCanTap = false;
+  keeperTarget = null;
+  keeperSaves = 0;
+  keeperMisses = 0;
+  keeperSpeedLevel = 1;
+  keeperTimeLimit = 1300;
+
+  const ball = document.getElementById("keeperBall");
+  if(ball){
+    ball.style.left = "50%";
+    ball.style.top  = "65%";
+    ball.style.transition = "none";
+  }
+  document.getElementById("keepSaves").textContent = "0";
+  document.getElementById("keepMisses").textContent = "0";
+  document.getElementById("keepSpeed").textContent = "1x";
+  document.getElementById("keeperHint").textContent = "Tap the corner where the ball is going… before time runs out!";
+  document.getElementById("keeperStartBtn").style.display = "inline-flex";
+  document.getElementById("keeperRestartBtn").style.display = "none";
+  clearKeeperZoneStates();
+  flashKeeper("");
+}
+function bindKeeperZonesOnce(){
+  const arena = document.getElementById("keeperGameScreen");
+  if(!arena || arena.dataset.bound === "1") return;
+  arena.dataset.bound = "1";
+
+  document.getElementById("keeperStartBtn")?.addEventListener("click", ()=>{
+    if(!keeperRunning) startKeeperGame();
+  });
+  document.getElementById("keeperRestartBtn")?.addEventListener("click", ()=>{
+    resetKeeperGameUI();
+    startKeeperGame();
+  });
+
+  document.querySelectorAll(".keeper-savezone").forEach(z=>{
+    z.addEventListener("click", (e)=>{ e.stopPropagation();
+      if(!keeperCanTap) return;
+      handleKeeperTap(z.dataset.zone);
+    });
+    // better on touch
+    z.addEventListener("touchstart", (e)=>{ e.stopPropagation();
+      if(!keeperCanTap) return;
+      e.preventDefault();
+      handleKeeperTap(z.dataset.zone);
+    }, {passive:false});
+  });
+}
+function clearKeeperZoneStates(){
+  document.querySelectorAll(".keeper-savezone").forEach(z=>{
+    z.classList.remove("good","bad");
+  });
+}
+function flashKeeper(mode){
+  const f = document.getElementById("keeperFlash");
+  if(!f) return;
+  f.classList.remove("win","lose");
+  if(mode==="win") f.classList.add("win");
+  if(mode==="lose") f.classList.add("lose");
+  // reset quickly
+  if(mode){
+    setTimeout(()=>{ f.classList.remove("win","lose"); }, 140);
+  }
+}
+
+function startKeeperGame(){
+  keeperRunning = true;
+  keeperSaves = 0;
+  keeperMisses = 0;
+  keeperSpeedLevel = 1;
+  keeperTimeLimit = 1300;
+  document.getElementById("keeperStartBtn").style.display = "none";
+  document.getElementById("keeperRestartBtn").style.display = "none";
+  nextKeeperShot();
+}
+function stopKeeperGame(){
+  keeperRunning = false;
+  keeperCanTap = false;
+  keeperTarget = null;
+  if(keeperTimer) clearTimeout(keeperTimer);
+  if(keeperRoundTimer) clearTimeout(keeperRoundTimer);
+  keeperTimer = null;
+  keeperRoundTimer = null;
+}
+function nextKeeperShot(){
+  if(!keeperRunning) return;
+
+  clearKeeperZoneStates();
+  keeperCanTap = true;
+
+  const zones = ["TL","TR","BL","BR"];
+  keeperTarget = zones[Math.floor(Math.random()*zones.length)];
+
+  // Animate ball to target
+  const ball = document.getElementById("keeperBall");
+  if(ball){
+    const coords = {
+      TL:{x:"22%", y:"22%"},
+      TR:{x:"78%", y:"22%"},
+      BL:{x:"22%", y:"58%"},
+      BR:{x:"78%", y:"58%"}
+    }[keeperTarget];
+
+    // reset to start
+    ball.style.transition = "none";
+    ball.style.left = "50%";
+    ball.style.top  = "65%";
+    // force reflow
+    void ball.offsetWidth;
+
+    const travel = Math.max(260, Math.floor(keeperTimeLimit*0.72));
+    ball.style.transition = `left ${travel}ms cubic-bezier(.2,.9,.2,1), top ${travel}ms cubic-bezier(.2,.9,.2,1)`;
+    ball.style.left = coords.x;
+    ball.style.top  = coords.y;
+  }
+
+  // Time out if not saved in time limit
+  if(keeperTimer) clearTimeout(keeperTimer);
+  keeperTimer = setTimeout(()=>{
+    if(!keeperCanTap) return;
+    keeperCanTap = false;
+    keeperMisses += 1;
+    document.getElementById("keepMisses").textContent = String(keeperMisses);
+    markKeeperZone(keeperTarget, false);
+    flashKeeper("lose");
+    playSoundSafe("beep");
+
+    if(keeperMisses >= 3){
+      endKeeperGame(false);
+    }else{
+      keeperRoundTimer = setTimeout(nextKeeperShot, 520);
+    }
+  }, keeperTimeLimit);
+}
+function playSoundSafe(name){
+  try{ if(typeof playSound==="function") playSound(name); }catch(e){}
+}
+
+function markKeeperZone(zone, good){
+  const el = document.querySelector(`.keeper-savezone[data-zone="${zone}"]`);
+  if(el){
+    el.classList.add(good ? "good" : "bad");
+  }
+}
+
+function handleKeeperTap(zone){
+  if(!keeperRunning) return;
+  keeperCanTap = false;
+
+  if(keeperTimer) clearTimeout(keeperTimer);
+
+  const correct = (zone === keeperTarget);
+  if(correct){
+    keeperSaves += 1;
+    document.getElementById("keepSaves").textContent = String(keeperSaves);
+    markKeeperZone(zone, true);
+    flashKeeper("win");
+    playSoundSafe("cheer");
+
+    // speed up every 5 saves
+    if(keeperSaves % 5 === 0){
+      keeperSpeedLevel += 1;
+      keeperTimeLimit = Math.max(520, Math.floor(keeperTimeLimit * 0.88));
+      document.getElementById("keepSpeed").textContent = `${keeperSpeedLevel}x`;
+      document.getElementById("keeperHint").textContent = `🔥 Speed up! You’re now at ${keeperSpeedLevel}x`;
+    }else{
+      document.getElementById("keeperHint").textContent = "✅ Save! Ready for the next shot…";
+    }
+
+    keeperRoundTimer = setTimeout(nextKeeperShot, 520);
+  }else{
+    keeperMisses += 1;
+    document.getElementById("keepMisses").textContent = String(keeperMisses);
+    markKeeperZone(zone, false);
+    markKeeperZone(keeperTarget, false);
+    flashKeeper("lose");
+    playSoundSafe("beep");
+    document.getElementById("keeperHint").textContent = "❌ Wrong corner! Watch the target…";
+
+    if(keeperMisses >= 3){
+      endKeeperGame(false);
+    }else{
+      keeperRoundTimer = setTimeout(nextKeeperShot, 650);
+    }
+  }
+}
+
+function endKeeperGame(won){
+  stopKeeperGame();
+  document.getElementById("keeperRestartBtn").style.display = "inline-flex";
+
+  // XP reward (if profile system exists)
+  try{
+    const base = 40;
+    const bonus = keeperSaves * 12;
+    const xp = Math.min(420, base + bonus);
+    if(typeof awardXP==="function") awardXP(xp, "Keeper Reaction");
+  }catch(e){}
+
+  // Winner/Loser visuals if your app has them
+  try{
+    if(typeof showWinnerLoserOverlay === "function"){
+      // won if 15+ saves
+      showWinnerLoserOverlay(keeperSaves >= 15 ? "WINNER" : "LOSER");
+    }
+  }catch(e){}
+
+  document.getElementById("keeperHint").textContent =
+    `Game over! Saves: ${keeperSaves}. Speed reached: ${keeperSpeedLevel}x. Tap Restart to try again.`;
+}
+
+// expose for inline onclick
+window.openKeeperGame = openKeeperGame;
+window.closeKeeperGame = closeKeeperGame;
+
+
+
+/* =========================
+   BUILD YOUR PLAYER (AVATAR) LOGIC
+========================= */
+const AVATAR_KEY = "hjfc_avatar_v1";
+function defaultAvatar(){
+  return { shirt:"#ff6b35", shorts:"#0b1020", boots:"#111827", cele:"🙌" };
+}
+function getAvatar(){
+  try{
+    return JSON.parse(localStorage.getItem(AVATAR_KEY) || "null") || defaultAvatar();
+  }catch(e){
+    return defaultAvatar();
+  }
+}
+function saveAvatar(a){
+  localStorage.setItem(AVATAR_KEY, JSON.stringify(a));
+}
+function avatarSVG(a, size=160){
+  const s = Math.max(120, Math.floor(size));
+  const head = Math.floor(s*0.16);
+  const cx = Math.floor(s*0.5);
+  const cy = Math.floor(s*0.22);
+  const bodyY = Math.floor(s*0.34);
+  const bodyH = Math.floor(s*0.28);
+  const bodyW = Math.floor(s*0.36);
+  const shortsY = bodyY + bodyH - Math.floor(s*0.02);
+  const shortsH = Math.floor(s*0.18);
+  const legY = shortsY + shortsH;
+  const legH = Math.floor(s*0.16);
+  const bootH = Math.floor(s*0.06);
+  const armY = bodyY + Math.floor(s*0.06);
+  const armW = Math.floor(s*0.12);
+  const armH = Math.floor(s*0.20);
+  const celeY = Math.floor(s*0.06);
+
+  return `
+  <svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <text x="${cx}" y="${celeY}" text-anchor="middle" font-size="${Math.floor(s*0.18)}">${a.cele || "🙌"}</text>
+    <circle cx="${cx}" cy="${cy}" r="${head}" fill="#ffd1a1"/>
+    <rect x="${cx - bodyW/2}" y="${bodyY}" width="${bodyW}" height="${bodyH}" rx="${Math.floor(s*0.08)}" fill="${a.shirt}"/>
+    <rect x="${cx - bodyW/2 - armW + 2}" y="${armY}" width="${armW}" height="${armH}" rx="${Math.floor(s*0.06)}" fill="${a.shirt}"/>
+    <rect x="${cx + bodyW/2 - 2}" y="${armY}" width="${armW}" height="${armH}" rx="${Math.floor(s*0.06)}" fill="${a.shirt}"/>
+    <rect x="${cx - bodyW/2}" y="${shortsY}" width="${bodyW}" height="${shortsH}" rx="${Math.floor(s*0.07)}" fill="${a.shorts}"/>
+    <rect x="${cx - bodyW/2 + Math.floor(s*0.06)}" y="${legY}" width="${Math.floor(s*0.10)}" height="${legH}" rx="${Math.floor(s*0.04)}" fill="#0b1020"/>
+    <rect x="${cx + bodyW/2 - Math.floor(s*0.16)}" y="${legY}" width="${Math.floor(s*0.10)}" height="${legH}" rx="${Math.floor(s*0.04)}" fill="#0b1020"/>
+    <rect x="${cx - bodyW/2 + Math.floor(s*0.04)}" y="${legY + legH}" width="${Math.floor(s*0.16)}" height="${bootH}" rx="${Math.floor(s*0.04)}" fill="${a.boots}"/>
+    <rect x="${cx + bodyW/2 - Math.floor(s*0.20)}" y="${legY + legH}" width="${Math.floor(s*0.16)}" height="${bootH}" rx="${Math.floor(s*0.04)}" fill="${a.boots}"/>
+  </svg>`;
+}
+function renderAvatarInto(el, size){
+  if(!el) return;
+  const a = getAvatar();
+  el.innerHTML = avatarSVG(a, size);
+}
+function updateAvatarDisplays(){
+  renderAvatarInto(document.getElementById("penaltyAvatar"), 120);
+  renderAvatarInto(document.getElementById("offsideAvatar"), 120);
+  renderAvatarInto(document.getElementById("ttAvatar"), 120);
+  renderAvatarInto(document.getElementById("keeperAvatar"), 120);
+  renderAvatarInto(document.getElementById("quizAvatar"), 180);
+  renderAvatarInto(document.getElementById("avatarPreview"), 180);
+}
+
+function openPlayerBuilder(){
+  forceShowOverlayById("playerBuilderScreen");
+  const a = getAvatar();
+  const shirt = document.getElementById("avShirt");
+  const shorts = document.getElementById("avShorts");
+  const boots = document.getElementById("avBoots");
+  const cele = document.getElementById("avCele");
+  if(shirt) shirt.value = a.shirt;
+  if(shorts) shorts.value = a.shorts;
+  if(boots) boots.value = a.boots;
+  if(cele) cele.value = a.cele || "🙌";
+  updateAvatarDisplays();
+}
+function closePlayerBuilder(){
+  const s = document.getElementById("playerBuilderScreen");
+  if(s){
+    s.classList.remove("active");
+    s.style.display = "none";
+  }
+}
+function readBuilder(){
+  return {
+    shirt: document.getElementById("avShirt")?.value || "#ff6b35",
+    shorts: document.getElementById("avShorts")?.value || "#0b1020",
+    boots: document.getElementById("avBoots")?.value || "#111827",
+    cele: document.getElementById("avCele")?.value || "🙌",
+  };
+}
+function hookBuilderLivePreview(){
+  ["avShirt","avShorts","avBoots","avCele"].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener("change", ()=> {
+      saveTempPreview();
+      updateAvatarDisplays();
+    });
+  });
+}
+function saveTempPreview(){
+  // don't persist on every change; just preview
+  const a = readBuilder();
+  const preview = document.getElementById("avatarPreview");
+  if(preview) preview.innerHTML = avatarSVG(a, 180);
+}
+function savePlayerBuilder(){
+  const a = readBuilder();
+  saveAvatar(a);
+  updateAvatarDisplays();
+  const hint = document.getElementById("avatarSaveHint");
+  if(hint){
+    hint.style.display = "block";
+    setTimeout(()=> hint.style.display="none", 1200);
+  }
+}
+function resetPlayerBuilder(){
+  const d = defaultAvatar();
+  saveAvatar(d);
+  const shirt = document.getElementById("avShirt");
+  const shorts = document.getElementById("avShorts");
+  const boots = document.getElementById("avBoots");
+  const cele = document.getElementById("avCele");
+  if(shirt) shirt.value = d.shirt;
+  if(shorts) shorts.value = d.shorts;
+  if(boots) boots.value = d.boots;
+  if(cele) cele.value = d.cele;
+  updateAvatarDisplays();
+}
+
+// Make sure avatar is ready
+document.addEventListener("DOMContentLoaded", ()=>{
+  hookBuilderLivePreview();
+  updateAvatarDisplays();
+});
+
+// Also refresh avatars whenever key screens open
+try{
+  const _openPenalty = openPenalty;
+  openPenalty = function(){
+    updateAvatarDisplays();
+    return _openPenalty.apply(this, arguments);
+  };
+}catch(e){}
+try{
+  const _openOffsideMenu = openOffsideMenu;
+  openOffsideMenu = function(){
+    updateAvatarDisplays();
+    return _openOffsideMenu.apply(this, arguments);
+  };
+}catch(e){}
+try{
+  const _showQuizResultUI = showQuizResultUI;
+  showQuizResultUI = function(entry){
+    const r = _showQuizResultUI.apply(this, arguments);
+    updateAvatarDisplays();
+    return r;
+  };
+}catch(e){}
+
+
+const POTW_ENDPOINT = "https://script.google.com/macros/s/AKfycbyWyVKpTiF9l13DJP3wnozgHTp4i_s5ZMr2_BY-jP1JiZsPdbb3dEa70fe_mZimd7MAUQ/exec";
+
+const POTW_CANDIDATES = [
+  {id:"p1", name:"Alfie", img:"assets/images/champions/Champ (2).jpg"},
+  {id:"p2", name:"Bobby", img:"assets/images/champions/Champ (9).jpg"},
+  {id:"p3", name:"Caleb", img:"assets/images/champions/Champ (17).jpg"},
+  {id:"p4", name:"Charlie", img:"assets/images/champions/Champ (10).jpg"},
+  {id:"p5", name:"Jensen", img:"assets/images/champions/Champ (13).jpg"},
+  {id:"p6", name:"Kyle", img:"assets/images/champions/Champ (21).jpg"},
+  {id:"p7", name:"Leo", img:"assets/images/champions/Champ (4).jpg"},
+  {id:"p8", name:"Logan", img:"assets/images/champions/Champ (18).jpg"},
+  {id:"p9", name:"Oakley", img:"assets/images/champions/Champ (6).jpg"},
+  {id:"p10", name:"Thomas", img:"assets/images/champions/Champ (15).jpg"},
+  {id:"p11", name:"Will-Dog", img:"assets/images/champions/Champ (19).jpg"}
+];
+
+function getISOWeekKey(d=new Date()){const date=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));const dayNum=date.getUTCDay()||7;date.setUTCDate(date.getUTCDate()+4-dayNum);const yearStart=new Date(Date.UTC(date.getUTCFullYear(),0,1));const weekNo=Math.ceil((((date-yearStart)/86400000)+1)/7);return date.getUTCFullYear()+"-W"+String(weekNo).padStart(2,"0");}
+function getOrCreateVoterId(){let id=localStorage.getItem("hjfc_voter_id");if(!id){id="v_"+Math.random().toString(16).slice(2)+"_"+Date.now();localStorage.setItem("hjfc_voter_id",id);}return id;}
+
+async function submitPOTWVote(candidateId){
+ const res=await fetch(POTW_ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({action:"vote",weekKey:getISOWeekKey(),voterId:getOrCreateVoterId(),candidateId})}).then(r=>r.json());
+ return res;
+}
+async function fetchLeaderboard(){
+ return await fetch(POTW_ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({action:"leaderboard",weekKey:getISOWeekKey()})}).then(r=>r.json());
+}
+function openVote(){forceShowOverlayById("voteScreen");renderVoteCards();}
+function closeVote(){const el=document.getElementById("voteScreen");if(el){el.classList.remove("active");el.style.display="none";}}
+async function handlePOTW(id){const r=await submitPOTWVote(id);alert(r.ok?"✅ Vote submitted!":r.error);renderVoteCards();}
+async function renderVoteCards(){const grid=document.getElementById("voteGrid");if(!grid)return;grid.innerHTML=POTW_CANDIDATES.map(c=>`<button class="gamesmenu-tile" type="button" onclick="handlePOTW('${c.id}')"><img class="gamesmenu-tileimg" src="${c.img}"><div class="gamesmenu-tilelabel">⭐ ${c.name}</div></button>`).join("");}
+function openLeaderboard(){forceShowOverlayById("leaderboardScreen");renderLeaderboard();}
+async function renderLeaderboard(){const r=await fetchLeaderboard();const list=document.getElementById("lbList");const totals=r.totals||{};const rows=POTW_CANDIDATES.map(c=>({...c,count:totals[c.id]||0})).sort((a,b)=>b.count-a.count);list.innerHTML=rows.map((r,i)=>`<div style="display:flex;justify-content:space-between;padding:10px;color:white;font-weight:900;">${i+1}. ${r.name}<span>${r.count}</span></div>`).join("");}
 
 </script>
 
@@ -4504,5 +5167,138 @@ window.submitPosScenario = submitPosScenario;
   </div>
 </div>
 
+<!-- =========================
+     KEEPER REACTION GAME OVERLAY
+========================== -->
+<div id="keeperGameScreen" class="overlay">
+  <div class="overlay-content keeper-wrap">
+    <div class="penalty-topbar" style="margin-bottom:10px;">
+      <div class="penalty-banner">KEEPER REACTION</div>
+      <div class="penalty-scoreboard" style="width:320px;">
+        <div class="sb-row"><span>Saves</span><strong id="keepSaves">0</strong></div>
+        <div class="sb-row"><span>Misses</span><strong id="keepMisses">0</strong></div>
+        <div class="sb-row"><span>Speed</span><strong id="keepSpeed">1x</strong></div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:center;margin:6px 0 10px;"><div id="keeperAvatar" class="avatar-mini"></div></div>
+
+    <div class="keeper-arena" aria-label="Keeper reaction arena">
+      <div class="keeper-goal"></div>
+      <div class="keeper-net"></div>
+
+      <button type="button" class="keeper-savezone kz-tl" data-zone="TL"><div class="keeper-label">Top Left</div></button>
+      <button type="button" class="keeper-savezone kz-tr" data-zone="TR"><div class="keeper-label">Top Right</div></button>
+      <button type="button" class="keeper-savezone kz-bl" data-zone="BL"><div class="keeper-label">Bottom Left</div></button>
+      <button type="button" class="keeper-savezone kz-br" data-zone="BR"><div class="keeper-label">Bottom Right</div></button>
+
+      <div class="keeper-ball" id="keeperBall" aria-hidden="true"></div>
+      <div class="keeper-flash" id="keeperFlash" aria-hidden="true"></div>
+      <div class="keeper-grass"></div>
+    </div>
+
+    <div class="keeper-hint" id="keeperHint">Tap the corner where the ball is going… before time runs out!</div>
+
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+      <button type="button" class="menu-btn" id="keeperStartBtn" style="background:#16a34a;color:white;">Start</button>
+      <button type="button" class="menu-btn" id="keeperRestartBtn" style="background:#2563eb;color:white;display:none;">Restart</button>
+      <button type="button" class="back-btn" onclick="closeKeeperGame()">Back</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- =========================
+     BUILD YOUR PLAYER OVERLAY
+========================== -->
+<div id="playerBuilderScreen" class="overlay" aria-label="Build your player">
+  <div class="overlay-content" style="max-width:1100px;text-align:center;">
+    <div class="penalty-topbar" style="margin-bottom:10px;">
+      <div class="penalty-banner">BUILD YOUR PLAYER</div>
+      <button class="tt-back-top" type="button" onclick="closePlayerBuilder()">Back</button>
+    </div>
+
+    <div class="avatar-card">
+      <div style="font-weight:1000;font-size:1.35rem; margin-bottom:10px;">Your avatar will show up in games + results ⚽✨</div>
+      <div style="display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap;">
+        <div id="avatarPreview" class="avatar-large" aria-label="Avatar preview"></div>
+        <div style="min-width:min(520px, 92vw); text-align:left;">
+          <div class="avatar-form" aria-label="Avatar options">
+            <label>Shirt colour
+              <select id="avShirt">
+                <option value="#ff6b35">Orange</option>
+                <option value="#2563eb">Blue</option>
+                <option value="#16a34a">Green</option>
+                <option value="#ef4444">Red</option>
+                <option value="#a78bfa">Purple</option>
+                <option value="#facc15">Yellow</option>
+                <option value="#ffffff">White</option>
+                <option value="#0b1020">Black</option>
+              </select>
+            </label>
+
+            <label>Shorts colour
+              <select id="avShorts">
+                <option value="#0b1020">Black</option>
+                <option value="#111827">Navy</option>
+                <option value="#ffffff">White</option>
+                <option value="#2563eb">Blue</option>
+                <option value="#16a34a">Green</option>
+                <option value="#ef4444">Red</option>
+              </select>
+            </label>
+
+            <label>Boots colour
+              <select id="avBoots">
+                <option value="#111827">Black</option>
+                <option value="#facc15">Yellow</option>
+                <option value="#ef4444">Red</option>
+                <option value="#2563eb">Blue</option>
+                <option value="#ffffff">White</option>
+              </select>
+            </label>
+
+            <label>Celebration
+              <select id="avCele">
+                <option value="🙌">🙌 Hands up</option>
+                <option value="🕺">🕺 Dance</option>
+                <option value="🤸">🤸 Flip</option>
+                <option value="🤩">🤩 Superstar</option>
+                <option value="👊">👊 Fist pump</option>
+              </select>
+            </label>
+          </div>
+
+          <div style="display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap;margin-top:14px;">
+            <button class="menu-btn" style="background:#16a34a;" onclick="savePlayerBuilder()">Save</button>
+            <button class="menu-btn" style="background:rgba(255,255,255,0.14);border:2px solid rgba(255,255,255,0.20);" onclick="resetPlayerBuilder()">Reset</button>
+          </div>
+
+          <div id="avatarSaveHint" style="margin-top:10px;opacity:0.9;font-weight:900;display:none;">Saved ✅</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="voteScreen" class="overlay"><div class="overlay-content"><div class="penalty-topbar"><div class="penalty-banner">⭐ PLAYER OF THE WEEK</div><button onclick="closeVote()">Back</button></div><div id="voteGrid" class="gamesmenu-grid"></div></div></div>
+<div id="leaderboardScreen" class="overlay"><div class="overlay-content"><div class="penalty-topbar"><div class="penalty-banner">📊 LEADERBOARD</div><button onclick="closeVote()">Back</button></div><div id="lbList"></div></div></div>
+
+<button class="xp-mini-btn" onclick="openVote()">⭐ Player of the Week</button>
 </body>
 </html>
+
+function backToPositions(){
+  const detail = document.getElementById("positionAcademyDetailScreen");
+  if(detail){
+    detail.classList.remove("active");
+    detail.style.display = "none";
+  }
+  forceShowOverlayById("positionAcademyScreen");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const backBtn = document.getElementById("posBackBtn");
+  if(backBtn) backBtn.onclick = backToPositions;
+});
