@@ -22,7 +22,28 @@
   <link rel="apple-touch-icon" href="assets/images/splash.jpg">
 
   <style>
-    :root{--accent:#ff6b35;--bright:#4ecdc4;--fun:#ffe66d;--dark:#2d1b69}
+    
+/* --- Overlay reliability patch (Chromebook/mobile safe) --- */
+:root{
+  /* Put your photo at: assets/images/target_goal.jpg (or change this path) */
+  --target-goal-img: url('assets/images/target_goal.jpg');
+ --overlay-bg: rgba(45, 27, 105, 0.98); }
+.overlay{
+  position:fixed;
+  inset:0;
+  background:var(--overlay-bg);
+  display:none;
+  z-index:99999;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  padding:18px;
+  box-sizing:border-box;
+  align-items:center;
+  justify-content:center;
+}
+.overlay.active{display:flex;}
+
+:root{--accent:#ff6b35;--bright:#4ecdc4;--fun:#ffe66d;--dark:#2d1b69}
    body{font-family:'Comic Neue',system-ui,sans-serif;margin:0;background:url("assets/images/homepage_image.jpg") center/cover no-repeat fixed; background-color:#0b1020;color:#2d1b69;min-height:100vh;overflow-x:hidden}
 /* Answer “pills” that hug the text */
 .quiz-options{
@@ -96,7 +117,7 @@
       .side-sign{width:320px;border-radius:28px;box-shadow:0 16px 45px rgba(0,0,0,0.35);object-fit:cover;}
     }
 
-    #splash{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity 1.5s}
+    #splash{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity 1.5s;pointer-events:none}
     #splash img{max-width:95%;max-height:95vh;border-radius:24px;box-shadow:0 15px 50px rgba(0,0,0,0.6);object-fit:contain}
 
     /* Club Song is now a tile in the homepage grid (keep ID styling neutral) */
@@ -117,8 +138,8 @@
     #quizTimer{font-size:3.5rem;font-weight:900;color:#ffe66d;margin:20px 0;animation:pulse 1s infinite}
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
 
-    .overlay{position:fixed;inset:0;background:rgba(45,27,105,0.97);display:none;align-items:center;justify-content:center;z-index:9999}
-    .overlay.active{display:flex}
+    .overlay{position:fixed;inset:0;background:rgba(45,27,105,0.97);display:none;z-index:2147483647;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px;align-items:center;justify-content:center;}
+.overlay.active{display:flex}
     .overlay-card{background:white;color:var(--dark);padding:40px;border-radius:32px;max-width:90%;text-align:center}
     .menu-btn{background:var(--bright);color:var(--dark);margin:12px;padding:20px;font-size:1.8rem;width:80%}
     .videoMenu{position:fixed;inset:0;background:var(--dark);z-index:9999;display:none;color:white;flex-direction:column;padding:60px 20px 100px;overflow-y:auto;box-sizing:border-box;text-align:center}
@@ -168,9 +189,7 @@
   display:none;
   z-index:99998;
 }
-
-    }
-    #imgZoomBackdrop.active{display:block;}
+#imgZoomBackdrop.active{display:block;}
 
     #photoGallery img.zoom-half{
       position:fixed;
@@ -1802,10 +1821,291 @@
   .avatar-large{width:150px; height:150px;}
 }
 
+
+/* Home quick tiles (XP / Trophies / Build Player / Player of the Week) */
+.home-quicktiles{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:14px;
+}
+.home-qtile{
+  border:none;
+  text-align:left;
+  padding:16px 14px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.10);
+  color:#fff;
+  box-shadow:0 10px 26px rgba(0,0,0,0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor:pointer;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:flex-start;
+  transition:transform .12s ease, background .12s ease;
+}
+.home-qtile:active{transform:scale(0.98)}
+.home-qtile:hover{background:rgba(255,255,255,0.14)}
+.qt-emoji{font-size:1.6rem; width:44px; height:44px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.25)}
+.qt-title{font-weight:1000; letter-spacing:0.3px}
+.qt-sub{opacity:.9; font-weight:900; font-size:.92rem; margin-top:2px}
+@media(max-width:520px){
+  .home-quicktiles{grid-template-columns:1fr}
+}
+
+
+/* ===== Quick Feet target goal styling ===== */
+#keeperGameScreen .keeper-arena{
+  background-image: var(--target-goal-img);
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.12));
+  border-radius: 22px;
+  overflow: hidden;
+}
+#keeperGameScreen .keeper-arena::before{
+  /* goal frame */
+  content:"";
+  position:absolute; inset:10px;
+  border:10px solid rgba(255,255,255,0.95);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  pointer-events:none;
+}
+#keeperGameScreen .keeper-arena::after{
+  /* net backdrop */
+  content:"";
+  position:absolute; left:14%; right:14%; top:18%; bottom:18%;
+  border-radius: 16px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.10) 0 2px, rgba(0,0,0,0) 2px 18px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.10) 0 2px, rgba(0,0,0,0) 2px 18px),
+    rgba(0,0,0,0.55);
+  box-shadow: inset 0 0 0 6px rgba(0,0,0,0.45);
+  pointer-events:none;
+}
+#keeperGameScreen .keeper-savezone{
+  width: 124px !important;
+  height: 124px !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  display:flex; align-items:center; justify-content:center;
+}
+#keeperGameScreen .keeper-savezone .qf-ring{
+  width: 124px; height: 124px; border-radius: 999px;
+  background: rgba(255,255,255,0.96);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 12px 26px rgba(0,0,0,0.35);
+}
+#keeperGameScreen .keeper-savezone .qf-core{
+  width: 92px; height: 92px; border-radius: 999px;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.08);
+}
+#keeperGameScreen .keeper-savezone[data-zone="TL"] .qf-core{ background:#d11b2a; } /* red */
+#keeperGameScreen .keeper-savezone[data-zone="TR"] .qf-core{ background:#f0c300; } /* yellow */
+#keeperGameScreen .keeper-savezone[data-zone="BL"] .qf-core{ background:#0e8a4b; } /* green */
+#keeperGameScreen .keeper-savezone[data-zone="BR"] .qf-core{ background:#0b4ea2; } /* blue */
+
+/* Position targets to match the photo */
+#keeperGameScreen .keeper-savezone[data-zone="TL"]{ left:28% !important; top:30% !important; }
+#keeperGameScreen .keeper-savezone[data-zone="TR"]{ left:72% !important; top:30% !important; }
+#keeperGameScreen .keeper-savezone[data-zone="BL"]{ left:28% !important; top:62% !important; }
+#keeperGameScreen .keeper-savezone[data-zone="BR"]{ left:72% !important; top:62% !important; }
+
+
+/* ===== Penalty target photo ===== */
+#penaltyGoal{
+  background-image: var(--target-goal-img);
+  background-size: cover;
+  background-position: center;
+}
+#penaltyGoal .stadium-layer{ display:none !important; } /* keep it clean behind the photo */
+
+
+/* ===== Photo target goal (replaces original graphics) ===== */
+:root{
+  /* Put your photo here: assets/images/target_goal.jpg (change name if needed) */
+  --target-goal-img: url('assets/images/target_goal.jpg');
+}
+
+#keeperGameScreen .keeper-arena{
+  background: var(--target-goal-img) center/cover no-repeat !important;
+}
+#keeperGameScreen .keeper-goal,
+#keeperGameScreen .keeper-net{ display:none !important; }
+#keeperGameScreen .keeper-arena::before,
+#keeperGameScreen .keeper-arena::after{ display:none !important; }
+/* Hide the synthetic ring/core (photo already has targets) */
+#keeperGameScreen .qf-ring,
+#keeperGameScreen .qf-core{ display:none !important; }
+
+/* Penalty goal uses the same photo background */
+#penaltyGoal{
+  background: var(--target-goal-img) center/cover no-repeat !important;
+}
+#penaltyGoal .stadium-sky,
+#penaltyGoal .stadium-stands,
+#penaltyGoal .pitch,
+#penaltyGoal .goal-frame,
+#penaltyGoal .target{ display:none !important; }
+
+/* 4 target tap zones positioned over the photo circles */
+#penaltyGoal .goal-zone{ background: transparent !important; }
+#penaltyGoal .goal-zone[data-zone="TL"]{ left:28%; top:30%; width:26%; height:28%; }
+#penaltyGoal .goal-zone[data-zone="TR"]{ left:54%; top:30%; width:26%; height:28%; }
+#penaltyGoal .goal-zone[data-zone="BL"]{ left:28%; top:58%; width:26%; height:28%; }
+#penaltyGoal .goal-zone[data-zone="BR"]{ left:54%; top:58%; width:26%; height:28%; }
+
+/* optional highlight when selected */
+#penaltyGoal .goal-zone.selected{ outline:4px solid rgba(255,60,60,0.9); border-radius:999px; }
+
+/* Smooth movement for ball + keeper when using inline positions */
+.ball{ transition: left 650ms cubic-bezier(.2,.9,.2,1), top 650ms cubic-bezier(.2,.9,.2,1), transform 650ms cubic-bezier(.2,.9,.2,1) !important; top:72%; left:50%; bottom:auto !important; transform:translate(-50%,-50%); }
+.keeper{ transition: left 450ms ease, top 450ms ease, transform 450ms ease !important; }
+
+
+/* ===== Tappable glow/pulse for photo target zones ===== */
+#penaltyGoal .goal-zone{
+  border-radius: 999px;
+}
+#penaltyGoal .goal-zone::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: 999px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,230,109,0.22), rgba(0,0,0,0) 65%);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events:none;
+}
+#penaltyGoal .goal-zone:hover::after,
+#penaltyGoal .goal-zone:active::after{
+  opacity: 1;
+  transform: scale(1.02);
+}
+#penaltyGoal .goal-zone:hover{
+  cursor: pointer;
+}
+#penaltyGoal .goal-zone.selected::after{
+  opacity: 1;
+  transform: scale(1.02);
+}
+#penaltyGoal .goal-zone.selected{
+  animation: targetPulse 650ms ease-in-out infinite;
+}
+@keyframes targetPulse{
+  0%{ box-shadow: 0 0 0 0 rgba(255,60,60,0.35); }
+  70%{ box-shadow: 0 0 0 14px rgba(255,60,60,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(255,60,60,0); }
+}
+/* Quick Feet: subtle hover glow on the 4 corners */
+#keeperGameScreen .keeper-savezone{
+  border-radius:999px;
+}
+#keeperGameScreen .keeper-savezone::after{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:999px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,230,109,0.18), rgba(0,0,0,0) 62%);
+  opacity:0;
+  transform: scale(0.96);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events:none;
+}
+#keeperGameScreen .keeper-savezone:hover::after,
+#keeperGameScreen .keeper-savezone:active::after{
+  opacity:1;
+  transform: scale(1.03);
+}
+
+
+/* ===== Keeper sprite (photo cut-out) ===== */
+.keeper.keeper-sprite{
+  background: none !important;
+  width: 170px;
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+  user-select: none;
+  pointer-events: none;
+}
+
+
+/* ===== Penalty: celebration + ball physics ===== */
+@keyframes saveCelebrate{
+  0%{ transform:translate(-50%,-50%) scale(1.04) rotate(0deg); }
+  40%{ transform:translate(-50%,-50%) scale(1.12) rotate(-6deg); }
+  70%{ transform:translate(-50%,-50%) scale(1.08) rotate(6deg); }
+  100%{ transform:translate(-50%,-50%) scale(1.04) rotate(0deg); }
+}
+.keeper-celebrate{
+  animation: saveCelebrate 700ms ease-in-out 1;
+  filter: drop-shadow(0 14px 22px rgba(0,0,0,0.45)) saturate(1.05);
+}
+
+@keyframes ballSpin{
+  0%{ transform:translate(-50%,-50%) scale(1) rotate(0deg); }
+  100%{ transform:translate(-50%,-50%) scale(1.06) rotate(720deg); }
+}
+.ball-ballistic{
+  animation: ballSpin 650ms ease-out 1;
+}
+
 </style>
 </head>
 <body>
 <div id="confettiContainer" aria-hidden="true"></div>
+
+  <div class="home-quicktiles" aria-label="Quick access">
+    <button type="button" class="home-qtile" onclick="openTrophyCabinet(); playSound('cheer');">
+      <div class="qt-emoji">🏆</div>
+      <div>
+        <div class="qt-title">Trophies</div>
+        <div class="qt-sub">See your cabinet</div>
+      </div>
+    </button>
+
+    <button type="button" class="home-qtile" onclick="openPlayerBuilder(); playSound('whistle');">
+      <div class="qt-emoji">🧩</div>
+      <div>
+        <div class="qt-title">Build Your Player</div>
+        <div class="qt-sub">Avatar + celebration</div>
+      </div>
+    </button>
+
+    <button type="button" class="home-qtile" onclick="openVote(); playSound('whistle');">
+      <div class="qt-emoji">⭐</div>
+      <div>
+        <div class="qt-title">Player of the Week</div>
+        <div class="qt-sub">Vote + leaderboard</div>
+      </div>
+    </button>
+
+    <button type="button" class="home-qtile" onclick="openLeaderboard(); playSound('whistle');">
+      <div class="qt-emoji">📊</div>
+      <div>
+        <div class="qt-title">POTW Leaderboard</div>
+        <div class="qt-sub">This week’s votes</div>
+      </div>
+    </button>
+
+    <button type="button" class="home-qtile" onclick="openSchedule(); playSound('whistle');">
+      <div class="qt-emoji">📅</div>
+      <div>
+        <div class="qt-title">Schedule</div>
+        <div class="qt-sub">Training + fixtures</div>
+      </div>
+    </button>
+
+  </div>
+
 
   <div id="splash">
     <img src="assets/images/splash.jpg">
@@ -1845,15 +2145,11 @@
         </div>
         <div class="xp-meter" aria-label="XP progress"><div id="xpMeterFill"></div></div>
         <div id="xpNextText" style="opacity:.92;font-weight:900;margin-top:6px">0 / 200 to next level</div>
-      </div>
     </div>
+  </div>
 
     <div class="xp-actions">
-      <button class="xp-mini-btn" onclick="openChallenges(); playSound('whistle');">🎯 Weekly Challenges</button>
-      <button class="xp-mini-btn" onclick="openTrophyCabinet(); playSound('cheer');">🏆 Trophies</button>
-      <button class="xp-mini-btn" onclick="openPlayerBuilder(); playSound('whistle');">🧩 Build Your Player</button>
-        <button class="xp-mini-btn" onclick="openVote()">⭐ Player of the Week</button>
-
+      <button class="xp-mini-btn" onclick="openChallengesFixed(); playSound('whistle');">🎯 Weekly Challenges</button>
     </div>
   </div>
 
@@ -2140,10 +2436,10 @@
     <div class="gamesmenu-tilelabel">Offside Trainer</div>
   </button>
 
-<!-- Keeper Reaction -->
-<button class="gamesmenu-tile" onclick="closeGamesMenu(); openKeeperGame(); playSound('whistle');" aria-label="Keeper Reaction">
-  <img class="gamesmenu-tileimg" src="assets/images/games.jpg" alt="Keeper Reaction">
-  <div class="gamesmenu-tilelabel">Keeper Reaction</div>
+<!-- Quick Feet -->
+<button class="gamesmenu-tile" onclick="closeGamesMenu(); openQuickFeet(); playSound('whistle');" aria-label="Quick Feet">
+  <img class="gamesmenu-tileimg" src="assets/images/games.jpg" alt="Quick Feet">
+  <div class="gamesmenu-tilelabel">Quick Feet</div>
 </button>
 
   <!-- Coming soon -->
@@ -2172,12 +2468,33 @@
       <div class="penalty-scoreboard fun-scoreboard" aria-label="Scoreboard">
         <div class="sb-row"><span>Shot</span><strong id="penaltyShotInfo">1 / 5</strong></div>
         <div class="sb-row"><span>Score</span><strong id="penaltyScoreInfo">0</strong></div>
-      </div>
+      
+        <div class="sb-row" id="gkLivesRow" style="display:none"><span>Lives</span><strong id="gkLivesInfo">3</strong></div>
+        <div class="sb-row" id="gkStreakRow" style="display:none"><span>Save streak</span><strong id="gkStreakInfo">0</strong></div>
+</div>
 
       <button class="tt-back-top" type="button" onclick="closePenalty()">Back</button>
     </div>
 
     <div id="penaltyMessage" class="penalty-message">Press Start to begin</div>
+
+    <div id="penaltyModePick" class="penalty-modepick" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0 6px;">
+      <div id="gkDiffRow" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;width:100%;">
+        <span style="color:#fff;font-weight:1000;text-shadow:0 2px 12px rgba(0,0,0,0.55);">Difficulty:</span>
+        <button type="button" class="menu-btn" style="width:auto;padding:10px 14px" onclick="setGKDifficulty('easy')">Easy</button>
+        <button type="button" class="menu-btn" style="width:auto;padding:10px 14px" onclick="setGKDifficulty('medium')">Medium</button>
+        <button type="button" class="menu-btn" style="width:auto;padding:10px 14px" onclick="setGKDifficulty('hard')">Hard</button>
+      </div>
+      <button type="button" class="menu-btn" style="width:auto;padding:12px 18px" onclick="setPenaltyMode('taker')">⚽ Penalty Taker</button>
+      <button type="button" class="menu-btn" style="width:auto;padding:12px 18px;background:#22c55e;color:#0b1020" onclick="setPenaltyMode('keeper')">🧤 Goalkeeper</button>
+    </div>
+
+    <div id="penaltyGKControls" style="display:none;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0 4px;">
+      <button type="button" class="menu-btn" style="width:auto;padding:12px 18px" onclick="gkDive('left')">⬅ Choose Left</button>
+      <button type="button" class="menu-btn" style="width:auto;padding:12px 18px" onclick="gkDive('centre')">⬆ Choose Centre</button>
+      <button type="button" class="menu-btn" style="width:auto;padding:12px 18px" onclick="gkDive('right')">➡ Choose Right</button>
+    </div>
+
 
     <div id="penaltyGoal" class="penalty-goal" aria-label="Penalty goal">
       <!-- Stadium layers -->
@@ -2197,24 +2514,14 @@
       <div class="target t-centre" aria-hidden="true"></div>
       <div class="target t-right" aria-hidden="true"></div>
 
-      <!-- 3 invisible tap zones -->
-      <div class="goal-zone" data-zone="left" aria-label="Shoot left"></div>
-      <div class="goal-zone" data-zone="centre" aria-label="Shoot centre"></div>
-      <div class="goal-zone" data-zone="right" aria-label="Shoot right"></div>
+      <!-- 4 invisible tap zones (match photo circles) -->
+      <div class="goal-zone" data-zone="TL" aria-label="Top left"></div>
+      <div class="goal-zone" data-zone="TR" aria-label="Top right"></div>
+      <div class="goal-zone" data-zone="BL" aria-label="Bottom left"></div>
+      <div class="goal-zone" data-zone="BR" aria-label="Bottom right"></div>
 
       <!-- Keeper -->
-      <div id="keeper" class="keeper" aria-hidden="true">
-        <svg class="keeper-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="60" cy="30" r="14" fill="#ffd1a1"/>
-          <rect x="35" y="44" width="50" height="44" rx="14" fill="#ef4444"/>
-          <rect x="22" y="54" width="20" height="12" rx="6" fill="#ef4444"/>
-          <rect x="78" y="54" width="20" height="12" rx="6" fill="#ef4444"/>
-          <rect x="42" y="84" width="14" height="24" rx="7" fill="#0b1020"/>
-          <rect x="64" y="84" width="14" height="24" rx="7" fill="#0b1020"/>
-          <circle cx="28" cy="60" r="7" fill="#ffffff"/>
-          <circle cx="92" cy="60" r="7" fill="#ffffff"/>
-        </svg>
-      </div>
+      <img id="keeper" class="keeper keeper-sprite" src="assets/images/keeper_boy.png" onerror="this.onerror=null;this.src=\'data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27220%27%20height%3D%27260%27%20viewBox%3D%270%200%20220%20260%27%3E%0A%3Ccircle%20cx%3D%27110%27%20cy%3D%2755%27%20r%3D%2728%27%20fill%3D%27%23f7d7c4%27/%3E%0A%3Crect%20x%3D%2770%27%20y%3D%2785%27%20width%3D%2780%27%20height%3D%2785%27%20rx%3D%2730%27%20fill%3D%27%23e11d48%27/%3E%0A%3Ccircle%20cx%3D%2770%27%20cy%3D%27115%27%20r%3D%2710%27%20fill%3D%27%23fff%27/%3E%0A%3Ccircle%20cx%3D%27150%27%20cy%3D%27115%27%20r%3D%2710%27%20fill%3D%27%23fff%27/%3E%0A%3Crect%20x%3D%2778%27%20y%3D%27165%27%20width%3D%2728%27%20height%3D%2770%27%20rx%3D%2714%27%20fill%3D%27%23111827%27/%3E%0A%3Crect%20x%3D%27114%27%20y%3D%27165%27%20width%3D%2728%27%20height%3D%2770%27%20rx%3D%2714%27%20fill%3D%27%23111827%27/%3E%0A%3C/svg%3E\';" alt="Goalkeeper" />
 
       <!-- Ball -->
       <div id="ball" class="ball" aria-hidden="true">
@@ -2227,8 +2534,8 @@
     </div>
 
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px">
-      <button id="penaltyStartBtn" class="menu-btn" onclick="startPenaltyGame()">Start</button>
-      <button id="penaltyAgainBtn" class="menu-btn" style="display:none;background:#16a34a;color:white" onclick="startPenaltyGame()">Play again</button>
+      <button id="penaltyStartBtn" class="menu-btn" onclick="onPenaltyStartClick()" type="button">Start</button>
+      <button id="penaltyAgainBtn" class="menu-btn" style="display:none;background:#16a34a;color:white" onclick="startPenaltyGame()" type="button">Play again</button>
     </div>
 
     <button class="back-btn" onclick="closePenalty()">Back to Home</button>
@@ -2296,8 +2603,8 @@
       Offside is checked <u>when the pass is played</u>.
     </div>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <button id="offsidePlayBtn" class="menu-btn" style="background:#16a34a;color:white;">Play: Onside or Offside?</button>
-      <button id="offsideLearnBtn" class="menu-btn" style="background:#2563eb;color:white;">Learn: Slider Demo</button>
+      <button id="offsidePlayBtn" class="menu-btn" style="background:#16a34a;color:white;" onclick="startOffsideGame(); playSound('whistle');" type="button">Play: Onside or Offside?</button>
+      <button id="offsideLearnBtn" class="menu-btn" style="background:#2563eb;color:white;" onclick="openOffsideLearn(); playSound('whistle');" type="button">Learn: Slider Demo</button>
     </div>
     <button class="back-btn" style="margin-top:18px" onclick="closeOffsideMenu()">Back</button>
   </div>
@@ -3256,12 +3563,304 @@ let penaltyScore = 0;
 const PENALTY_TOTAL = 5;
 let penaltyLocked = false;
 
+
+let penaltyMode = "taker"; // "taker" or "keeper"
+let gkDifficulty = "medium"; // easy | medium | hard
+
+const GK_SETTINGS = {
+  easy:   {delayBase:1050, delayMin:450, delayStep:25, flightBase:780, flightMin:520, flightStep:12, lives:4},
+  medium: {delayBase:850,  delayMin:380, delayStep:22, flightBase:720, flightMin:480, flightStep:10, lives:3},
+  hard:   {delayBase:680,  delayMin:300, delayStep:18, flightBase:660, flightMin:420, flightStep:8,  lives:2}
+};
+
+let gkStreak = 0;
+let gkLives = GK_SETTINGS[gkDifficulty].lives;
+let gkLocked = false;
+let gkPendingTimer = null;
+let gkResolveTimer = null;
+let aiShot = null;
+
+let gkCountdownTimer = null;
+let gkHasStarted = false;
+let gkChosenDive = null;
+let gkShotInFlight = false;
+
+
+function setGKDifficulty(level){
+  gkDifficulty = (level === "easy" || level === "hard") ? level : "medium";
+  updateGKDiffUI();
+  if(typeof penaltyMode !== "undefined" && penaltyMode === "keeper"){
+    gkLives = GK_SETTINGS[gkDifficulty].lives;
+    updateGKScoreboard();
+    setPenaltyMessage(`🧤 Difficulty set to ${gkDifficulty.toUpperCase()}!`, "good");
+  }
+}
+
+function updateGKDiffUI(){
+  const row = document.getElementById("gkDiffRow");
+  if(!row) return;
+  const btns = row.querySelectorAll("button");
+  btns.forEach(b=>{
+    const t = (b.textContent||"").toLowerCase();
+    const active = t === gkDifficulty;
+    b.style.outline = active ? "4px solid rgba(255,230,109,0.75)" : "none";
+    b.style.transform = active ? "scale(1.03)" : "";
+  });
+}
+
+function clearGKCountdown(){
+  try{ if(gkCountdownTimer) clearInterval(gkCountdownTimer); }catch(e){}
+  gkCountdownTimer = null;
+}
+
+function startGKCountdownThenRound(){
+  if(penaltyMode !== "keeper") return;
+  clearGKCountdown();
+  let t = 3;
+  setPenaltyMessage(`🧤 Get ready… ${t} (choose your dive)`, "");
+  gkCountdownTimer = setInterval(()=>{
+    if(penaltyMode !== "keeper"){ clearGKCountdown(); return; }
+    t -= 1;
+    if(t > 0){
+      setPenaltyMessage(`🧤 Get ready… ${t} (choose your dive)`, "");
+      return;
+    }
+    clearGKCountdown();
+    setPenaltyMessage("🧤 GO!", "good");
+    setTimeout(()=>{ if(penaltyMode === "keeper"){ try{ updateGKDiffUI(); }catch(e){} startGKRound(); } }, 250);
+  }, 1000);
+}
+
+
+function setPenaltyMode(mode){
+  penaltyMode = (mode === "keeper") ? "keeper" : "taker";
+
+  // toggle UI
+  const pick = document.getElementById("penaltyModePick");
+  const gkCtrls = document.getElementById("penaltyGKControls");
+  if(pick) pick.style.display = "flex";
+  if(gkCtrls) gkCtrls.style.display = (penaltyMode === "keeper") ? "flex" : "none";
+
+  // toggle scoreboard rows
+  const lr = document.getElementById("gkLivesRow");
+  const sr = document.getElementById("gkStreakRow");
+  if(lr) lr.style.display = (penaltyMode === "keeper") ? "" : "none";
+  if(sr) sr.style.display = (penaltyMode === "keeper") ? "" : "none";
+
+  resetKeeperBall();
+
+  if(penaltyMode === "keeper"){
+    const startBtn = document.getElementById('penaltyStartBtn');
+    const againBtn = document.getElementById('penaltyAgainBtn');
+    if(startBtn){ startBtn.style.display = ''; startBtn.textContent = 'Start (GK)'; }
+    if(againBtn){ againBtn.style.display = 'none'; }
+    // hide controls until the run starts
+    const gkCtrls = document.getElementById('penaltyGKControls');
+    if(gkCtrls) gkCtrls.style.display = 'none';
+
+    gkHasStarted = false;
+    gkStreak = 0;
+    gkChosenDive = null;
+    gkLives = GK_SETTINGS[gkDifficulty].lives;
+    updateGKScoreboard();
+    setPenaltyMessage("🧤 Goalkeeper mode! Press Start (GK) to begin.", "");
+    // Wait for Start button → countdown → first shot
+    gkHasStarted = false;
+  }else{
+    const startBtn = document.getElementById('penaltyStartBtn');
+    const againBtn = document.getElementById('penaltyAgainBtn');
+    if(startBtn){ startBtn.style.display=''; startBtn.textContent='Start'; }
+    if(againBtn){ againBtn.style.display=''; }
+    resetPenaltyUI();
+  }
+}
+
+function updateGKScoreboard(){
+  const l = document.getElementById("gkLivesInfo");
+  const s = document.getElementById("gkStreakInfo");
+  if(l) l.textContent = String(gkLives);
+  if(s) s.textContent = String(gkStreak);
+}
+
+function clearGKTimers(){
+  try{ if(gkPendingTimer) clearTimeout(gkPendingTimer); }catch(e){}
+  try{ if(gkResolveTimer) clearTimeout(gkResolveTimer); }catch(e){}
+  gkPendingTimer = null;
+  gkResolveTimer = null;
+}
+
+function awardGloveIfEligible(){
+  try{
+    const p = getProfile();
+    const best = Math.max(p.gkBestStreak || 0, gkStreak || 0);
+    p.gkBestStreak = best;
+
+    if(best >= 5)  tryAwardTrophy(p, "🥉 Bronze Glove");
+    if(best >= 10) tryAwardTrophy(p, "🥈 Silver Glove");
+    if(best >= 15) tryAwardTrophy(p, "🥇 Golden Glove");
+
+    saveProfile(p);
+  }catch(e){}
+}
+
+function startGKRound(){
+  if(penaltyMode !== "keeper") return;
+  gkLocked = false;
+  clearGKTimers();
+  resetKeeperBall();
+
+  aiShot = randomZone();
+
+  // round state
+  gkShotInFlight = false;
+  gkChosenDive = null;
+  setGKChoice(null);
+
+  setPenaltyMessage("🧤 Choose LEFT / CENTRE / RIGHT to dive. Shot starts after you choose.", "");
+
+  // We don't schedule the shot yet — it starts once they choose.
+}
+
+
+function setGKChoice(zone){
+  if(penaltyMode !== "keeper") return;
+  if(gkShotInFlight) return;
+  gkChosenDive = zone;
+
+  // highlight buttons (red = locked choice)
+  const ctrls = document.getElementById("penaltyGKControls");
+  if(ctrls){
+    ctrls.querySelectorAll("button").forEach(b=>{
+      const txt = (b.textContent||"").toLowerCase();
+      const isLeft = txt.includes("left");
+      const isCentre = txt.includes("centre") || txt.includes("center") || txt.includes("middle");
+      const isRight = txt.includes("right");
+      const match = (zone==="left" && isLeft) || (zone==="centre" && isCentre) || (zone==="right" && isRight);
+
+      b.style.outline = match ? "4px solid rgba(255,60,60,0.95)" : "none";
+      b.style.background = match ? "rgba(255,60,60,0.35)" : "";
+      b.style.transform = match ? "scale(1.03)" : "";
+    });
+  }
+
+  // highlight the goal target too, if zones exist in the keeper UI
+  const zones = document.querySelectorAll("#penaltyScreen .goal-zone");
+  zones.forEach(z=>{
+    const dz = z.getAttribute("data-zone");
+    const on = dz === zone;
+    z.style.outline = on ? "4px solid rgba(255,60,60,0.95)" : "none";
+    z.style.boxShadow = on ? "0 0 0 4px rgba(255,60,60,0.35)" : "";
+  });
+}
+
+
+function startGKShotNow(){
+  if(penaltyMode !== "keeper") return;
+  if(!gkChosenDive) return; // must choose first
+  if(gkShotInFlight) return;
+
+  const s = GK_SETTINGS[gkDifficulty] || GK_SETTINGS.medium;
+  // small pause after selection + optional striker stutter/feint
+  const baseDelay = 250;
+
+  // Stutter settings by difficulty
+  const st = (gkDifficulty === "hard") ? {chance:0.55, extraMin:250, extraMax:850, feintChance:0.25}
+           : (gkDifficulty === "medium") ? {chance:0.25, extraMin:200, extraMax:500, feintChance:0.12}
+           : {chance:0.0, extraMin:0, extraMax:0, feintChance:0.0};
+
+  const doStutter = Math.random() < st.chance;
+  const extra = doStutter ? (st.extraMin + Math.floor(Math.random()*(st.extraMax - st.extraMin + 1))) : 0;
+
+  // Rare feint message (purely cosmetic)
+  if(doStutter && Math.random() < st.feintChance){
+    setPenaltyMessage("😈 Striker stutters…", "");
+  }
+
+  const delay = baseDelay + extra; // small pause after selection
+  const flight = Math.max(s.flightMin, s.flightBase - gkStreak * s.flightStep);
+
+  gkShotInFlight = true;
+
+  gkPendingTimer = setTimeout(()=>{
+    applyDive(gkChosenDive);
+    applyShot(aiShot);
+    playSound && playSound("whistle");
+
+    // resolve when the ball arrives
+    gkResolveTimer = setTimeout(()=>{
+      if(!gkLocked){
+        gkLocked = true;
+        resolveGKRound(gkChosenDive);
+      }
+    }, flight);
+  }, delay);
+}
+
+function gkDive(zone){
+  if(penaltyMode !== "keeper") return;
+
+  // If the shot hasn't started, selecting a zone starts the shot.
+  if(!gkShotInFlight){
+    setGKChoice(zone);
+    setPenaltyMessage("🧤 Locked! Striker is shooting…", "");
+    startGKShotNow();
+    return;
+  }
+
+  // If shot already in flight, ignore extra taps (choice was already made)
+  return;
+}
+
+function resolveGKRound(playerDive){
+  
+  if(penaltyMode !== "keeper") return;
+
+  const saved = (playerDive && playerDive === aiShot);
+  if(saved){
+    gkStreak += 1;
+    updateGKScoreboard();
+    setPenaltyMessage(`🧤 SAVE! Streak: ${gkStreak}`, "good");
+    playSound && playSound("cheer");
+    try{ if(typeof awardXP==="function") awardXP(8, "Penalty GK save"); }catch(e){}
+
+    awardGloveIfEligible();
+
+    if(gkStreak === 5)  setPenaltyMessage("🥉 Bronze Glove unlocked!", "good");
+    if(gkStreak === 10) setPenaltyMessage("🥈 Silver Glove unlocked!", "good");
+    if(gkStreak === 15) setPenaltyMessage("🥇 GOLDEN GLOVE UNLOCKED!!", "good");
+  }else{
+    gkLives -= 1;
+    gkStreak = 0;
+    updateGKScoreboard();
+    setPenaltyMessage(`⚽ GOAL… Lives left: ${gkLives}`, "bad");
+    playSound && playSound("crowd");
+  }
+
+  if(gkLives <= 0){
+    setPenaltyMessage("😵 Game Over! Try again from mode select.", "bad");
+    const pick = document.getElementById("penaltyModePick");
+    if(pick) pick.style.display = "flex";
+    const gkCtrls = document.getElementById("penaltyGKControls");
+    if(gkCtrls) gkCtrls.style.display = "none";
+    return;
+  }
+
+  setTimeout(()=> startGKRound(), 650);
+}
+
+
 function openPenalty(){
   document.getElementById('penaltyScreen').classList.add('active');
-  resetPenaltyUI();
+        try{ const pick=document.getElementById('penaltyModePick'); if(pick) pick.style.display='flex'; }catch(e){}
+  try{ const gkCtrls=document.getElementById('penaltyGKControls'); if(gkCtrls) gkCtrls.style.display='none'; }catch(e){}
+  try{ const sb=document.getElementById('penaltyStartBtn'); if(sb) sb.textContent='Start'; }catch(e){}
+try{ const sb=document.getElementById('penaltyStartBtn'); if(sb) sb.textContent='Start'; }catch(e){}
+try{ const pick=document.getElementById('penaltyModePick'); if(pick) pick.style.display='flex'; }catch(e){}
+resetPenaltyUI();
 }
 
 function closePenalty(){
+  try{ if(typeof clearGKTimers==='function') clearGKTimers(); }catch(e){}
   document.getElementById('penaltyScreen').classList.remove('active');
   penaltyLocked = false;
 }
@@ -3308,30 +3907,162 @@ function setPenaltyMessage(text, mood){
 }
 
 function resetKeeperBall(){
-  const keeper = document.getElementById('keeper');
-  const ball = document.getElementById('ball');
-  keeper.classList.remove('dive-left','dive-centre','dive-right');
-  ball.classList.remove('shoot-left','shoot-centre','shoot-right');
+  // legacy name used throughout penalty game
+  resetPenaltyActors();
+  // also clear selected highlights
+  document.querySelectorAll('#penaltyGoal .goal-zone').forEach(z=>z.classList.remove('selected'));
 }
 
 function randomZone(){
-  const zones = ['left','centre','right'];
+  const zones = ['TL','TR','BL','BR'];
   return zones[Math.floor(Math.random()*zones.length)];
 }
 
 function applyDive(zone){
   const keeper = document.getElementById('keeper');
-  keeper.classList.remove('dive-left','dive-centre','dive-right');
-  keeper.classList.add(`dive-${zone}`);
+  if(!keeper) return;
+  const p = penaltyPos(zone);
+  keeper.style.left = p.x + "%";
+  keeper.style.top  = (p.y + 6) + "%"; // keeper a little lower than ball target
+  keeper.style.transform = "translate(-50%,-50%) scale(1.04)";
 }
 
 function applyShot(zone){
   const ball = document.getElementById('ball');
-  ball.classList.remove('shoot-left','shoot-centre','shoot-right');
-  ball.classList.add(`shoot-${zone}`);
+  if(!ball) return;
+
+  const p = penaltyPos(zone);
+
+  // "Ballistic" arc: quick lift then drive into target
+  ball.classList.remove("ball-ballistic");
+  void ball.offsetWidth;
+  ball.classList.add("ball-ballistic");
+
+  ball.style.left = "50%";
+  ball.style.top  = "64%";
+  ball.style.transform = "translate(-50%,-50%) scale(1.03)";
+
+  const k = Math.max(0.6, Math.min(1.4, keeperSpeedMult||1.0));
+  const total = Math.round(650 / k);
+
+  requestAnimationFrame(()=>{
+    setTimeout(()=>{
+      ball.style.left = p.x + "%";
+      ball.style.top  = p.y + "%";
+      ball.style.transform = "translate(-50%,-50%) scale(1.06)";
+    }, Math.max(60, Math.round(total*0.18)));
+  });
+}
+
+
+
+// ===== Penalty stats (persisted) =====
+let penaltyStats = {shots:0, goals:0, saves:0};
+function loadPenaltyStats(){
+  try{
+    const raw = localStorage.getItem("hb_penalty_stats");
+    if(raw){ penaltyStats = Object.assign(penaltyStats, JSON.parse(raw)); }
+  }catch(e){}
+}
+function savePenaltyStats(){
+  try{ localStorage.setItem("hb_penalty_stats", JSON.stringify(penaltyStats)); }catch(e){}
+}
+function renderPenaltyStats(){
+  const s = document.getElementById("statSaves");
+  const g = document.getElementById("statGoals");
+  const sh = document.getElementById("statShots");
+  if(s) s.textContent = String(penaltyStats.saves||0);
+  if(g) g.textContent = String(penaltyStats.goals||0);
+  if(sh) sh.textContent = String(penaltyStats.shots||0);
+}
+function bumpPenaltyStat(kind){
+  penaltyStats[kind] = (penaltyStats[kind]||0) + 1;
+  savePenaltyStats();
+  renderPenaltyStats();
+}
+
+// ===== Keeper speed slider (affects keeper movement + AI reaction) =====
+let keeperSpeedMult = 1.0; // 1.0 = normal, >1 faster, <1 slower
+function bindKeeperSpeedSlider(){
+  const slider = document.getElementById("keeperSpeedSlider");
+  const label = document.getElementById("keeperSpeedValue");
+  if(!slider || slider.dataset.bound === "1") return;
+  slider.dataset.bound = "1";
+
+  // load saved value
+  try{
+    const v = parseFloat(localStorage.getItem("hb_keeper_speed")||"1.0");
+    if(!isNaN(v)){ keeperSpeedMult = Math.min(1.4, Math.max(0.6, v)); slider.value = String(keeperSpeedMult); }
+  }catch(e){}
+
+  if(label) label.textContent = keeperSpeedMult.toFixed(1) + "x";
+
+  slider.addEventListener("input", ()=>{
+    keeperSpeedMult = parseFloat(slider.value)||1.0;
+    if(label) label.textContent = keeperSpeedMult.toFixed(1) + "x";
+    try{ localStorage.setItem("hb_keeper_speed", String(keeperSpeedMult)); }catch(e){}
+    applyKeeperSpeedCSS();
+  });
+
+  applyKeeperSpeedCSS();
+}
+function applyKeeperSpeedCSS(){
+  const keeper = document.getElementById("keeper");
+  const ball = document.getElementById("ball");
+  const baseKeeper = 450;
+  const baseBall = 650;
+  const k = Math.max(0.6, Math.min(1.4, keeperSpeedMult||1.0));
+  const keeperMs = Math.round(baseKeeper / k);
+  const ballMs = Math.round(baseBall / k);
+
+  if(keeper){ keeper.style.transitionDuration = keeperMs + "ms"; }
+  if(ball){ ball.style.transitionDuration = ballMs + "ms"; }
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  loadPenaltyStats();
+  renderPenaltyStats();
+  bindKeeperSpeedSlider();
+});
+
+function penaltyPos(zone){
+  // Percent positions inside penaltyGoal matching the photo circles
+  if(zone === "TL") return {x:41, y:38};
+  if(zone === "TR") return {x:59, y:38};
+  if(zone === "BL") return {x:41, y:66};
+  return {x:59, y:66}; // BR
+}
+function resetPenaltyActors(){
+  const ball = document.getElementById('ball');
+  const keeper = document.getElementById('keeper');
+  if(ball){
+    ball.style.left = "50%";
+    ball.style.top  = "72%";
+    ball.style.transform = "translate(-50%,-50%) scale(1)";
+  }
+  if(keeper){
+    keeper.style.left = "50%";
+    keeper.style.top  = "54%";
+    keeper.style.transform = "translate(-50%,-50%)";
+  }
+}
+
+
+function celebrateSave(){
+  const k = document.getElementById("keeper");
+  if(!k) return;
+  k.classList.remove("keeper-celebrate");
+  void k.offsetWidth;
+  k.classList.add("keeper-celebrate");
+  setTimeout(()=>{ try{ k.classList.remove("keeper-celebrate"); }catch(e){} }, 900);
 }
 
 function takePenalty(playerZone){
+  bumpPenaltyStat('shots');
+  if(typeof penaltyMode !== 'undefined' && penaltyMode === "keeper") return;
+
+  // highlight chosen circle
+  document.querySelectorAll('#penaltyGoal .goal-zone').forEach(z=>z.classList.toggle('selected', z.getAttribute('data-zone')===playerZone));
   if(penaltyLocked) return;
 
   const startBtn = document.getElementById('penaltyStartBtn');
@@ -3353,10 +4084,10 @@ function takePenalty(playerZone){
     if(isGoal){
       penaltyScore++;
       setPenaltyMessage('GOAL!!! 🎉', 'good');
-      playSound('cheer');
+      bumpPenaltyStat('goals'); playSound('cheer');
     }else{
       setPenaltyMessage('SAVED! 🧤', 'bad');
-      playSound('crowd');
+      bumpPenaltyStat('saves'); celebrateSave(); playSound('crowd');
     }
     document.getElementById('penaltyScoreInfo').textContent = `${penaltyScore}`;
   }, 700);
@@ -3392,20 +4123,21 @@ function finishPenaltyGame(){
   penaltyLocked = true;
 }
 
-(function(){
-  document.addEventListener('DOMContentLoaded', () => {
-    // Homepage sign zoom
-    try{ initHomeSignZoom(); }catch(e){}
 
-    const goal = document.getElementById('penaltyGoal');
-    if(!goal) return;
-    goal.addEventListener('click', (e) => {
-      const zoneEl = e.target.closest('.goal-zone');
-      if(!zoneEl) return;
-      takePenalty(zoneEl.getAttribute('data-zone'));
-    });
+function bindPenaltyGoalClick(){
+  const goal = document.getElementById('penaltyGoal');
+  if(!goal || goal.dataset.bound === "1") return;
+  goal.dataset.bound = "1";
+  goal.addEventListener('click', (e) => {
+    const zoneEl = e.target.closest('.goal-zone');
+    if(!zoneEl) return;
+    takePenalty(zoneEl.getAttribute('data-zone'));
   });
-})();
+}
+
+// Bind immediately (in case DOMContentLoaded already fired) and also on DOMContentLoaded
+try{ bindPenaltyGoalClick(); }catch(e){}
+document.addEventListener('DOMContentLoaded', () => { try{ bindPenaltyGoalClick(); }catch(e){} });
 
 /* =========================
    STRIKER'S CHOICE GAME LOGIC
@@ -3424,6 +4156,7 @@ function closeGamesMenu(){
   if(el) el.classList.remove('active');
 }
 function openPenaltyFromGames(){
+  try{ bindKeeperSpeedSlider(); renderPenaltyStats(); }catch(e){}
   closeGamesMenu();
   openPenalty();
 }
@@ -4214,6 +4947,21 @@ function refreshProgressUI(){
   if(nextText) nextText.textContent = `${lv.inLevelXP} / ${lv.need} to next level`;
 }
 
+
+function openChallengesFixed(){
+  // Some devices/overlays need display + z-index forcing
+  if(typeof forceShowOverlayById === "function"){
+    forceShowOverlayById("challengesScreen");
+  }else{
+    const el = document.getElementById("challengesScreen");
+    if(el){
+      el.classList.add("active");
+      el.style.display = "block";
+    }
+  }
+  try{ refreshChallengesUI(); }catch(e){}
+}
+
 function openChallenges(){
   const el = document.getElementById("challengesScreen");
   if(el) el.classList.add("active");
@@ -4221,8 +4969,9 @@ function openChallenges(){
 }
 function closeChallenges(){
   const el = document.getElementById("challengesScreen");
-  if(el) el.classList.remove("active");
+  if(el){ el.classList.remove("active"); el.style.display="none"; }
 }
+
 
 function refreshChallengesUI(){
   const p = getProfile();
@@ -4621,6 +5370,8 @@ function submitPosScenario(){
 
 // Make sure inline onclick can access these in all browsers
 window.openPositionAcademy = openPositionAcademy;
+  window.openSchedule = openSchedule;
+  window.closeSchedule = closeSchedule;
 window.closePositionAcademy = closePositionAcademy;
 window.openPositionDetail = openPositionDetail;
 window.backToPositionAcademy = backToPositionAcademy;
@@ -4641,7 +5392,7 @@ let keeperSpeedLevel = 1; // 1x..
 let keeperTimeLimit = 1300; // ms per shot
 let keeperCanTap = false;
 
-function openKeeperGame(){
+function openQuickFeet(){
   forceShowOverlayById("keeperGameScreen");
   resetKeeperGameUI();
   bindKeeperZonesOnce();
@@ -4848,7 +5599,7 @@ function endKeeperGame(won){
     const base = 40;
     const bonus = keeperSaves * 12;
     const xp = Math.min(420, base + bonus);
-    if(typeof awardXP==="function") awardXP(xp, "Keeper Reaction");
+    if(typeof awardXP==="function") awardXP(xp, "Quick Feet");
   }catch(e){}
 
   // Winner/Loser visuals if your app has them
@@ -5063,6 +5814,761 @@ async function renderVoteCards(){const grid=document.getElementById("voteGrid");
 function openLeaderboard(){forceShowOverlayById("leaderboardScreen");renderLeaderboard();}
 async function renderLeaderboard(){const r=await fetchLeaderboard();const list=document.getElementById("lbList");const totals=r.totals||{};const rows=POTW_CANDIDATES.map(c=>({...c,count:totals[c.id]||0})).sort((a,b)=>b.count-a.count);list.innerHTML=rows.map((r,i)=>`<div style="display:flex;justify-content:space-between;padding:10px;color:white;font-weight:900;">${i+1}. ${r.name}<span>${r.count}</span></div>`).join("");}
 
+
+function onPenaltyStartClick(){
+  try{
+    if(typeof penaltyMode !== "undefined" && penaltyMode === "keeper"){
+      if(typeof gkHasStarted !== "undefined" && gkHasStarted) return;
+      gkHasStarted = true;
+      const pick = document.getElementById("penaltyModePick");
+      if(pick) pick.style.display = "none";
+      startGKCountdownThenRound();
+      return;
+    }
+  }catch(e){}
+  try{ startPenaltyGame(); }catch(e){}
+}
+
+
+// --- Ensure critical handlers are globally accessible (Chromebook-safe) ---
+try{
+  window.startKeeperGame = startKeeperGame;
+  window.resetKeeperGameUI = resetKeeperGameUI;
+  window.closeKeeperGame = closeKeeperGame;
+  window.openKeeperGame = openKeeperGame;
+
+  window.onPenaltyStartClick = onPenaltyStartClick;
+  window.startPenaltyGame = startPenaltyGame;
+  window.openPenalty = openPenalty;
+  window.closePenalty = closePenalty;
+
+  window.openVote = openVote;
+  window.closeVote = closeVote;
+  window.closeLeaderboard = closeLeaderboard;
+
+  window.openPositionAcademy = openPositionAcademy;
+  window.openSchedule = openSchedule;
+  window.closeSchedule = closeSchedule;
+  window.openPositionDetail = openPositionDetail;
+  window.closePositionAcademy = closePositionAcademy;
+  window.backToPositionAcademy = backToPositionAcademy;
+}catch(e){}
+
+
+// --- Debug: surface runtime errors (remove once stable) ---
+window.addEventListener('error', (e) => {
+  try{
+    console.error(e.error || e.message);
+    alert("App error: " + (e.message || e.error));
+  }catch(_){}
+});
+window.addEventListener('unhandledrejection', (e) => {
+  try{
+    console.error(e.reason);
+    alert("App error: " + (e.reason?.message || e.reason));
+  }catch(_){}
+});
+
+
+function bindPositionAcademyClicks(){
+  const screen = document.getElementById("positionAcademyScreen");
+  if(!screen || screen.dataset.paBound==="1") return;
+  screen.dataset.paBound="1";
+  screen.addEventListener("click",(e)=>{
+    const btn = e.target.closest("button");
+    if(!btn) return;
+    const pos = btn.getAttribute("data-pos") || btn.getAttribute("data-position") || btn.dataset.pos || btn.dataset.position;
+    if(!pos) return;
+    e.preventDefault(); e.stopPropagation();
+    try{ openPositionDetail(pos); }catch(err){ console.error(err); }
+  });
+}
+try{ bindPositionAcademyClicks(); }catch(e){}
+document.addEventListener("DOMContentLoaded", ()=>{ try{ bindPositionAcademyClicks(); }catch(e){} });
+
+
+function bindAllInteractive(){
+  try{ bindPenaltyGoalClick && bindPenaltyGoalClick(); }catch(e){}
+  try{ bindPositionAcademyClicks && bindPositionAcademyClicks(); }catch(e){}
+
+  // Offside buttons (fallback)
+  try{
+    const playBtn = document.getElementById('offsidePlayBtn');
+    if(playBtn && !playBtn.dataset.bound){
+      playBtn.dataset.bound="1";
+      playBtn.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); startOffsideGame(); });
+    }
+    const learnBtn = document.getElementById('offsideLearnBtn');
+    if(learnBtn && !learnBtn.dataset.bound){
+      learnBtn.dataset.bound="1";
+      learnBtn.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); openOffsideLearn(); });
+    }
+  }catch(e){}
+
+  // Keeper start (fallback)
+  try{
+    const ks = document.getElementById("keeperStartBtn");
+    if(ks && !ks.dataset.bound){
+      ks.dataset.bound="1";
+      ks.addEventListener("click",(e)=>{ e.preventDefault(); e.stopPropagation(); startKeeperGame(); });
+    }
+  }catch(e){}
+}
+try{ bindAllInteractive(); }catch(e){}
+document.addEventListener('DOMContentLoaded', ()=>{ try{ bindAllInteractive(); }catch(e){} });
+setTimeout(()=>{ try{ bindAllInteractive(); }catch(e){} }, 0);
+setTimeout(()=>{ try{ bindAllInteractive(); }catch(e){} }, 300);
+
+
+try{
+  window.setPenaltyMode = setPenaltyMode;
+  window.setGKDifficulty = setGKDifficulty;
+  window.onPenaltyStartClick = onPenaltyStartClick;
+  window.startPenaltyGame = startPenaltyGame;
+  window.takePenalty = takePenalty;
+  window.gkDive = gkDive;
+  window.startGKRound = startGKRound;
+
+  window.openOffsideMenu = openOffsideMenu;
+  window.startOffsideGame = startOffsideGame;
+  window.openOffsideLearn = openOffsideLearn;
+
+  window.startKeeperGame = startKeeperGame;
+  window.resetKeeperGameUI = resetKeeperGameUI;
+  window.closeKeeperGame = closeKeeperGame;
+
+  window.openPositionDetail = openPositionDetail;
+  window.openPositionAcademy = openPositionAcademy;
+  window.openSchedule = openSchedule;
+  window.closeSchedule = closeSchedule;
+}catch(e){}
+
+
+function closeLeaderboard(){
+  const el = document.getElementById("leaderboardScreen");
+  if(el){ el.classList.remove("active"); el.style.display="none"; }
+}
+
+
+// =========================
+// Schedule (Google Slides/Sheets/Calendar)
+// =========================
+const SCHEDULE_STORAGE_KEY = "hb_schedule_url";
+function getScheduleUrl(){
+  try{ return localStorage.getItem(SCHEDULE_STORAGE_KEY) || ""; }catch(e){ return ""; }
+}
+function setScheduleUrl(url){
+  try{ localStorage.setItem(SCHEDULE_STORAGE_KEY, url || ""); }catch(e){}
+}
+function applyScheduleUrl(){
+  const url = getScheduleUrl();
+  const a = document.getElementById("scheduleOpenLink");
+  const iframe = document.getElementById("scheduleFrame");
+  const ph = document.getElementById("schedulePlaceholder");
+  if(a) a.href = url || "#";
+  if(!url){
+    if(iframe) iframe.style.display="none";
+    if(ph) ph.style.display="block";
+    return;
+  }
+  if(ph) ph.style.display="none";
+  if(iframe){
+    iframe.style.display="block";
+    iframe.src = url;
+  }
+}
+function promptScheduleUrl(){
+  const current = getScheduleUrl();
+  const url = prompt("Paste your Google Slides/Sheets/Calendar *embed* URL here:", current || "");
+  if(url === null) return;
+  setScheduleUrl(url.trim());
+  applyScheduleUrl();
+}
+function openSchedule(){
+  if(typeof forceShowOverlayById === "function"){
+    forceShowOverlayById("scheduleScreen");
+  }else{
+    const el = document.getElementById("scheduleScreen");
+    if(el){ el.classList.add("active"); el.style.display="flex"; }
+  }
+  applyScheduleUrl();
+}
+function closeSchedule(){
+  const el = document.getElementById("scheduleScreen");
+  if(el){ el.classList.remove("active"); el.style.display="none"; }
+}
+
+
+// =========================
+// QUICK FEET (replaces Keeper Reaction)
+// Uses the existing keeper save-zone buttons as tap targets.
+// =========================
+let qfActive = false;
+let qfScore = 0;
+let qfRound = 0;
+let qfTimer = null;
+let qfDeadline = 0;
+let qfTarget = null;
+let qfCountdownTimer = null;
+
+function openQuickFeet(){
+  if(typeof forceShowOverlayById === "function"){
+    forceShowOverlayById("keeperGameScreen");
+  }else{
+    const el = document.getElementById("keeperGameScreen");
+    if(el){ el.classList.add("active"); el.style.display="flex"; }
+  }
+  resetQuickFeetUI();
+}
+
+function closeQuickFeet(){
+  qfActive = false;
+  try{ if(qfTimer) clearInterval(qfTimer); }catch(e){}
+  try{ if(qfCountdownTimer) clearInterval(qfCountdownTimer); }catch(e){}
+  qfTimer = null; qfCountdownTimer = null;
+  const el = document.getElementById("keeperGameScreen");
+  if(el){ el.classList.remove("active"); el.style.display="none"; }
+}
+
+function resetQuickFeetUI(){
+  qfActive = false;
+  qfScore = 0;
+  qfRound = 0;
+  qfTarget = null;
+
+  const hint = document.getElementById("keeperHint");
+  if(hint) hint.textContent = "Press Start to begin";
+
+  // repurpose scoreboard labels
+  const savesLabel = document.querySelector('#keeperGameScreen .sb-row:nth-child(1) span');
+  const missesLabel = document.querySelector('#keeperGameScreen .sb-row:nth-child(2) span');
+  const speedLabel = document.querySelector('#keeperGameScreen .sb-row:nth-child(3) span');
+  if(savesLabel) savesLabel.textContent = "Score";
+  if(missesLabel) missesLabel.textContent = "Mistakes";
+  if(speedLabel) speedLabel.textContent = "Speed";
+
+  const saves = document.getElementById("keepSaves");
+  const misses = document.getElementById("keepMisses");
+  const speed = document.getElementById("keepSpeed");
+  if(saves) saves.textContent = "0";
+  if(misses) misses.textContent = "0";
+  if(speed) speed.textContent = "1x";
+
+  // show instruction board
+  const ins = document.getElementById("qfInstructions");
+  if(ins) ins.style.display = "block";
+
+  // buttons
+  const start = document.getElementById("keeperStartBtn");
+  if(start){
+    start.style.display = "";
+    start.textContent = "Start";
+    start.setAttribute("onclick","startQuickFeetCountdown()");
+  }
+  const restart = document.getElementById("keeperRestartBtn");
+  if(restart){
+    restart.style.display = "none";
+    restart.textContent = "Play Again";
+    restart.setAttribute("onclick","resetQuickFeetUI(); startQuickFeetCountdown();");
+  }
+  const back = document.querySelector('#keeperGameScreen .back-btn');
+  if(back) back.setAttribute("onclick","closeQuickFeet()");
+
+  // clear highlights
+  document.querySelectorAll("#keeperGameScreen .keeper-savezone").forEach(z=>{
+    z.style.outline = "none";
+    z.style.opacity = "0.55";
+    z.style.transform = "";
+  });
+}
+
+function startQuickFeetCountdown(){
+  try{ if(qfCountdownTimer) clearInterval(qfCountdownTimer); }catch(e){}
+  qfCountdownTimer = null;
+
+  const start = document.getElementById("keeperStartBtn");
+  if(start) start.style.display="none";
+  const restart = document.getElementById("keeperRestartBtn");
+  if(restart) restart.style.display="none";
+
+  let t = 3;
+  const hint = document.getElementById("keeperHint");
+  if(hint) hint.textContent = `Get ready… ${t}`;
+
+  qfCountdownTimer = setInterval(()=>{
+    t -= 1;
+    if(t > 0){
+      if(hint) hint.textContent = `Get ready… ${t}`;
+      return;
+    }
+    try{ clearInterval(qfCountdownTimer); }catch(e){}
+    qfCountdownTimer = null;
+    if(hint) hint.textContent = "GO!";
+    setTimeout(()=> startQuickFeet(), 250);
+  }, 1000);
+}
+
+function startQuickFeet(){
+  qfActive = true;
+  qfScore = 0;
+  qfRound = 0;
+  nextQuickFeetRound();
+}
+
+function nextQuickFeetRound(){
+  if(!qfActive) return;
+  qfRound += 1;
+
+  // speed increases with rounds
+  const windowMs = Math.max(450, 1200 - qfRound*70);
+  qfDeadline = Date.now() + windowMs;
+
+  const zones = Array.from(document.querySelectorAll("#keeperGameScreen .keeper-savezone"));
+  if(zones.length === 0) return;
+
+  const pick = zones[Math.floor(Math.random()*zones.length)];
+  qfTarget = pick.getAttribute("data-zone");
+
+  const speed = document.getElementById("keepSpeed");
+  if(speed){
+    const mult = (1200 / windowMs).toFixed(1);
+    speed.textContent = mult + "x";
+  }
+
+  highlightQuickFeet(qfTarget);
+
+  try{ if(qfTimer) clearInterval(qfTimer); }catch(e){}
+  qfTimer = setInterval(()=>{
+    if(Date.now() > qfDeadline){
+      clearInterval(qfTimer);
+      qfTimer = null;
+      endQuickFeet();
+    }
+  }, 60);
+}
+
+function highlightQuickFeet(zone){
+  document.querySelectorAll("#keeperGameScreen .keeper-savezone").forEach(z=>{
+    const dz = z.getAttribute("data-zone");
+    const on = dz === zone;
+    z.style.opacity = on ? "1" : "0.45";
+    z.style.outline = on ? "4px solid rgba(255,230,109,0.85)" : "none";
+    z.style.transform = on ? "scale(1.02)" : "";
+  });
+}
+
+function quickFeetTap(zone){
+  if(!qfActive) return;
+
+  const ok = zone === qfTarget && Date.now() <= qfDeadline;
+  const scoreEl = document.getElementById("keepSaves");
+  const missEl = document.getElementById("keepMisses");
+
+  if(ok){
+    qfScore += 1;
+    if(scoreEl) scoreEl.textContent = String(qfScore);
+    playSound && playSound("cheer");
+    nextQuickFeetRound();
+  }else{
+    if(missEl) missEl.textContent = String((parseInt(missEl.textContent||"0",10)||0) + 1);
+    endQuickFeet();
+  }
+}
+
+function endQuickFeet(){
+  qfActive = false;
+  try{ if(qfTimer) clearInterval(qfTimer); }catch(e){}
+  qfTimer = null;
+
+  highlightQuickFeet("__none__");
+  const hint = document.getElementById("keeperHint");
+  if(hint) hint.textContent = `Finished! Score: ${qfScore}`;
+
+  const restart = document.getElementById("keeperRestartBtn");
+  if(restart) restart.style.display = "";
+}
+
+// Bind taps
+function bindQuickFeet(){
+  const screen = document.getElementById("keeperGameScreen");
+  if(!screen || screen.dataset.qfBound === "1") return;
+  screen.dataset.qfBound = "1";
+
+  screen.addEventListener("click",(e)=>{
+    const z = e.target.closest(".keeper-savezone");
+    if(!z) return;
+    const zone = z.getAttribute("data-zone");
+    if(!zone) return;
+    e.preventDefault(); e.stopPropagation();
+    quickFeetTap(zone);
+  });
+
+  // Ensure menu tile opens quick feet
+  try{
+    window.openQuickFeet = openQuickFeet;
+    window.closeQuickFeet = closeQuickFeet;
+    window.startQuickFeetCountdown = startQuickFeetCountdown;
+  }catch(e){}
+}
+try{ bindQuickFeet(); }catch(e){}
+document.addEventListener("DOMContentLoaded", ()=>{ try{ bindQuickFeet(); }catch(e){} });
+
+
+function openKeeperGame(){ openQuickFeet(); }
+function closeKeeperGame(){ closeQuickFeet(); }
+function startKeeperGame(){ startQuickFeetCountdown(); }
+function resetKeeperGameUI(){ resetQuickFeetUI(); }
+
+
+function bindGKTargetClicks(){
+  const goal = document.getElementById('penaltyGoal');
+  if(!goal || goal.dataset.gkBound === "1") return;
+  goal.dataset.gkBound = "1";
+  goal.addEventListener('click', (e)=>{
+    if(typeof penaltyMode === "undefined" || penaltyMode !== "keeper") return;
+    const zoneEl = e.target.closest('.goal-zone');
+    if(!zoneEl) return;
+    const zone = zoneEl.getAttribute('data-zone');
+    if(!zone) return;
+    e.preventDefault(); e.stopPropagation();
+    // Selecting a target is the same as choosing dive direction in this mode
+    try{ gkDive(zone); }catch(err){}
+  });
+}
+try{ bindGKTargetClicks(); }catch(e){}
+document.addEventListener('DOMContentLoaded', ()=>{ try{ bindGKTargetClicks(); }catch(e){} });
+
+
+// =========================
+// QUICK FEET OVERRIDE (final)
+// Fully replaces old Keeper Reaction logic
+// =========================
+let qfRunning = false;
+let qfScore2 = 0;
+let qfBest2 = 0;
+let qfRoundsTotal2 = 3;
+let qfRoundNo2 = 1;
+let qfShotsPerRound2 = 5;
+let qfShotsLeft2 = 5;
+let qfStreak2 = 0;
+let qfMult2 = 1;
+let qfRound2 = 0;
+let qfTarget2 = null;
+let qfTick2 = null;
+let qfCountdown2 = null;
+let qfDeadline2 = 0;
+
+
+function qfLoadBest(){
+  try{ qfBest2 = parseInt(localStorage.getItem("hb_qf_best")||"0",10)||0; }catch(e){ qfBest2 = 0; }
+}
+function qfSaveBest(){
+  try{ localStorage.setItem("hb_qf_best", String(qfBest2)); }catch(e){}
+}
+
+function qfZonePos(zone){
+  // Percent positions inside keeper-arena
+  if(zone === "TL") return {x:22, y:24};
+  if(zone === "TR") return {x:78, y:24};
+  if(zone === "BL") return {x:22, y:60};
+  return {x:78, y:60}; // BR
+}
+
+function qfMoveBallTo(zone){
+  const ball = document.getElementById("keeperBall");
+  if(!ball) return;
+  const p = qfZonePos(zone);
+  // animate
+  ball.style.transition = "left 180ms ease, top 180ms ease, transform 180ms ease";
+  ball.style.left = p.x + "%";
+  ball.style.top  = p.y + "%";
+  ball.style.transform = "translate(-50%,-50%) scale(1.05)";
+}
+
+function qfResetBall(){
+  const ball = document.getElementById("keeperBall");
+  if(!ball) return;
+  ball.style.transition = "none";
+  ball.style.left = "50%";
+  ball.style.top  = "65%";
+  ball.style.transform = "translate(-50%,-50%) scale(1)";
+}
+
+function qfHighlight(zone){
+  document.querySelectorAll("#keeperGameScreen .keeper-savezone").forEach(z=>{
+    const dz = z.getAttribute("data-zone");
+    const on = dz === zone;
+    z.style.opacity = on ? "1" : "0.45";
+    z.style.outline = on ? "4px solid rgba(255,230,109,0.85)" : "none";
+    z.style.transform = on ? "scale(1.02)" : "";
+  });
+}
+
+function qfSetScoreboard(){
+  const rows = document.querySelectorAll('#keeperGameScreen .keeper-scoreboard .sb-row span');
+  if(rows.length >= 3){
+    rows[0].textContent = "Score";
+    rows[1].textContent = "Shots left";
+    rows[2].textContent = "Round";
+  }
+
+  const s = document.getElementById("keepSaves");
+  const m = document.getElementById("keepMisses");
+  const sp = document.getElementById("keepSpeed");
+  if(s) s.textContent = String(Math.floor(qfScore2));
+  if(m) m.textContent = String(qfShotsLeft2);
+  if(sp) sp.textContent = `${qfRoundNo2}/${qfRoundsTotal2}`;
+
+  // show multiplier in hint (without clobbering countdown/game messages too much)
+  const hint = document.getElementById("keeperHint");
+  if(hint && qfRunning && !String(hint.textContent||"").startsWith("Get ready")){
+    // append multiplier if not already there
+    if(!String(hint.textContent).includes("x")){
+      hint.textContent = hint.textContent + `  (x${qfMult2.toFixed(1)})`;
+    }
+  }
+}
+
+function resetKeeperGameUI(){
+  // (kept name for compatibility)
+  qfLoadBest();
+  qfRunning = false;
+  qfScore2 = 0;
+  qfRoundNo2 = 1;
+  qfShotsLeft2 = qfShotsPerRound2;
+  qfStreak2 = 0;
+  qfMult2 = 1;
+  qfRound2 = 0;
+  qfTarget2 = null;
+  try{ if(qfTick2) clearInterval(qfTick2); }catch(e){}
+  try{ if(qfCountdown2) clearInterval(qfCountdown2); }catch(e){}
+  qfTick2 = null; qfCountdown2 = null;
+
+  qfResetBall();
+  qfHighlight("__none__");
+
+  const hint = document.getElementById("keeperHint");
+  if(hint) hint.textContent = `Press Start to begin (3 second countdown) • Best: ${qfBest2}`;
+
+  const ins = document.getElementById("qfInstructions");
+  if(ins) ins.style.display = "block";
+
+  const start = document.getElementById("keeperStartBtn");
+  if(start){
+    start.style.display = "";
+    start.textContent = "Start";
+    start.setAttribute("onclick","startKeeperGame()");
+  }
+  const restart = document.getElementById("keeperRestartBtn");
+  if(restart){
+    restart.style.display = "none";
+    restart.textContent = "Play Again";
+    restart.setAttribute("onclick","resetKeeperGameUI(); startKeeperGame()");
+  }
+
+  const back = document.querySelector("#keeperGameScreen .back-btn");
+  if(back) back.setAttribute("onclick","closeKeeperGame()");
+
+  qfSetScoreboard();
+}
+
+function startKeeperGame(){
+  // 3 second countdown then start rounds
+  try{ if(qfCountdown2) clearInterval(qfCountdown2); }catch(e){}
+  qfCountdown2 = null;
+
+  const start = document.getElementById("keeperStartBtn");
+  if(start) start.style.display = "none";
+  const restart = document.getElementById("keeperRestartBtn");
+  if(restart) restart.style.display = "none";
+
+  let t = 3;
+  const hint = document.getElementById("keeperHint");
+  if(hint) hint.textContent = "Get ready… " + t;
+
+  qfCountdown2 = setInterval(()=>{
+    t -= 1;
+    if(t > 0){
+      if(hint) hint.textContent = "Get ready… " + t;
+      return;
+    }
+    try{ clearInterval(qfCountdown2); }catch(e){}
+    qfCountdown2 = null;
+    if(hint) hint.textContent = "GO!";
+    setTimeout(()=>{ qfBegin(); }, 250);
+  }, 1000);
+}
+
+function qfBegin(){
+  qfRunning = true;
+  qfScore2 = 0;
+  qfRoundNo2 = 1;
+  qfShotsLeft2 = qfShotsPerRound2;
+  qfStreak2 = 0;
+  qfMult2 = 1;
+  qfNext();
+}
+
+function qfNext(){
+  if(!qfRunning) return;
+
+  // End of round?
+  if(qfShotsLeft2 <= 0){
+    qfRoundComplete();
+    return;
+  }
+
+  const zones = ["TL","TR","BL","BR"];
+  qfTarget2 = zones[Math.floor(Math.random()*zones.length)];
+
+  // speed increases with difficulty across rounds + within round
+  const progress = (qfRoundsTotal2 - qfRoundNo2) * 1.0 + (qfShotsPerRound2 - qfShotsLeft2) * 0.25;
+  const windowMs = Math.max(420, 1150 - progress*110);
+
+  qfDeadline2 = Date.now() + windowMs;
+
+  qfSetScoreboard();
+
+  // highlight target and move ball shortly after
+  qfHighlight(qfTarget2);
+  qfResetBall();
+  setTimeout(()=> qfMoveBallTo(qfTarget2), 120);
+
+  // timeout watcher
+  try{ if(qfTick2) clearInterval(qfTick2); }catch(e){}
+  qfTick2 = setInterval(()=>{
+    if(Date.now() > qfDeadline2){
+      try{ clearInterval(qfTick2); }catch(e){}
+      qfTick2 = null;
+
+      // timeout counts as a missed shot
+      qfShotsLeft2 = Math.max(0, qfShotsLeft2 - 1);
+      qfStreak2 = 0;
+      qfMult2 = 1;
+      playSound && playSound("beep");
+      qfSetScoreboard();
+      qfNext();
+    }
+  }, 60);
+}
+
+
+function qfRoundComplete(){
+  // stop timers and show round summary
+  try{ if(qfTick2) clearInterval(qfTick2); }catch(e){}
+  qfTick2 = null;
+  qfHighlight("__none__");
+
+  const hint = document.getElementById("keeperHint");
+  if(hint) hint.textContent = `Round ${qfRoundNo2} complete! Score: ${Math.floor(qfScore2)} • Best: ${qfBest2}`;
+
+  const restart = document.getElementById("keeperRestartBtn");
+  if(restart){
+    if(qfRoundNo2 < qfRoundsTotal2){
+      restart.style.display = "";
+      restart.textContent = "Next Round";
+      restart.setAttribute("onclick", "qfStartNextRound()");
+    }else{
+      restart.style.display = "";
+      restart.textContent = "Finish";
+      restart.setAttribute("onclick", "qfEnd()");
+    }
+  }
+}
+
+function qfStartNextRound(){
+  if(!qfRunning) return;
+  qfRoundNo2 += 1;
+  qfShotsLeft2 = qfShotsPerRound2;
+  qfStreak2 = 0;
+  qfMult2 = 1;
+  const restart = document.getElementById("keeperRestartBtn");
+  if(restart) restart.style.display = "none";
+  qfNext();
+}
+
+function qfTap(zone){
+  if(!qfRunning) return;
+
+  // every tap consumes a shot
+  qfShotsLeft2 = Math.max(0, qfShotsLeft2 - 1);
+
+  const ok = (zone === qfTarget2) && (Date.now() <= qfDeadline2);
+
+  if(ok){
+    qfStreak2 += 1;
+    // multiplier grows with streak: +0.5 every 3 in a row (max 3.0x)
+    qfMult2 = Math.min(3.0, 1 + Math.floor(qfStreak2/3)*0.5);
+    qfScore2 += qfMult2;
+    playSound && playSound("cheer");
+  }else{
+    qfStreak2 = 0;
+    qfMult2 = 1;
+    playSound && playSound("beep");
+  }
+
+  qfSetScoreboard();
+  qfNext();
+}
+
+function qfEnd(){
+  qfRunning = false;
+  try{ if(qfTick2) clearInterval(qfTick2); }catch(e){}
+  qfTick2 = null;
+  qfHighlight("__none__");
+
+  // best score
+  if(qfScore2 > qfBest2){
+    qfBest2 = Math.floor(qfScore2);
+    qfSaveBest();
+  }
+
+  const hint = document.getElementById("keeperHint");
+  if(hint) hint.textContent = `Finished! Score: ${Math.floor(qfScore2)} • Best: ${qfBest2}`;
+
+  const restart = document.getElementById("keeperRestartBtn");
+  if(restart) restart.style.display = "";
+}
+
+function bindKeeperZonesOnce(){
+  // keep name for compatibility
+  const screen = document.getElementById("keeperGameScreen");
+  if(!screen || screen.dataset.qfBound2 === "1") return;
+  screen.dataset.qfBound2 = "1";
+  screen.addEventListener("click",(e)=>{
+    const z = e.target.closest(".keeper-savezone");
+    if(!z) return;
+    const zone = z.getAttribute("data-zone");
+    if(!zone) return;
+    e.preventDefault(); e.stopPropagation();
+    qfTap(zone);
+  });
+}
+
+function openQuickFeet(){
+  if(typeof forceShowOverlayById === "function"){
+    forceShowOverlayById("keeperGameScreen");
+  }else{
+    const el = document.getElementById("keeperGameScreen");
+    if(el){ el.classList.add("active"); el.style.display="flex"; }
+  }
+  resetKeeperGameUI();
+  bindKeeperZonesOnce();
+}
+
+function closeKeeperGame(){
+  qfRunning = false;
+  try{ if(qfTick2) clearInterval(qfTick2); }catch(e){}
+  try{ if(qfCountdown2) clearInterval(qfCountdown2); }catch(e){}
+  qfTick2 = null; qfCountdown2 = null;
+
+  const el = document.getElementById("keeperGameScreen");
+  if(el){ el.classList.remove("active"); el.style.display="none"; }
+}
+
+// Aliases
+function openKeeperGame(){ openQuickFeet(); }
+
 </script>
 
 <!-- =========================
@@ -5173,7 +6679,7 @@ async function renderLeaderboard(){const r=await fetchLeaderboard();const list=d
 <div id="keeperGameScreen" class="overlay">
   <div class="overlay-content keeper-wrap">
     <div class="penalty-topbar" style="margin-bottom:10px;">
-      <div class="penalty-banner">KEEPER REACTION</div>
+      <div class="penalty-banner">⚡ QUICK FEET</div>
       <div class="penalty-scoreboard" style="width:320px;">
         <div class="sb-row"><span>Saves</span><strong id="keepSaves">0</strong></div>
         <div class="sb-row"><span>Misses</span><strong id="keepMisses">0</strong></div>
@@ -5198,11 +6704,14 @@ async function renderLeaderboard(){const r=await fetchLeaderboard();const list=d
     </div>
 
     <div class="keeper-hint" id="keeperHint">Tap the corner where the ball is going… before time runs out!</div>
+    <div id="qfInstructions" class="offside-help" style="max-width:920px;margin:10px auto 0;display:block;">
+      <b>Quick Feet:</b> Tap the <b>highlighted</b> target before time runs out. It gets faster every round.
+    </div>
 
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
-      <button type="button" class="menu-btn" id="keeperStartBtn" style="background:#16a34a;color:white;">Start</button>
-      <button type="button" class="menu-btn" id="keeperRestartBtn" style="background:#2563eb;color:white;display:none;">Restart</button>
-      <button type="button" class="back-btn" onclick="closeKeeperGame()">Back</button>
+      <button type="button" class="menu-btn" id="keeperStartBtn" style="background:#16a34a;color:white;" type="button" onclick="startKeeperGame()" type="button" type="button" onclick="startKeeperGame()">Start</button>
+      <button type="button" class="menu-btn" id="keeperRestartBtn" style="background:#2563eb;color:white;display:none;" type="button" onclick="resetKeeperGameUI(); startKeeperGame()" type="button" type="button" onclick="resetKeeperGameUI(); startKeeperGame()">Restart</button>
+      <button type="button" class="back-btn" onclick="closeKeeperGame()" type="button">Back</button>
     </div>
   </div>
 </div>
@@ -5282,10 +6791,96 @@ async function renderLeaderboard(){const r=await fetchLeaderboard();const list=d
 </div>
 
 
-<div id="voteScreen" class="overlay"><div class="overlay-content"><div class="penalty-topbar"><div class="penalty-banner">⭐ PLAYER OF THE WEEK</div><button onclick="closeVote()">Back</button></div><div id="voteGrid" class="gamesmenu-grid"></div></div></div>
-<div id="leaderboardScreen" class="overlay"><div class="overlay-content"><div class="penalty-topbar"><div class="penalty-banner">📊 LEADERBOARD</div><button onclick="closeVote()">Back</button></div><div id="lbList"></div></div></div>
+<div id="voteScreen" class="overlay"><div class="overlay-content"><div class="penalty-topbar"><div class="penalty-banner">⭐ PLAYER OF THE WEEK</div><button onclick="closeVote()" type="button">Back</button></div><div id="voteGrid" class="gamesmenu-grid"></div></div></div>
+<div id="leaderboardScreen" class="overlay"><div class="overlay-content"><div class="penalty-topbar"><div class="penalty-banner">📊 LEADERBOARD</div><button onclick="closeVote()" type="button">Back</button></div><div id="lbList"></div></div></div>
+<script>
+// --- Overlay reliability patch: safe open/close helpers ---
+(function(){
+  function byId(id){ return document.getElementById(id); }
 
-<button class="xp-mini-btn" onclick="openVote()">⭐ Player of the Week</button>
+  // If a function already exists in your file, do not overwrite it.
+  if(typeof window.openOverlay !== "function"){
+    window.openOverlay = function(id){
+      const el = byId(id);
+      if(!el) return;
+      el.classList.add("active");
+      // ensure visible even if other code forced display:none
+      el.style.display = "flex";
+    };
+  }
+
+  if(typeof window.closeAllOverlays !== "function"){
+    window.closeAllOverlays = function(){
+      document.querySelectorAll(".overlay.active").forEach(el=>{
+        el.classList.remove("active");
+        el.style.display = "";
+      });
+    };
+  }
+
+  // A more targeted close (useful for Back buttons)
+  if(typeof window.closeOverlay !== "function"){
+    window.closeOverlay = function(id){
+      const el = byId(id);
+      if(!el) return;
+      el.classList.remove("active");
+      el.style.display = "";
+    };
+  }
+
+  // Hard bind common Back buttons if present (won't hurt if they already work)
+  document.addEventListener("click", function(e){
+    const btn = e.target.closest("button,[role='button']");
+    if(!btn) return;
+
+    // buttons that literally say Back/Close
+    const t = (btn.textContent || "").trim().toLowerCase();
+    if(t === "back" || t === "close"){
+      // only close overlays if the button sits inside an overlay
+      const ov = btn.closest(".overlay");
+      if(ov){
+        ov.classList.remove("active");
+        ov.style.display = "";
+      }
+    }
+  }, {passive:true});
+
+  // Ensure any overlay with .active is flex (some browsers ignore CSS after heavy style overrides)
+  window.addEventListener("load", ()=>{
+    document.querySelectorAll(".overlay.active").forEach(el => el.style.display = "flex");
+  });
+})();
+</script>
+
+
+<div id="scheduleScreen" class="overlay" aria-label="Schedule">
+  <div class="overlay-content penalty-wrap">
+    <div class="penalty-topbar">
+      <div class="penalty-banner">📅 SCHEDULE</div>
+      <button class="back-btn" type="button" onclick="closeSchedule()">Back</button>
+    </div>
+
+    <div class="overlay-card" style="max-width:1000px">
+      <h2 style="margin:0 0 8px">Team Schedule</h2>
+      <p style="margin:0 0 14px;opacity:.9">
+        This can be a Google Slides, Google Sheet, or Google Calendar embed.
+      </p>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:12px">
+        <button type="button" class="menu-btn" onclick="promptScheduleUrl()">Set / Change Link</button>
+        <a id="scheduleOpenLink" href="#" target="_blank" rel="noopener" class="menu-btn" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Open Link</a>
+      </div>
+
+      <div id="scheduleEmbedWrap" style="border-radius:18px;overflow:hidden;background:rgba(0,0,0,0.25);min-height:360px">
+        <div id="schedulePlaceholder" style="padding:18px;text-align:center;opacity:.9">
+          No schedule link set yet.<br/>Tap <b>Set / Change Link</b> to add your Google Slides/Sheets/Calendar embed.
+        </div>
+        <iframe id="scheduleFrame" title="Schedule" style="width:100%;height:520px;border:0;display:none" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
 
